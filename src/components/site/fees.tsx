@@ -83,7 +83,7 @@ export function Fees() {
         {/* Category filter */}
         {categories.length > 1 && (
           <div className="flex flex-wrap gap-2 mb-5">
-            <button
+            <button aria-label="Filter fees"
               onClick={() => setFilter("all")}
               className={`rounded-full px-3.5 py-1.5 text-xs font-medium transition-colors ${
                 filter === "all" ? "bg-xavier-gradient text-cream" : "bg-card border border-xavier/10 text-foreground/70 hover:text-xavier-dark"
@@ -92,7 +92,7 @@ export function Fees() {
               All Categories
             </button>
             {categories.map((c) => (
-              <button
+              <button aria-label="Filter fees"
                 key={c}
                 onClick={() => setFilter(c)}
                 className={`rounded-full px-3.5 py-1.5 text-xs font-medium transition-colors ${

@@ -1,4 +1,5 @@
 "use client";
+import { play } from "@/lib/site/sounds";
 
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -23,7 +24,7 @@ export function BackToTop() {
   }, []);
 
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    play("whoosh"); window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   return (

@@ -1,4 +1,5 @@
 "use client";
+import { play } from "@/lib/site/sounds";
 
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";

@@ -4,6 +4,7 @@ import { Hero } from "@/components/site/hero";
 import { Stats } from "@/components/site/stats";
 import { Marquee } from "@/components/site/marquee";
 import { About } from "@/components/site/about";
+import { Features } from "@/components/site/features";
 import { Academics } from "@/components/site/academics";
 import { Admissions } from "@/components/site/admissions";
 import { Fees } from "@/components/site/fees";
@@ -28,6 +29,7 @@ export default function Home() {
         <Stats />
         <Marquee />
         <About />
+        <Features />
         <Academics />
         <Admissions />
         <Fees />

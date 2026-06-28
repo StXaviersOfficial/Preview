@@ -1,4 +1,5 @@
 'use client'
+import { play } from "@/lib/site/sounds";
 
 import { motion } from "framer-motion";
 import { useState } from "react";
@@ -27,9 +28,9 @@ export function Contact() {
       if (!res.ok || !data.ok) {
         throw new Error(data.error || "Submission failed. Please try again.");
       }
-      setSubmitted(true);
+      play("success"); setSubmitted(true);
       setForm({ name: "", email: "", phone: "", grade: "", message: "" });
-      setTimeout(() => setSubmitted(false), 6000);
+      
     } catch (err) {
       setError(err instanceof Error ? err.message : "Something went wrong.");
     } finally {
@@ -40,7 +41,7 @@ export function Contact() {
   const fields = [
     { label: "Parent / Guardian Name", name: "name", type: "text", placeholder: "e.g. Rajesh Kumar", required: true, colSpan: "sm:col-span-2" },
     { label: "Email Address", name: "email", type: "email", placeholder: "you@example.com", required: true, colSpan: "" },
-    { label: "Phone Number", name: "phone", type: "tel", placeholder: "+91 90000 00000", required: true, colSpan: "" },
+    { label: "Phone Number", name: "phone", type: "tel", placeholder: "+91 90000 00000", required: true, pattern: "[0-9+\s-]{10,15}", colSpan: "" },
     { label: "Class Seeking Admission To", name: "grade", type: "text", placeholder: "e.g. Class 6", required: false, colSpan: "sm:col-span-2" },
   ];
 
@@ -128,6 +129,7 @@ export function Contact() {
                 <h3 className="font-serif text-xl sm:text-2xl font-bold text-xavier-dark mb-2">Enquiry Received!</h3>
                 <p className="text-sm sm:text-base text-muted-foreground max-w-md px-4">
                   Thank you for reaching out to St. Xavier&apos;s. We&apos;ve received your enquiry and will get back to you shortly. For urgent queries, please call us directly.
+                <button onClick={() => setSubmitted(false)} className="mt-5 rounded-full bg-gold-gradient px-5 py-2.5 text-sm font-bold text-xavier-dark hover:opacity-90 transition-opacity">Send Another Enquiry</button>
                 </p>
               </div>
             ) : (

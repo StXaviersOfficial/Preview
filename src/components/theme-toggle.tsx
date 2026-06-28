@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Moon, Sun } from "lucide-react";
 import { useTheme } from "@/components/theme-provider";
 import { cn } from "@/lib/utils";
+import { play } from "@/lib/site/sounds";
 
 /**
  * ThemeToggle
@@ -18,7 +19,7 @@ export function ThemeToggle({ className }: { className?: string }) {
   return (
     <button
       type="button"
-      onClick={toggleTheme}
+      onClick={() => { play("toggle"); toggleTheme(); }}
       aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
       title={isDark ? "Light mode" : "Dark mode"}
       className={cn(

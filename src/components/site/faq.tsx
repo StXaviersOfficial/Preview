@@ -1,4 +1,5 @@
 'use client'
+import { play } from "@/lib/site/sounds";
 
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
@@ -115,7 +116,7 @@ export function FAQ() {
                 }`}
               >
                 <button
-                  onClick={() => setOpen(open === faq.id ? null : faq.id)}
+                  onClick={() => { play("pop"); setOpen(open === faq.id ? null : faq.id); }}
                   className="w-full px-5 py-4 flex items-center justify-between gap-3 text-left"
                 >
                   <div className="flex items-center gap-3 min-w-0">

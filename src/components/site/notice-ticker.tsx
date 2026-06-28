@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { play } from "@/lib/site/sounds";
 import { Megaphone, ChevronRight, X } from "lucide-react";
 
 type Notice = {
@@ -20,7 +21,7 @@ export function NoticeTicker() {
     fetch("/api/notices")
       .then((r) => r.json())
       .then((d) => {
-        if (d.ok) setNotices(d.notices);
+        if (d.ok) { play("notification"); setNotices(d.notices); }
       })
       .catch(() => {});
   }, []);
@@ -33,11 +34,13 @@ export function NoticeTicker() {
     return () => clearInterval(interval);
   }, [notices.length]);
 
-  if (dismissed || notices.length === 0) return null;
+  if (notices.length === 0) return null;
 
   const notice = notices[current];
 
   return (
+    <AnimatePresence>
+    {!dismissed && (
     <motion.div
       initial={{ y: -50, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
@@ -108,5 +111,7 @@ export function NoticeTicker() {
         </button>
       </div>
     </motion.div>
+    )}
+    </AnimatePresence>
   );
 }

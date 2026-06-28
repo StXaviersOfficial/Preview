@@ -1,4 +1,5 @@
 'use client';
+import { play } from "@/lib/site/sounds";
 
 import { useState } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from "@/components/ui/dialog";
@@ -29,7 +30,7 @@ export function AdmissionForm({ open, onOpenChange }: { open: boolean; onOpenCha
     e.preventDefault();
     // In production, send to Firebase or EmailJS
     console.log("Admission application:", formData);
-    setSubmitted(true);
+    play("success"); setSubmitted(true);
   };
 
   const handleClose = () => {

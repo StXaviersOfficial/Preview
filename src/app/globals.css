@@ -386,4 +386,20 @@
 ::-webkit-scrollbar-thumb:hover { background: var(--xavier-dark); }
 
 /* Smooth scroll anchor offset for sticky header */
-[id] { scroll-margin-top: 90px; }
+section[id], [id="home"], [id="about"], [id="academics"], [id="admissions"], [id="fees"], [id="faq"], [id="facilities"], [id="gallery"], [id="leadership"], [id="testimonials"], [id="timetable"], [id="contact"] { scroll-margin-top: 90px; }
+
+/* === Reduced motion === */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* === Focus visible for accessibility === */
+:focus-visible {
+  outline: 2px solid var(--xavier);
+  outline-offset: 2px;
+}

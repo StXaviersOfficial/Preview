@@ -1,7 +1,7 @@
 'use client'
 
 import { motion, AnimatePresence } from "framer-motion";
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { X, ChevronLeft, ChevronRight, ZoomIn, Camera } from "lucide-react";
 import { IMAGES } from "@/lib/site/data";
 import { Reveal } from "@/components/site/reveal";
@@ -28,9 +28,26 @@ export function Gallery() {
 
   const filtered = filter === "All" ? GALLERY : GALLERY.filter((g) => g.category === filter);
 
+  // Reset lightbox when filter changes
+  useEffect(() => {
+    setLightbox(null);
+  }, [filter]);
+
   const close = useCallback(() => setLightbox(null), []);
   const next = useCallback(() => setLightbox((i) => (i === null ? i : (i + 1) % filtered.length)), [filtered.length]);
   const prev = useCallback(() => setLightbox((i) => (i === null ? i : (i - 1 + filtered.length) % filtered.length)), [filtered.length]);
+
+  // Keyboard navigation for lightbox
+  useEffect(() => {
+    if (lightbox === null) return;
+    const handler = (e: KeyboardEvent) => {
+      if (e.key === "Escape") close();
+      if (e.key === "ArrowRight") next();
+      if (e.key === "ArrowLeft") prev();
+    };
+    window.addEventListener("keydown", handler);
+    return () => window.removeEventListener("keydown", handler);
+  }, [lightbox, close, next, prev]);
 
   return (
     <section id="gallery" className="relative overflow-hidden py-16 sm:py-24 bg-background">
