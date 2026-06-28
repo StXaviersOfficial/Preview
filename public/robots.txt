@@ -1,6 +1,6 @@
 User-agent: *
-Disallow: /admin/
-Disallow: /api/
 Allow: /
+Disallow: /admin
+Disallow: /api
 
-Sitemap: https://stxaviersmuzaffarpur.com/sitemap.xml
+Sitemap: https://stxaviers.space-z.ai/sitemap.xml
