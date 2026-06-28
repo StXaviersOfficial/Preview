@@ -4,11 +4,14 @@ Next.js 16 + Tailwind CSS 4 + shadcn/ui
 
 ## Development
 ```bash
-bun install
-bun run dev
+npm install
+npm run dev
 ```
 
 ## Build
 ```bash
-bun run build
+npm run build
 ```
+
+## Environment Variables
+Copy `.env.example` to `.env` and fill in the values.

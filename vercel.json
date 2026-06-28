@@ -1,4 +1,5 @@
 {
-  "buildCommand": "prisma generate && next build && cp -r .next/static .next/standalone/.next/ && cp -r public .next/standalone/",
-  "installCommand": "bun install"
+  "framework": "nextjs",
+  "buildCommand": "prisma generate && next build",
+  "installCommand": "npm install"
 }
