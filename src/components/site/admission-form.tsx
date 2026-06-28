@@ -29,7 +29,6 @@ export function AdmissionForm({ open, onOpenChange }: { open: boolean; onOpenCha
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // In production, send to Firebase or EmailJS
-    console.log("Admission application:", formData);
     play("success"); setSubmitted(true);
   };
 

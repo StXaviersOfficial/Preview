@@ -175,3 +175,16 @@ export function play(soundName: keyof typeof sounds) {
   if (!_soundEnabled) return;
   try { sounds[soundName](); } catch {}
 }
+
+  // Chime — for section reveals (subtle, pleasant)
+  chime() {
+    tone(659.25, 0.12, "sine", 0.04); // E5 — soft, short
+  },
+  
+  // Tada — for special achievements / success
+  tada() {
+    tone(523.25, 0.1, "sine", 0.08); // C5
+    tone(659.25, 0.1, "sine", 0.08, 0.1); // E5
+    tone(783.99, 0.1, "sine", 0.08, 0.2); // G5
+    tone(1046.5, 0.3, "sine", 0.08, 0.3); // C6
+  },

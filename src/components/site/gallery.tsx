@@ -5,6 +5,7 @@ import { useState, useCallback, useEffect } from "react";
 import { X, ChevronLeft, ChevronRight, ZoomIn, Camera } from "lucide-react";
 import { IMAGES } from "@/lib/site/data";
 import { Reveal } from "@/components/site/reveal";
+import { play } from "@/lib/site/sounds";
 
 type GalleryItem = { src: string; title: string; category: string };
 
@@ -68,7 +69,7 @@ export function Gallery() {
             </h2>
           </Reveal>
 
-          <Reveal variant="scale" className="flex flex-wrap gap-2">
+          <Reveal variant="scale" onMouseEnter={() => play("hover")} className="flex flex-wrap gap-2">
             {CATEGORIES.map((cat) => (
               <button
                 key={cat}

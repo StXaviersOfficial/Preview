@@ -20,7 +20,7 @@ function getSecret(): string {
   // Pull a stable secret from env if available, otherwise derive at boot.
   // Using a derived secret means the session becomes invalid if the admin
   // code is rotated — which is actually desirable.
-  return process.env.ADMIN_SESSION_SECRET || "sx-session-secret-v1-xavier";
+  return process.env.ADMIN_SESSION_SECRET || crypto.randomUUID().slice(0, 16);
 }
 
 function hmac(value: string): string {
