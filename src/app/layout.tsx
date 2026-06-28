@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Playfair_Display, Cormorant_Garamond } from "next/font/google";
 import "./globals.css";
-import { Toaster } from "@/components/ui/toaster";
+import { Toaster } from "@/components/ui/sonner";
 import { CustomCursor, ScrollProgressRing } from "@/components/site/animations";
 import { ThemeProvider } from "@/components/theme-provider";
 import { LanguageProvider } from "@/components/site/language-provider";

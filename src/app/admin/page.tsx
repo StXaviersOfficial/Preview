@@ -1,9 +1,11 @@
 'use client'
 
 import { useEffect, useState } from "react";
+
 import { motion, AnimatePresence } from "framer-motion";
 import {
   LayoutDashboard, Mail, Clock, Receipt, LogOut, Lock, Send,
+import { toast } from "sonner";
   Trash2, Plus, Edit2, X, Check, AlertCircle, Search, Phone,
   Mail as MailIcon, Calendar, RefreshCw, ChevronDown, User, Reply,
   Megaphone, HelpCircle, ArrowLeft, Home,
@@ -411,7 +413,7 @@ function EnquiriesManager() {
         const res = await fetch("/api/admin/enquiries");
         const data = await res.json();
         if (!cancelled && data.ok) setSubmissions(data.submissions);
-      } catch (e) { console.error("Admin error:", e); }
+      } catch (e) { console.error("Admin error:", e); toast.error("Something went wrong"); }
       if (!cancelled) setLoading(false);
     })();
     return () => { cancelled = true; };
@@ -726,7 +728,7 @@ function TimetableManager() {
         const res = await fetch("/api/admin/timetable");
         const data = await res.json();
         if (!cancelled && data.ok) setEntries(data.entries);
-      } catch (e) { console.error("Admin error:", e); }
+      } catch (e) { console.error("Admin error:", e); toast.error("Something went wrong"); }
       if (!cancelled) setLoading(false);
     })();
     return () => { cancelled = true; };
@@ -943,7 +945,7 @@ function FeesManager() {
         const res = await fetch("/api/admin/fees");
         const data = await res.json();
         if (!cancelled && data.ok) setRows(data.rows);
-      } catch (e) { console.error("Admin error:", e); }
+      } catch (e) { console.error("Admin error:", e); toast.error("Something went wrong"); }
       if (!cancelled) setLoading(false);
     })();
     return () => { cancelled = true; };
@@ -1132,7 +1134,7 @@ function NoticesManager() {
         const res = await fetch("/api/admin/notices");
         const data = await res.json();
         if (!cancelled && data.ok) setNotices(data.notices);
-      } catch (e) { console.error("Admin error:", e); }
+      } catch (e) { console.error("Admin error:", e); toast.error("Something went wrong"); }
       if (!cancelled) setLoading(false);
     })();
     return () => { cancelled = true; };
@@ -1280,7 +1282,7 @@ function FaqsManager() {
         const res = await fetch("/api/admin/faqs");
         const data = await res.json();
         if (!cancelled && data.ok) setFaqs(data.faqs);
-      } catch (e) { console.error("Admin error:", e); }
+      } catch (e) { console.error("Admin error:", e); toast.error("Something went wrong"); }
       if (!cancelled) setLoading(false);
     })();
     return () => { cancelled = true; };
