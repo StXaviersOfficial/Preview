@@ -569,7 +569,7 @@ function EnquiriesManager() {
                 </div>
               )}
 
-              <ReplyBox submission={selected} onReplied={onReplied} />
+              <ReplyBox key={selected.id} submission={selected} onReplied={onReplied} />
 
               {/* Actions */}
               <div className="mt-5 pt-4 border-t border-xavier/10 flex flex-wrap items-center gap-2">

@@ -27,7 +27,7 @@ export async function POST(req: NextRequest) {
         { status: 400 }
       );
     }
-    if (name.length > 200 || message.length > 5000) {
+    if (name.length > 200 || message.length > 5000 || phone.length > 20 || email.length > 200 || grade.length > 50) {
       return NextResponse.json(
         { ok: false, error: "Input too long." },
         { status: 400 }
