@@ -9,7 +9,6 @@ import { play } from "@/lib/site/sounds";
 
 export function Stats() {
   const ref = useRef<HTMLDivElement>(null);
-import { useEffect } from "react";
   const inView = useInView(ref, { once: true, amount: 0.3 });
   useEffect(() => { if (inView) play("pop"); }, [inView]);
 

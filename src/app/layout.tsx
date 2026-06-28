@@ -40,15 +40,6 @@ const cormorant = Cormorant_Garamond({
 const themeInitScript = `(function(){try{var k='xavier-theme';var t=localStorage.getItem(k)||'system';var d=t==='dark'||(t==='system'&&window.matchMedia('(prefers-color-scheme: dark)').matches);var c=document.documentElement.classList;c.add(d?'dark':'light');c.remove(d?'light':'dark');document.documentElement.style.colorScheme=d?'dark':'light';}catch(e){}})();`;
 
 export const metadata: Metadata = {
-
-export const viewport = {
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#a02838" },
-    { media: "(prefers-color-scheme: dark)", color: "#0f0a0a" },
-  ],
-  width: "device-width",
-  initialScale: 1,
-};
   title: "St. Xavier's Jr./Sr. School, Muzaffarpur | Where Discipline Meets Opportunity",
   description:
     "St. Xavier's Jr./Sr. School, Goshala Road, Muzaffarpur — a premier CBSE co-educational institution since 1976. Day scholar + boarding, Nursery to Class 12, smart classes, holistic development.",
@@ -71,6 +62,15 @@ export const viewport = {
     siteName: "St. Xavier's Jr./Sr. School",
     type: "website",
   },
+};
+
+export const viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#a02838" },
+    { media: "(prefers-color-scheme: dark)", color: "#0f0a0a" },
+  ],
+  width: "device-width",
+  initialScale: 1,
 };
 
 export default function RootLayout({
