@@ -3,7 +3,7 @@ import { play } from "@/lib/site/sounds";
 
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
-import { HelpCircle, ChevronDown, RefreshCw } from "lucide-react";
+import { HelpCircle, AlertCircle, ChevronDown, RefreshCw } from "lucide-react";
 import { Reveal } from "@/components/site/reveal";
 
 type Faq = {

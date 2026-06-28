@@ -111,6 +111,11 @@ export function Fees() {
           <div className="rounded-2xl border border-xavier/10 bg-card p-10 text-center text-muted-foreground flex items-center justify-center gap-2">
             <RefreshCw className="size-4 animate-spin" /> Loading fee structure…
           </div>
+        ) : error ? (
+          <div className="rounded-2xl border border-xavier/10 bg-card p-10 text-center text-muted-foreground">
+            <AlertCircle className="size-10 mx-auto mb-3 text-red-400" />
+            <p>Failed to load fee structure. Please try again later.</p>
+          </div>
         ) : rows.length === 0 ? (
           <div className="rounded-2xl border border-xavier/10 bg-card p-10 text-center text-muted-foreground">
             <Receipt className="size-10 mx-auto mb-3 text-gold/40" />
