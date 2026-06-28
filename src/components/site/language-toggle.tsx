@@ -1,4 +1,5 @@
 "use client";
+import { play } from "@/lib/site/sounds";
 
 import { motion, AnimatePresence } from "framer-motion";
 import { Languages } from "lucide-react";
