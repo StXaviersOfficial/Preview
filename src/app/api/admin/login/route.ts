@@ -33,3 +33,20 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ ok: false, error: "Login failed." }, { status: 500 });
   }
 }
+
+// Simple rate limiter for admin login — 5 attempts per 15 min per IP
+const loginAttempts = new Map<string, { count: number; resetTime: number }>();
+const LOGIN_WINDOW = 15 * 60 * 1000;
+const LOGIN_MAX = 5;
+
+function checkLoginRate(ip: string): boolean {
+  const now = Date.now();
+  const entry = loginAttempts.get(ip);
+  if (!entry || now > entry.resetTime) {
+    loginAttempts.set(ip, { count: 1, resetTime: now + LOGIN_WINDOW });
+    return true;
+  }
+  if (entry.count >= LOGIN_MAX) return false;
+  entry.count++;
+  return true;
+}
