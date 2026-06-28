@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { StructuredData } from "./structured-data";
 import { Geist, Geist_Mono, Playfair_Display, Cormorant_Garamond } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/sonner";
@@ -86,6 +87,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} ${playfair.variable} ${cormorant.variable} antialiased bg-background text-foreground font-sans`}
       >
         <ThemeProvider defaultTheme="system" storageKey="xavier-theme">
+        <StructuredData />
           <LanguageProvider defaultLang="en">
             <CustomCursor />
             <ScrollProgressRing />
