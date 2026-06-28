@@ -145,7 +145,7 @@ export function Navbar() {
               <SoundToggle className="hidden sm:inline-flex" />
               <ThemeToggle />
               <a
-                href="#admissions"
+                href="#admissions" onClick={() => play("click")}
                 className="hidden sm:inline-flex items-center justify-center rounded-full bg-xavier-gradient px-4 sm:px-5 py-2 sm:py-2.5 text-xs sm:text-sm font-semibold text-cream shadow-glow-xavier"
               >
                 Apply Now
@@ -233,7 +233,7 @@ export function Navbar() {
                   <SoundToggle className="sm:hidden" />
                 </div>
                 <a
-                  href="#admissions"
+                  href="#admissions" onClick={() => play("click")}
                   onClick={() => { play("slideClose"); setMobileOpen(false); }}
                   className="block w-full text-center rounded-full bg-xavier-gradient px-5 py-3.5 font-semibold text-cream shadow-glow-xavier"
                 >

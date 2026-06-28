@@ -121,7 +121,7 @@ export function Admissions() {
                 </a>
               ))}
               <a
-                href="#contact"
+                href="#contact" onClick={() => play("click")}
                 className="flex items-center justify-center gap-2 w-full rounded-full bg-cream/10 border border-cream/20 px-5 py-3 text-sm font-bold text-cream hover:bg-cream/15 transition-colors"
               >
                 Send an Enquiry
