@@ -1,8 +1,9 @@
 // ═══ Sound Effects System for St. Xavier's Website ═══
-// Lightweight Web Audio API based — no external files needed
-// All sounds generated programmatically, ~0 KB download
+// Uses real audio files from /public/sounds/ + Web Audio API fallback
+// Sounds are loaded on-demand (lazy) for better performance
 
 let audioCtx: AudioContext | null = null;
+const audioCache = new Map<string, HTMLAudioElement>();
 
 function getCtx(): AudioContext | null {
   if (typeof window === "undefined") return null;
@@ -16,7 +17,27 @@ function getCtx(): AudioContext | null {
   return audioCtx;
 }
 
-// Play a tone with given frequency, duration, type, and volume
+// Play an audio file from /public/sounds/
+function playFile(name: string, volume = 0.3) {
+  if (typeof window === "undefined") return;
+  
+  // Check if already cached
+  let audio = audioCache.get(name);
+  if (!audio) {
+    audio = new Audio(`/sounds/${name}.wav`);
+    audio.preload = "auto";
+    audioCache.set(name, audio);
+  }
+  
+  // Clone for overlapping playback
+  const clone = audio.cloneNode() as HTMLAudioElement;
+  clone.volume = volume;
+  clone.play().catch(() => {
+    // Autoplay policy — will work after first user interaction
+  });
+}
+
+// Web Audio API fallback tone (used if file fails to load)
 function tone(freq: number, duration: number, type: OscillatorType = "sine", volume = 0.1, delay = 0) {
   const ctx = getCtx();
   if (!ctx) return;
@@ -39,125 +60,70 @@ function tone(freq: number, duration: number, type: OscillatorType = "sine", vol
   osc.stop(startTime + duration);
 }
 
-// Play a chord (multiple frequencies simultaneously)
-function chord(freqs: number[], duration: number, type: OscillatorType = "sine", volume = 0.08) {
-  freqs.forEach(f => tone(f, duration, type, volume));
-}
-
 export const sounds = {
-  // Soft click for buttons
+  // Soft click for buttons — real audio file
   click() {
-    tone(800, 0.05, "sine", 0.05);
+    playFile("click", 0.4);
   },
   
   // Hover sound — very subtle
   hover() {
-    tone(1200, 0.03, "sine", 0.02);
+    playFile("hover", 0.15);
   },
   
-  // Success — pleasant rising chord (C-E-G)
+  // Success — pleasant rising melody
   success() {
-    tone(523.25, 0.15, "sine", 0.08); // C5
-    tone(659.25, 0.15, "sine", 0.08, 0.05); // E5
-    tone(783.99, 0.25, "sine", 0.08, 0.1); // G5
+    playFile("success", 0.5);
   },
   
-  // Error — descending minor (A-F)
+  // Error — descending tone
   error() {
-    tone(440, 0.15, "sawtooth", 0.06); // A4
-    tone(349.23, 0.25, "sawtooth", 0.06, 0.1); // F4
+    playFile("error", 0.4);
   },
   
-  // Notification bell — pleasant ding
+  // Notification bell
   notification() {
-    tone(880, 0.3, "sine", 0.1); // A5
-    tone(1760, 0.3, "sine", 0.05); // A6 (harmonic)
+    playFile("notification", 0.4);
   },
   
-  // Whoosh — for page transitions / reveals
+  // Whoosh — for page transitions / scroll to top
   whoosh() {
-    const ctx = getCtx();
-    if (!ctx) return;
-    const osc = ctx.createOscillator();
-    const gain = ctx.createGain();
-    osc.type = "sine";
-    osc.frequency.setValueAtTime(200, ctx.currentTime);
-    osc.frequency.exponentialRampToValueAtTime(800, ctx.currentTime + 0.15);
-    gain.gain.setValueAtTime(0, ctx.currentTime);
-    gain.gain.linearRampToValueAtTime(0.04, ctx.currentTime + 0.02);
-    gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.15);
-    osc.connect(gain);
-    gain.connect(ctx.destination);
-    osc.start();
-    osc.stop(ctx.currentTime + 0.15);
+    playFile("whoosh", 0.3);
   },
   
   // Pop — for accordion expand
   pop() {
-    tone(600, 0.08, "sine", 0.06);
-    tone(900, 0.08, "sine", 0.04, 0.02);
+    playFile("pop", 0.4);
   },
   
-  // Slide — for mobile menu open
+  // Slide open — for mobile menu
   slideOpen() {
-    const ctx = getCtx();
-    if (!ctx) return;
-    const osc = ctx.createOscillator();
-    const gain = ctx.createGain();
-    osc.type = "sine";
-    osc.frequency.setValueAtTime(300, ctx.currentTime);
-    osc.frequency.linearRampToValueAtTime(600, ctx.currentTime + 0.1);
-    gain.gain.setValueAtTime(0, ctx.currentTime);
-    gain.gain.linearRampToValueAtTime(0.04, ctx.currentTime + 0.02);
-    gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.1);
-    osc.connect(gain);
-    gain.connect(ctx.destination);
-    osc.start();
-    osc.stop(ctx.currentTime + 0.1);
+    playFile("slide-open", 0.4);
   },
   
   // Slide close — reverse of slideOpen
   slideClose() {
-    const ctx = getCtx();
-    if (!ctx) return;
-    const osc = ctx.createOscillator();
-    const gain = ctx.createGain();
-    osc.type = "sine";
-    osc.frequency.setValueAtTime(600, ctx.currentTime);
-    osc.frequency.linearRampToValueAtTime(300, ctx.currentTime + 0.1);
-    gain.gain.setValueAtTime(0, ctx.currentTime);
-    gain.gain.linearRampToValueAtTime(0.04, ctx.currentTime + 0.02);
-    gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.1);
-    osc.connect(gain);
-    gain.connect(ctx.destination);
-    osc.start();
-    osc.stop(ctx.currentTime + 0.1);
+    playFile("slide-close", 0.4);
   },
   
   // Sparkle — for hero confetti
   sparkle() {
-    tone(1318.51, 0.1, "sine", 0.06); // E6
-    tone(1567.98, 0.1, "sine", 0.05, 0.05); // G6
-    tone(2093, 0.15, "sine", 0.04, 0.1); // C7
+    playFile("sparkle", 0.4);
   },
   
   // Toggle — for theme/language switch
   toggle() {
-    tone(500, 0.05, "square", 0.03);
-    tone(750, 0.05, "square", 0.03, 0.03);
+    playFile("toggle", 0.4);
   },
   
   // Chime — for section reveals (subtle, pleasant)
   chime() {
-    tone(659.25, 0.12, "sine", 0.04); // E5 — soft, short
+    playFile("chime", 0.2);
   },
   
   // Tada — for special achievements / success
   tada() {
-    tone(523.25, 0.1, "sine", 0.08); // C5
-    tone(659.25, 0.1, "sine", 0.08, 0.1); // E5
-    tone(783.99, 0.1, "sine", 0.08, 0.2); // G5
-    tone(1046.5, 0.3, "sine", 0.08, 0.3); // C6
+    playFile("tada", 0.5);
   },
 };
 
