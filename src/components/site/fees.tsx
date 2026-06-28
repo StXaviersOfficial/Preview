@@ -34,6 +34,7 @@ const CATEGORY_COLORS: Record<string, string> = {
 export function Fees() {
   const [rows, setRows] = useState<FeeRow[]>([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
   const [filter, setFilter] = useState<string>("all");
 
   useEffect(() => {
@@ -43,7 +44,7 @@ export function Fees() {
         if (d.ok) setRows(d.rows);
         setLoading(false);
       })
-      .catch(() => setLoading(false));
+      .catch(() => { setLoading(false); setError(true); });
   }, []);
 
   const categories = Array.from(new Set(rows.map((r) => r.category)));

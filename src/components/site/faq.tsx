@@ -23,6 +23,7 @@ const CATEGORY_LABELS: Record<string, string> = {
 export function FAQ() {
   const [faqs, setFaqs] = useState<Faq[]>([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
   const [open, setOpen] = useState<string | null>(null);
   const [filter, setFilter] = useState<string>("all");
 
@@ -36,7 +37,7 @@ export function FAQ() {
         }
         setLoading(false);
       })
-      .catch(() => setLoading(false));
+      .catch(() => { setLoading(false); setError(true); });
   }, []);
 
   const categories = Array.from(new Set(faqs.map((f) => f.category)));
