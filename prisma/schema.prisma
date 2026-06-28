@@ -1,0 +1,107 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Post {
+  id        String   @id @default(cuid())
+  title     String
+  content   String?
+  published Boolean  @default(false)
+  authorId  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model ContactSubmission {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  phone     String?
+  grade     String?
+  message   String?
+  createdAt DateTime @default(now())
+  status    String   @default("new") // new | read | replied | archived
+  replies   Reply[]
+}
+
+model Reply {
+  id          String   @id @default(cuid())
+  submissionId String
+  submission  ContactSubmission @relation(fields: [submissionId], references: [id], onDelete: Cascade)
+  fromEmail   String   // the admin email that sent it (e.g. amodkumardutta@gmail.com)
+  toEmail     String   // the enquirer's email
+  subject     String
+  body        String
+  sentAt      DateTime @default(now())
+}
+
+model TimetableEntry {
+  id        String   @id @default(cuid())
+  day       String   // Monday, Tuesday, ...
+  period    Int      // 1, 2, 3, ...
+  startTime String   // "08:00"
+  endTime   String   // "08:45"
+  subject   String
+  classGrade String  // e.g. "Class 6", "Nursery", "Class 11-Science"
+  teacher   String?
+  room      String?
+  updatedAt DateTime @updatedAt
+  createdAt DateTime @default(now())
+}
+
+model FeeRow {
+  id        String   @id @default(cuid())
+  label     String   // "Admission Fee", "Tuition Fee", ...
+  amount    Int      // in INR
+  frequency String   // "One Time" | "Yearly" | "Quarterly" | "Monthly"
+  category  String   @default("general") // general | hostel | transport | lab | exam
+  note      String?
+  order     Int      @default(0)
+  updatedAt DateTime @updatedAt
+  createdAt DateTime @default(now())
+}
+
+model AdminLog {
+  id        String   @id @default(cuid())
+  action    String   // login | logout | reply_sent | timetable_updated | fee_updated | enquiry_viewed | notice_updated
+  detail    String?
+  ip        String?
+  createdAt DateTime @default(now())
+}
+
+model Notice {
+  id        String   @id @default(cuid())
+  text      String
+  link      String?
+  active    Boolean  @default(true)
+  order     Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Faq {
+  id        String   @id @default(cuid())
+  question  String
+  answer    String
+  category  String   @default("general")
+  order     Int      @default(0)
+  active    Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
