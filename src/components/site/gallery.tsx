@@ -73,7 +73,7 @@ export function Gallery() {
             {CATEGORIES.map((cat) => (
               <button
                 key={cat}
-                onClick={() => setFilter(cat)}
+                onClick={() => { play("click"); setFilter(cat); }}
                 className={`relative rounded-full px-3.5 sm:px-4 py-1.5 sm:py-2 text-xs font-medium transition-all ${
                   filter === cat
                     ? "text-cream bg-xavier-gradient shadow-glow-xavier"
