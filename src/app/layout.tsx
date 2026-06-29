@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Playfair_Display, Cormorant_Garamond } from "next/font/google";
 import "./globals.css";
-import { Toaster } from "@/components/ui/toaster";
 import { CustomCursor, ScrollProgressRing } from "@/components/site/animations";
 
 const geistSans = Geist({
@@ -66,7 +65,6 @@ export default function RootLayout({
         <CustomCursor />
         <ScrollProgressRing />
         {children}
-        <Toaster />
       </body>
     </html>
   );
