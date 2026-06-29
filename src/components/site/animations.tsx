@@ -54,13 +54,14 @@ export function CustomCursor() {
     window.addEventListener("mousemove", onMove);
     window.addEventListener("mouseover", onOver);
     window.addEventListener("mouseout", onOut);
-    // Don't hide native cursor — accessibility + precision tasks need it
+    document.body.style.cursor = "none";
 
     return () => {
       window.removeEventListener("mousemove", onMove);
       window.removeEventListener("mouseover", onOver);
       window.removeEventListener("mouseout", onOut);
       cancelAnimationFrame(raf);
+      document.body.style.cursor = "auto";
     };
   }, []);
 

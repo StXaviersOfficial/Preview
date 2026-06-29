@@ -21,7 +21,6 @@ const DAYS = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"
 export function Timetable() {
   const [entries, setEntries] = useState<Entry[]>([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(false);
   const [selectedClass, setSelectedClass] = useState<string | null>(null);
 
   useEffect(() => {
@@ -31,7 +30,7 @@ export function Timetable() {
         if (d.ok) setEntries(d.entries);
         setLoading(false);
       })
-      .catch(() => { setLoading(false); setError(true); });
+      .catch(() => setLoading(false));
   }, []);
 
   const classGrades = Array.from(new Set(entries.map((e) => e.classGrade)));

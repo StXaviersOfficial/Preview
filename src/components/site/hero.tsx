@@ -4,15 +4,12 @@ import { useState } from "react";
 import { ArrowRight, ChevronDown, Sparkles, Award, BookOpen, Users, Phone } from "lucide-react";
 import { SCHOOL, IMAGES } from "@/lib/site/data";
 import { Magnetic, ConfettiBurst } from "@/components/site/animations";
-import { play } from "@/lib/site/sounds";
 import { Reveal } from "@/components/site/reveal";
-import { useLanguage } from "@/components/site/language-provider";
 
 export function Hero() {
-  const { t } = useLanguage();
   const [confetti, setConfetti] = useState<{ x: number; y: number; active: boolean }>({ x: 0, y: 0, active: false });
 
-  const triggerConfetti = (e: React.MouseEvent) => { play("sparkle");
+  const triggerConfetti = (e: React.MouseEvent) => {
     setConfetti({ x: e.clientX, y: e.clientY, active: true });
     setTimeout(() => setConfetti({ x: 0, y: 0, active: false }), 2000);
   };

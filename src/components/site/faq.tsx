@@ -1,9 +1,8 @@
 'use client'
-import { play } from "@/lib/site/sounds";
 
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
-import { HelpCircle, AlertCircle, ChevronDown, RefreshCw } from "lucide-react";
+import { HelpCircle, ChevronDown, RefreshCw } from "lucide-react";
 import { Reveal } from "@/components/site/reveal";
 
 type Faq = {
@@ -23,7 +22,6 @@ const CATEGORY_LABELS: Record<string, string> = {
 export function FAQ() {
   const [faqs, setFaqs] = useState<Faq[]>([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(false);
   const [open, setOpen] = useState<string | null>(null);
   const [filter, setFilter] = useState<string>("all");
 
@@ -37,7 +35,7 @@ export function FAQ() {
         }
         setLoading(false);
       })
-      .catch(() => { setLoading(false); setError(true); });
+      .catch(() => setLoading(false));
   }, []);
 
   const categories = Array.from(new Set(faqs.map((f) => f.category)));
@@ -117,7 +115,7 @@ export function FAQ() {
                 }`}
               >
                 <button
-                  onClick={() => { play("pop"); setOpen(open === faq.id ? null : faq.id); }}
+                  onClick={() => setOpen(open === faq.id ? null : faq.id)}
                   className="w-full px-5 py-4 flex items-center justify-between gap-3 text-left"
                 >
                   <div className="flex items-center gap-3 min-w-0">

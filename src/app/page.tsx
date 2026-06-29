@@ -4,7 +4,6 @@ import { Hero } from "@/components/site/hero";
 import { Stats } from "@/components/site/stats";
 import { Marquee } from "@/components/site/marquee";
 import { About } from "@/components/site/about";
-import { Features } from "@/components/site/features";
 import { Academics } from "@/components/site/academics";
 import { Admissions } from "@/components/site/admissions";
 import { Fees } from "@/components/site/fees";
@@ -16,8 +15,6 @@ import { Testimonials } from "@/components/site/testimonials";
 import { Timetable } from "@/components/site/timetable";
 import { Contact } from "@/components/site/contact";
 import { Footer } from "@/components/site/footer";
-import { WhatsAppButton } from "@/components/site/whatsapp-button";
-import { BackToTop } from "@/components/site/back-to-top";
 
 export default function Home() {
   return (
@@ -29,7 +26,6 @@ export default function Home() {
         <Stats />
         <Marquee />
         <About />
-        <Features />
         <Academics />
         <Admissions />
         <Fees />
@@ -42,8 +38,6 @@ export default function Home() {
         <Contact />
       </main>
       <Footer />
-      <WhatsAppButton />
-      <BackToTop />
     </div>
   );
 }

@@ -1,11 +1,10 @@
 'use client'
 
 import { motion, AnimatePresence } from "framer-motion";
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback } from "react";
 import { X, ChevronLeft, ChevronRight, ZoomIn, Camera } from "lucide-react";
 import { IMAGES } from "@/lib/site/data";
 import { Reveal } from "@/components/site/reveal";
-import { play } from "@/lib/site/sounds";
 
 type GalleryItem = { src: string; title: string; category: string };
 
@@ -29,26 +28,9 @@ export function Gallery() {
 
   const filtered = filter === "All" ? GALLERY : GALLERY.filter((g) => g.category === filter);
 
-  // Reset lightbox when filter changes
-  useEffect(() => {
-    setLightbox(null);
-  }, [filter]);
-
   const close = useCallback(() => setLightbox(null), []);
   const next = useCallback(() => setLightbox((i) => (i === null ? i : (i + 1) % filtered.length)), [filtered.length]);
   const prev = useCallback(() => setLightbox((i) => (i === null ? i : (i - 1 + filtered.length) % filtered.length)), [filtered.length]);
-
-  // Keyboard navigation for lightbox
-  useEffect(() => {
-    if (lightbox === null) return;
-    const handler = (e: KeyboardEvent) => {
-      if (e.key === "Escape") close();
-      if (e.key === "ArrowRight") next();
-      if (e.key === "ArrowLeft") prev();
-    };
-    window.addEventListener("keydown", handler);
-    return () => window.removeEventListener("keydown", handler);
-  }, [lightbox, close, next, prev]);
 
   return (
     <section id="gallery" className="relative overflow-hidden py-16 sm:py-24 bg-background">
@@ -69,11 +51,11 @@ export function Gallery() {
             </h2>
           </Reveal>
 
-          <Reveal variant="scale" onMouseEnter={() => play("hover")} className="flex flex-wrap gap-2">
+          <Reveal variant="scale" className="flex flex-wrap gap-2">
             {CATEGORIES.map((cat) => (
               <button
                 key={cat}
-                onClick={() => { play("click"); setFilter(cat); }}
+                onClick={() => setFilter(cat)}
                 className={`relative rounded-full px-3.5 sm:px-4 py-1.5 sm:py-2 text-xs font-medium transition-all ${
                   filter === cat
                     ? "text-cream bg-xavier-gradient shadow-glow-xavier"

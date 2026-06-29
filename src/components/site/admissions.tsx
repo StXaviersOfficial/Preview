@@ -1,11 +1,8 @@
 'use client'
 
-import { useState } from "react";
 import { ClipboardCheck, FileText, CalendarCheck, HandCoins, ArrowRight, CheckCircle2, Phone } from "lucide-react";
 import { SCHOOL } from "@/lib/site/data";
 import { Reveal } from "@/components/site/reveal";
-import { AdmissionForm } from "@/components/site/admission-form";
-import { play } from "@/lib/site/sounds";
 
 const STEPS = [
   {
@@ -44,7 +41,6 @@ const DOCS = [
 ];
 
 export function Admissions() {
-  const [formOpen, setFormOpen] = useState(false);
   return (
     <section id="admissions" className="relative overflow-hidden py-20 sm:py-28 bg-gradient-to-b from-cream to-background">
       <div className="container mx-auto max-w-7xl px-5 sm:px-6 relative">
@@ -121,19 +117,12 @@ export function Admissions() {
                 </a>
               ))}
               <a
-                href="#contact" onClick={() => play("click")}
-                className="flex items-center justify-center gap-2 w-full rounded-full bg-cream/10 border border-cream/20 px-5 py-3 text-sm font-bold text-cream hover:bg-cream/15 transition-colors"
+                href="#contact"
+                className="flex items-center justify-center gap-2 w-full rounded-full bg-gold-gradient px-5 py-3 text-sm font-bold text-xavier-dark hover:opacity-90 transition-opacity"
               >
                 Send an Enquiry
                 <ArrowRight className="size-4" />
               </a>
-              <button
-                onClick={() => { play("click"); setFormOpen(true); }}
-                className="flex items-center justify-center gap-2 w-full rounded-full bg-gold-gradient px-5 py-3 text-sm font-bold text-xavier-dark hover:opacity-90 transition-opacity"
-              >
-                Apply for Admission
-                <ArrowRight className="size-4" />
-              </button>
             </div>
           </div>
         </Reveal>
@@ -157,7 +146,6 @@ export function Admissions() {
           </div>
         </div>
       </div>
-      <AdmissionForm open={formOpen} onOpenChange={setFormOpen} />
     </section>
   );
 }

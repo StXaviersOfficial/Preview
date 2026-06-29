@@ -21,7 +21,7 @@ const SMTP_PORT = Number(process.env.SMTP_PORT || 465);
 const SMTP_USER = process.env.SMTP_USER || "";
 const SMTP_PASS = process.env.SMTP_PASS || "";
 const SMTP_FROM = process.env.SMTP_FROM || SMTP_USER;
-const SMTP_TO = process.env.SMTP_TO || "contact@stxaviers.org";
+const SMTP_TO = process.env.SMTP_TO || "amodkumardutta@gmail.com";
 
 let transporter: nodemailer.Transporter | null = null;
 

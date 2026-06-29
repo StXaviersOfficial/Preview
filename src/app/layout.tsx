@@ -1,22 +1,17 @@
 import type { Metadata } from "next";
-import { StructuredData } from "./structured-data";
 import { Geist, Geist_Mono, Playfair_Display, Cormorant_Garamond } from "next/font/google";
 import "./globals.css";
-import { Toaster } from "@/components/ui/sonner";
+import { Toaster } from "@/components/ui/toaster";
 import { CustomCursor, ScrollProgressRing } from "@/components/site/animations";
-import { ThemeProvider } from "@/components/theme-provider";
-import { LanguageProvider } from "@/components/site/language-provider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
-  display: "swap",
 });
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
-  display: "swap",
 });
 
 const playfair = Playfair_Display({
@@ -24,7 +19,6 @@ const playfair = Playfair_Display({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700", "800", "900"],
   style: ["normal", "italic"],
-  display: "swap",
 });
 
 const cormorant = Cormorant_Garamond({
@@ -32,12 +26,7 @@ const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700"],
   style: ["normal", "italic"],
-  display: "swap",
 });
-
-// Runs before React hydration to set the correct theme class on <html>,
-// preventing a flash of the wrong color scheme (FOUC).
-const themeInitScript = `(function(){try{var k='xavier-theme';var t=localStorage.getItem(k)||'system';var d=t==='dark'||(t==='system'&&window.matchMedia('(prefers-color-scheme: dark)').matches);var c=document.documentElement.classList;c.add(d?'dark':'light');c.remove(d?'light':'dark');document.documentElement.style.colorScheme=d?'dark':'light';}catch(e){}})();`;
 
 export const metadata: Metadata = {
   title: "St. Xavier's Jr./Sr. School, Muzaffarpur | Where Discipline Meets Opportunity",
@@ -64,15 +53,6 @@ export const metadata: Metadata = {
   },
 };
 
-export const viewport = {
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#a02838" },
-    { media: "(prefers-color-scheme: dark)", color: "#0f0a0a" },
-  ],
-  width: "device-width",
-  initialScale: 1,
-};
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -80,21 +60,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <head>
-        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
-      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${playfair.variable} ${cormorant.variable} antialiased bg-background text-foreground font-sans`}
       >
-        <ThemeProvider defaultTheme="system" storageKey="xavier-theme">
-        <StructuredData />
-          <LanguageProvider defaultLang="en">
-            <CustomCursor />
-            <ScrollProgressRing />
-            {children}
-            <Toaster />
-          </LanguageProvider>
-        </ThemeProvider>
+        <CustomCursor />
+        <ScrollProgressRing />
+        {children}
+        <Toaster />
       </body>
     </html>
   );

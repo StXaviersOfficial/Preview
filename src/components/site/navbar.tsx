@@ -3,13 +3,9 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Phone, Lock } from "lucide-react";
-import { play } from "@/lib/site/sounds";
 import { NAV_LINKS, SCHOOL } from "@/lib/site/data";
 import { cn } from "@/lib/utils";
 import { Reveal } from "@/components/site/reveal";
-import { ThemeToggle } from "@/components/theme-toggle";
-import { SoundToggle } from "@/components/site/sound-toggle";
-import { LanguageToggle } from "@/components/site/language-toggle";
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -84,14 +80,13 @@ export function Navbar() {
       >
         <div className="container mx-auto max-w-7xl px-4 sm:px-6">
           <div className="flex items-center justify-between gap-2">
-            {/* LEFT SIDE: hamburger (mobile only) + logo */}
+            {/* LEFT SIDE: hamburger + logo (mobile) / logo only (desktop) */}
             <div className="flex items-center gap-2 sm:gap-3">
-              {/* Hamburger — mobile only (desktop uses inline nav) */}
+              {/* Hamburger — LEFT side, all sizes (so users can access menu everywhere) */}
               <button
-                onClick={() => { play("slideOpen"); setMobileOpen(true); }}
-                className="inline-flex size-10 items-center justify-center rounded-full bg-xavier/10 text-xavier-dark hover:bg-xavier/15 transition-colors lg:hidden"
+                onClick={() => setMobileOpen(true)}
+                className="inline-flex size-10 items-center justify-center rounded-full bg-xavier/10 text-xavier-dark hover:bg-xavier/15 transition-colors"
                 aria-label="Open menu"
-                aria-expanded={mobileOpen}
               >
                 <Menu className="size-5" />
               </button>
@@ -100,7 +95,7 @@ export function Navbar() {
               <a href="#home" className="flex items-center gap-2 sm:gap-3 shrink-0">
                 <div className="relative">
                   <div className="size-9 sm:size-11 rounded-full bg-xavier-gradient flex items-center justify-center shadow-glow-xavier overflow-hidden">
-                    <img loading="lazy"
+                    <img
                       src="/school/logo-white.png"
                       alt="St. Xavier's logo"
                       className="h-full w-full object-contain scale-110"
@@ -141,11 +136,8 @@ export function Navbar() {
 
             {/* CTA (desktop) */}
             <div className="flex items-center gap-2 sm:gap-3 shrink-0">
-              <LanguageToggle className="hidden sm:inline-flex" />
-              <SoundToggle className="hidden sm:inline-flex" />
-              <ThemeToggle />
               <a
-                href="#admissions" onClick={() => play("click")}
+                href="#admissions"
                 className="hidden sm:inline-flex items-center justify-center rounded-full bg-xavier-gradient px-4 sm:px-5 py-2 sm:py-2.5 text-xs sm:text-sm font-semibold text-cream shadow-glow-xavier"
               >
                 Apply Now
@@ -164,7 +156,7 @@ export function Navbar() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.2 }}
-              onClick={() => { play("slideClose"); setMobileOpen(false); }}
+              onClick={() => setMobileOpen(false)}
               className="fixed inset-0 z-[60] bg-ink/60 backdrop-blur-sm lg:hidden"
             />
             <motion.div
@@ -177,7 +169,7 @@ export function Navbar() {
               <div className="flex items-center justify-between p-5 border-b border-xavier/10">
                 <div className="flex items-center gap-3">
                   <div className="size-10 rounded-full bg-xavier-gradient flex items-center justify-center overflow-hidden">
-                    <img loading="lazy" src="/school/logo-white.png" alt="St. Xavier's logo" className="h-full w-full object-contain scale-110" />
+                    <img src="/school/logo-white.png" alt="St. Xavier's logo" className="h-full w-full object-contain scale-110" />
                   </div>
                   <div>
                     <p className="font-serif font-bold text-xavier-dark text-sm">St. Xavier&apos;s</p>
@@ -185,7 +177,7 @@ export function Navbar() {
                   </div>
                 </div>
                 <button
-                  onClick={() => { play("slideClose"); setMobileOpen(false); }}
+                  onClick={() => setMobileOpen(false)}
                   className="size-9 rounded-full bg-xavier/10 flex items-center justify-center text-xavier-dark"
                   aria-label="Close menu"
                 >
@@ -200,7 +192,7 @@ export function Navbar() {
                     <a
                       key={link.href}
                       href={link.href}
-                      onClick={() => { play("slideClose"); setMobileOpen(false); }}
+                      onClick={() => setMobileOpen(false)}
                       className={`flex items-center justify-between rounded-xl px-4 py-3.5 text-base font-medium transition-colors ${
                         isActive
                           ? "bg-xavier/8 text-xavier-dark"
@@ -216,7 +208,7 @@ export function Navbar() {
                 {/* Admin login — discreet but present */}
                 <a
                   href="/admin"
-                  onClick={() => { play("slideClose"); setMobileOpen(false); }}
+                  onClick={() => setMobileOpen(false)}
                   className="mt-4 flex items-center justify-between rounded-xl px-4 py-3.5 text-sm font-medium text-muted-foreground hover:bg-xavier/5 hover:text-xavier-dark transition-colors border-t border-xavier/10 pt-4"
                 >
                   <span className="flex items-center gap-2">
@@ -228,13 +220,9 @@ export function Navbar() {
               </nav>
 
               <div className="p-5 border-t border-xavier/10 space-y-3">
-                <div className="flex items-center justify-center">
-                  <LanguageToggle className="sm:hidden" />
-                  <SoundToggle className="sm:hidden" />
-                </div>
                 <a
-                  href="#admissions" onClick={() => play("click")}
-                  onClick={() => { play("slideClose"); setMobileOpen(false); }}
+                  href="#admissions"
+                  onClick={() => setMobileOpen(false)}
                   className="block w-full text-center rounded-full bg-xavier-gradient px-5 py-3.5 font-semibold text-cream shadow-glow-xavier"
                 >
                   Apply for Admission

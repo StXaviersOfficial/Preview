@@ -89,8 +89,7 @@ export function Reveal({
   variant = "up",
   delay = 0,
   as: As = "div",
-  once = true,
-  ...rest
+  once = false,
 }: {
   children: ReactNode;
   className?: string;
@@ -98,7 +97,6 @@ export function Reveal({
   delay?: number;
   as?: ElementType;
   once?: boolean;
-  [key: string]: unknown;
 }) {
   const ref = useRef<HTMLElement>(null);
   const animFrame = useRef<number>(0);
@@ -205,7 +203,7 @@ export function Reveal({
   const init = INITIAL[variant];
   return (
     <As
-      ref={ref as React.Ref<HTMLElement>}
+      ref={ref as React.RefObject<HTMLDivElement>}
       className={className}
       style={{
         opacity: init.opacity,
@@ -213,9 +211,7 @@ export function Reveal({
         filter: init.filter || "none",
         willChange: "opacity, transform, filter",
         backfaceVisibility: "hidden",
-        transition: "opacity 0.3s ease, transform 0.3s ease, filter 0.3s ease",
       }}
-      {...rest}
     >
       {children}
     </As>

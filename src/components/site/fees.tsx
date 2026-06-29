@@ -34,7 +34,6 @@ const CATEGORY_COLORS: Record<string, string> = {
 export function Fees() {
   const [rows, setRows] = useState<FeeRow[]>([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(false);
   const [filter, setFilter] = useState<string>("all");
 
   useEffect(() => {
@@ -44,7 +43,7 @@ export function Fees() {
         if (d.ok) setRows(d.rows);
         setLoading(false);
       })
-      .catch(() => { setLoading(false); setError(true); });
+      .catch(() => setLoading(false));
   }, []);
 
   const categories = Array.from(new Set(rows.map((r) => r.category)));
@@ -84,7 +83,7 @@ export function Fees() {
         {/* Category filter */}
         {categories.length > 1 && (
           <div className="flex flex-wrap gap-2 mb-5">
-            <button aria-label="Filter fees"
+            <button
               onClick={() => setFilter("all")}
               className={`rounded-full px-3.5 py-1.5 text-xs font-medium transition-colors ${
                 filter === "all" ? "bg-xavier-gradient text-cream" : "bg-card border border-xavier/10 text-foreground/70 hover:text-xavier-dark"
@@ -93,7 +92,7 @@ export function Fees() {
               All Categories
             </button>
             {categories.map((c) => (
-              <button aria-label="Filter fees"
+              <button
                 key={c}
                 onClick={() => setFilter(c)}
                 className={`rounded-full px-3.5 py-1.5 text-xs font-medium transition-colors ${
@@ -110,11 +109,6 @@ export function Fees() {
         {loading ? (
           <div className="rounded-2xl border border-xavier/10 bg-card p-10 text-center text-muted-foreground flex items-center justify-center gap-2">
             <RefreshCw className="size-4 animate-spin" /> Loading fee structure…
-          </div>
-        ) : error ? (
-          <div className="rounded-2xl border border-xavier/10 bg-card p-10 text-center text-muted-foreground">
-            <AlertCircle className="size-10 mx-auto mb-3 text-red-400" />
-            <p>Failed to load fee structure. Please try again later.</p>
           </div>
         ) : rows.length === 0 ? (
           <div className="rounded-2xl border border-xavier/10 bg-card p-10 text-center text-muted-foreground">

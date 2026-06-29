@@ -1,5 +1,4 @@
 'use client'
-import { play } from "@/lib/site/sounds";
 
 import { motion } from "framer-motion";
 import { MapPin, Phone, Mail, Instagram, Facebook, ArrowUp, Globe, Heart } from "lucide-react";
@@ -31,11 +30,11 @@ export function Footer() {
               Ready to give your child the Xavier&apos;s edge?
             </h3>
             <p className="mt-2 text-sm sm:text-base text-cream/70 max-w-xl">
-              Admissions open for Nursery — Class 12. Limited seats — apply early to avoid disappointment.
+              Admissions open for Nursery — Class 11. Limited seats — apply early to avoid disappointment.
             </p>
           </div>
           <a
-            href="#admissions" onClick={() => play("click")}
+            href="#admissions"
             className="shrink-0 inline-flex items-center gap-2 rounded-full bg-gold-gradient px-6 sm:px-7 py-3.5 text-sm font-bold text-xavier-dark shadow-glow-gold"
           >
             Apply Now
@@ -49,7 +48,7 @@ export function Footer() {
           <Reveal variant="up" className="sm:col-span-2 lg:col-span-5">
             <div className="flex items-center gap-3 mb-4">
               <div className="size-11 sm:size-12 rounded-full bg-xavier-gradient flex items-center justify-center shadow-glow-xavier overflow-hidden">
-                <img loading="lazy" src="/school/logo-white.png" alt="St. Xavier's logo" className="h-full w-full object-contain scale-110" />
+                <img src="/school/logo-white.png" alt="St. Xavier's logo" className="h-full w-full object-contain scale-110" />
               </div>
               <div>
                 <p className="font-serif text-lg sm:text-xl font-bold">St. Xavier&apos;s</p>
@@ -141,10 +140,22 @@ export function Footer() {
         <div className="pt-5 sm:pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-cream/50">
           <p className="text-center sm:text-left">© {new Date().getFullYear()} St. Xavier&apos;s Jr./Sr. School, Muzaffarpur. All rights reserved.</p>
           <p className="flex items-center gap-1.5">
-            Crafted with <Heart className="size-3 text-gold fill-gold" /> for the St. Xavier's community · <span className="text-cream/40">Built by Amrit Web Solutions</span>
+            Crafted with <Heart className="size-3 text-gold fill-gold" /> for the St. Xavier's community
           </p>
         </div>
       </div>
+
+      {/* Back to top button */}
+      <motion.button
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1 }}
+        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+        className="fixed bottom-5 right-5 sm:bottom-6 sm:right-6 z-40 size-11 sm:size-12 rounded-full bg-gold-gradient flex items-center justify-center shadow-glow-gold"
+        aria-label="Back to top"
+      >
+        <ArrowUp className="size-5 text-xavier-dark" />
+      </motion.button>
     </footer>
   );
 }

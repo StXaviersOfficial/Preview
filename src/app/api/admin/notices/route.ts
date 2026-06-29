@@ -13,7 +13,7 @@ export async function GET() {
 
 export async function POST(req: NextRequest) {
   if (!(await isAdmin())) return NextResponse.json({ ok: false, error: "Unauthorized" }, { status: 401 });
-  const body = await req.json(); if (!body || typeof body !== "object") return NextResponse.json({ ok: false, error: "Invalid body" }, { status: 400 });
+  const body = await req.json();
   const notice = await db.notice.create({
     data: {
       text: body.text,
@@ -28,8 +28,8 @@ export async function POST(req: NextRequest) {
 
 export async function PUT(req: NextRequest) {
   if (!(await isAdmin())) return NextResponse.json({ ok: false, error: "Unauthorized" }, { status: 401 });
-  const body = await req.json(); if (!body || typeof body !== "object") return NextResponse.json({ ok: false, error: "Invalid body" }, { status: 400 });
-  const { id, ...data } = body; if (!id) return NextResponse.json({ ok: false, error: "Missing id" }, { status: 400 });
+  const body = await req.json();
+  const { id, ...data } = body;
   if (!id) return NextResponse.json({ ok: false, error: "id required" }, { status: 400 });
   if (data.order !== undefined) data.order = Number(data.order);
   const notice = await db.notice.update({ where: { id }, data });

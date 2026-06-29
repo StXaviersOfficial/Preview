@@ -1,16 +1,14 @@
 'use client'
 
 import { motion, useInView } from "framer-motion";
-import { useRef, useEffect } from "react";
+import { useRef } from "react";
 import { STATS } from "@/lib/site/data";
 import { AnimatedCounter, TiltCard, Halo, BorderShimmer } from "@/components/site/animations";
 import { Reveal } from "@/components/site/reveal";
-import { play } from "@/lib/site/sounds";
 
 export function Stats() {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, amount: 0.3 });
-  useEffect(() => { if (inView) play("pop"); }, [inView]);
 
   return (
     <section className="relative -mt-16 sm:-mt-20 z-30 px-4 sm:px-6">

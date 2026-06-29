@@ -99,32 +99,47 @@
 }
 
 .dark {
-  --xavier: oklch(0.62 0.20 18);
-  --xavier-dark: oklch(0.42 0.18 18);
-  --xavier-light: oklch(0.70 0.20 20);
-  --gold: oklch(0.82 0.14 75);
-  --gold-light: oklch(0.90 0.10 80);
-  --cream: oklch(0.20 0.015 30);
+  /* Brand colors — darker, muted versions for dark mode */
+  --xavier: oklch(0.55 0.15 18);
+  --xavier-dark: oklch(0.38 0.12 16);
+  --xavier-light: oklch(0.65 0.16 20);
+  --gold: oklch(0.80 0.12 75);
+  --gold-light: oklch(0.88 0.08 80);
+  --cream: oklch(0.15 0.01 25);
   --ink: oklch(0.95 0.005 75);
 
-  --background: oklch(0.16 0.02 25);
-  --foreground: oklch(0.96 0.005 75);
-  --card: oklch(0.22 0.025 25);
-  --card-foreground: oklch(0.96 0.005 75);
-  --popover: oklch(0.22 0.025 25);
-  --popover-foreground: oklch(0.96 0.005 75);
-  --primary: oklch(0.62 0.20 18);
-  --primary-foreground: oklch(0.985 0.005 75);
-  --secondary: oklch(0.28 0.02 25);
-  --secondary-foreground: oklch(0.96 0.005 75);
-  --muted: oklch(0.26 0.02 25);
-  --muted-foreground: oklch(0.70 0.02 30);
-  --accent: oklch(0.82 0.14 75);
-  --accent-foreground: oklch(0.20 0.015 30);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 12%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.62 0.20 18);
+  /* Full dark background — no white spots */
+  --background: oklch(0.12 0.01 25);
+  --foreground: oklch(0.93 0.008 75);
+  --card: oklch(0.16 0.012 25);
+  --card-foreground: oklch(0.93 0.008 75);
+  --popover: oklch(0.16 0.012 25);
+  --popover-foreground: oklch(0.93 0.008 75);
+  --primary: oklch(0.55 0.15 18);
+  --primary-foreground: oklch(0.96 0.005 75);
+  --secondary: oklch(0.20 0.012 25);
+  --secondary-foreground: oklch(0.93 0.008 75);
+  --muted: oklch(0.18 0.01 25);
+  --muted-foreground: oklch(0.68 0.012 30);
+  --accent: oklch(0.80 0.12 75);
+  --accent-foreground: oklch(0.15 0.01 25);
+  --destructive: oklch(0.65 0.18 22);
+  --border: oklch(1 0 0 / 8%);
+  --input: oklch(1 0 0 / 10%);
+  --ring: oklch(0.55 0.15 18);
+  --chart-1: oklch(0.55 0.15 18);
+  --chart-2: oklch(0.80 0.12 75);
+  --chart-3: oklch(0.65 0.16 20);
+  --chart-4: oklch(0.60 0.08 50);
+  --chart-5: oklch(0.38 0.12 16);
+  --sidebar: oklch(0.14 0.01 25);
+  --sidebar-foreground: oklch(0.93 0.008 75);
+  --sidebar-primary: oklch(0.55 0.15 18);
+  --sidebar-primary-foreground: oklch(0.96 0.005 75);
+  --sidebar-accent: oklch(0.20 0.012 25);
+  --sidebar-accent-foreground: oklch(0.93 0.008 75);
+  --sidebar-border: oklch(1 0 0 / 8%);
+  --sidebar-ring: oklch(0.55 0.15 18);
 }
 
 @layer base {
@@ -388,6 +403,12 @@
 /* Smooth scroll anchor offset for sticky header */
 section[id], [id="home"], [id="about"], [id="academics"], [id="admissions"], [id="fees"], [id="faq"], [id="facilities"], [id="gallery"], [id="leadership"], [id="testimonials"], [id="timetable"], [id="contact"] { scroll-margin-top: 90px; }
 
+/* === Focus visible for accessibility === */
+:focus-visible {
+  outline: 2px solid var(--xavier);
+  outline-offset: 2px;
+}
+
 /* === Reduced motion === */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
@@ -398,8 +419,133 @@ section[id], [id="home"], [id="about"], [id="academics"], [id="admissions"], [id
   }
 }
 
-/* === Focus visible for accessibility === */
-:focus-visible {
-  outline: 2px solid var(--xavier);
-  outline-offset: 2px;
+/* ============ DARK MODE OVERRIDES ============ */
+/* Fix all hardcoded light backgrounds, text colors, and gradients */
+
+.dark .bg-cream-gradient {
+  background: linear-gradient(180deg, oklch(0.12 0.01 25) 0%, oklch(0.14 0.012 25) 100%) !important;
 }
+
+.dark .bg-xavier-gradient {
+  background: linear-gradient(135deg, oklch(0.38 0.12 16) 0%, oklch(0.28 0.10 14) 50%, oklch(0.20 0.08 12) 100%) !important;
+}
+
+.dark .text-gradient-xavier {
+  background: linear-gradient(135deg, oklch(0.70 0.16 20) 0%, oklch(0.55 0.15 18) 50%, oklch(0.40 0.12 16) 100%) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  color: transparent !important;
+}
+
+.dark .text-gradient-gold {
+  background: linear-gradient(135deg, oklch(0.88 0.08 80) 0%, oklch(0.80 0.12 75) 50%, oklch(0.88 0.08 80) 100%) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  color: transparent !important;
+}
+
+.dark .text-gradient-animated {
+  background: linear-gradient(90deg, oklch(0.88 0.08 80), oklch(0.80 0.12 75), oklch(0.65 0.10 60), oklch(0.80 0.12 75), oklch(0.88 0.08 80)) !important;
+  background-size: 200% 100% !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  color: transparent !important;
+}
+
+/* Glass — darker in dark mode */
+.dark .glass {
+  background: rgba(255, 255, 255, 0.04) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+.dark .glass-dark {
+  background: rgba(0, 0, 0, 0.4) !important;
+  border: 1px solid rgba(255, 255, 255, 0.06) !important;
+}
+
+.dark .glass-gold {
+  background: rgba(201, 169, 97, 0.06) !important;
+  border: 1px solid rgba(201, 169, 97, 0.15) !important;
+}
+
+/* Grain — visible in dark mode */
+.dark .bg-grain {
+  background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.03) 1px, transparent 0) !important;
+}
+
+.dark .bg-grain-gold {
+  background-image: radial-gradient(circle at 1px 1px, rgba(201,169,97,0.08) 1px, transparent 0) !important;
+}
+
+/* Shadows — subtler in dark mode */
+.dark .shadow-glow-gold {
+  box-shadow: 0 0 0 1px rgba(201,169,97,0.2), 0 8px 30px -8px rgba(201,169,97,0.2) !important;
+}
+
+.dark .shadow-glow-xavier {
+  box-shadow: 0 0 0 1px rgba(139,26,43,0.15), 0 18px 60px -16px rgba(139,26,43,0.3) !important;
+}
+
+.dark .shadow-elegant {
+  box-shadow: 0 1px 2px rgba(0,0,0,0.3), 0 8px 24px -8px rgba(0,0,0,0.4) !important;
+}
+
+/* Shimmer — gold in dark mode */
+.dark .shimmer-bg {
+  background: linear-gradient(110deg, transparent 40%, rgba(201,169,97,0.25) 50%, transparent 60%) !important;
+  background-size: 200% 100% !important;
+}
+
+/* Scrollbar in dark mode */
+.dark ::-webkit-scrollbar-track { background: oklch(0.12 0.01 25) !important; }
+.dark ::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, oklch(0.38 0.12 16), oklch(0.28 0.10 14)) !important;
+  border: 2px solid oklch(0.12 0.01 25) !important;
+}
+
+/* Fix hardcoded text-xavier-dark in dark mode — make it lighter */
+.dark .text-xavier-dark { color: oklch(0.75 0.14 20) !important; }
+
+/* Fix hardcoded from-cream / to-cream gradients */
+.dark .from-cream { --tw-gradient-from: oklch(0.14 0.012 25) !important; }
+.dark .to-cream { --tw-gradient-to: oklch(0.12 0.01 25) !important; }
+.dark .via-cream { --tw-gradient-via: oklch(0.13 0.011 25) !important; }
+
+/* Fix bg-cream in dark mode */
+.dark .bg-cream { background-color: oklch(0.14 0.012 25) !important; }
+
+/* Fix text-cream in dark mode */
+.dark .text-cream { color: oklch(0.90 0.008 75) !important; }
+
+/* Fix border-cream in dark mode */
+.dark .border-cream { border-color: rgba(255, 255, 255, 0.1) !important; }
+
+/* Fix from-background / to-background */
+.dark .from-background { --tw-gradient-from: oklch(0.12 0.01 25) !important; }
+.dark .to-background { --tw-gradient-to: oklch(0.12 0.01 25) !important; }
+
+/* Navbar in dark mode */
+.dark nav { background: oklch(0.14 0.012 25) !important; }
+
+/* Mobile menu drawer in dark mode */
+.dark .bg-cream-gradient {
+  background: linear-gradient(180deg, oklch(0.14 0.012 25) 0%, oklch(0.12 0.01 25) 100%) !important;
+}
+
+/* Fix ink color in dark mode */
+.dark .text-ink { color: oklch(0.93 0.008 75) !important; }
+.dark .bg-ink { background-color: oklch(0.12 0.01 25) !important; }
+
+/* Fix gold-light text in dark mode */
+.dark .text-gold-light { color: oklch(0.85 0.08 80) !important; }
+
+/* Fix any remaining white backgrounds */
+.dark .bg-white { background-color: oklch(0.16 0.012 25) !important; }
+.dark .bg-white\/5 { background-color: rgba(255,255,255,0.04) !important; }
+.dark .bg-white\/10 { background-color: rgba(255,255,255,0.06) !important; }
+.dark .bg-white\/20 { background-color: rgba(255,255,255,0.08) !important; }
+
+/* Fix text visibility on dark backgrounds */
+.dark .text-foreground\/70 { color: oklch(0.75 0.008 75) !important; }
+.dark .text-foreground\/80 { color: oklch(0.82 0.008 75) !important; }
+.dark .text-muted-foreground { color: oklch(0.65 0.01 30) !important; }
