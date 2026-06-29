@@ -6,6 +6,8 @@ import { Menu, X, Phone, Lock } from "lucide-react";
 import { NAV_LINKS, SCHOOL } from "@/lib/site/data";
 import { cn } from "@/lib/utils";
 import { Reveal } from "@/components/site/reveal";
+import { ThemeToggle } from "@/components/theme-toggle";
+import { LanguageToggle } from "@/components/site/language-toggle";
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -134,8 +136,10 @@ export function Navbar() {
               })}
             </nav>
 
-            {/* CTA (desktop) */}
+            {/* CTA + Toggles (desktop) */}
             <div className="flex items-center gap-2 sm:gap-3 shrink-0">
+              <LanguageToggle className="hidden sm:inline-flex" />
+              <ThemeToggle className="hidden sm:inline-flex" />
               <a
                 href="#admissions"
                 className="hidden sm:inline-flex items-center justify-center rounded-full bg-xavier-gradient px-4 sm:px-5 py-2 sm:py-2.5 text-xs sm:text-sm font-semibold text-cream shadow-glow-xavier"
@@ -220,6 +224,10 @@ export function Navbar() {
               </nav>
 
               <div className="p-5 border-t border-xavier/10 space-y-3">
+                <div className="flex items-center justify-center gap-3">
+                  <LanguageToggle className="sm:hidden" />
+                  <ThemeToggle className="sm:hidden" />
+                </div>
                 <a
                   href="#admissions"
                   onClick={() => setMobileOpen(false)}
