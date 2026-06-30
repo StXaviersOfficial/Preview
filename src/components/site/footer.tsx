@@ -1,7 +1,7 @@
 'use client'
 
 import { MapPin, Phone, Mail, Instagram, Facebook, ArrowRight, Globe, Heart } from "lucide-react";
-import { SCHOOL } from "@/lib/site/data";
+import { SCHOOL, PAGE_LINKS } from "@/lib/site/data";
 import { Reveal } from "@/components/site/reveal";
 
 const QUICK_LINKS = [
@@ -87,7 +87,7 @@ export function Footer() {
           </Reveal>
 
           {/* Quick links */}
-          <Reveal variant="up" delay={0.05} className="lg:col-span-3">
+          <Reveal variant="up" delay={0.05} className="lg:col-span-2">
             <FooterHeading>Explore</FooterHeading>
             <ul className="grid grid-cols-2 sm:grid-cols-1 gap-2 sm:gap-2.5">
               {QUICK_LINKS.map((l) => (
@@ -100,8 +100,22 @@ export function Footer() {
             </ul>
           </Reveal>
 
+          {/* More pages */}
+          <Reveal variant="up" delay={0.07} className="lg:col-span-2">
+            <FooterHeading>More</FooterHeading>
+            <ul className="grid grid-cols-1 gap-2 sm:gap-2.5">
+              {PAGE_LINKS.map((l) => (
+                <li key={l.href}>
+                  <a href={l.href} className="text-sm text-cream/70 hover:text-gold-light transition-colors">
+                    {l.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </Reveal>
+
           {/* Contact */}
-          <Reveal variant="up" delay={0.1} className="lg:col-span-4">
+          <Reveal variant="up" delay={0.1} className="lg:col-span-3">
             <FooterHeading>Reach Us</FooterHeading>
             <ul className="space-y-3 text-sm text-cream/70">
               <li className="flex gap-2.5">

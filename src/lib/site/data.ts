@@ -89,6 +89,13 @@ export const NAV_LINKS = [
   { label: "Contact", href: "#contact" },
 ];
 
+export const PAGE_LINKS = [
+  { label: "Achievements", href: "/achievements" },
+  { label: "Faculty", href: "/faculty" },
+  { label: "Notice Board", href: "/notices" },
+  { label: "Alumni", href: "/alumni" },
+];
+
 export const STATS = [
   { value: SCHOOL.established, suffix: "", label: "Year of Establishment", sub: "Nearly five decades of legacy" },
   { value: SCHOOL.studentsEnrolled, suffix: "+", label: "Students Enrolled", sub: "Across Nursery to Class XII" },
