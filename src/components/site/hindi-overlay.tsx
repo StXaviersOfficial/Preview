@@ -577,6 +577,10 @@ const TRANSLATIONS: Record<string, string> = {
   "Mark as read": "पढ़ा हुआ चिह्नित करें",
   "Mark as unread": "अपठित चिह्नित करें",
 
+  // ═══ Round 13: Admin empty states with curly quotes (from &ldquo; &rdquo;) ═══
+  "No fee rows yet. Click “Add Fee Row” to begin.": "अभी तक कोई शुल्क पंक्ति नहीं। शुरू करने के लिए “शुल्क पंक्ति जोड़ें” पर क्लिक करें।",
+  "No timetable entries yet. Click “Add Entry” to create the first one.": "अभी तक कोई समय सारिणी प्रविष्टि नहीं। पहली बनाने के लिए “प्रविष्टि जोड़ें” पर क्लिक करें।",
+
 };
 
 // ═══════════════════════════════════════════════════════════════

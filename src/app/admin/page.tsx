@@ -808,7 +808,7 @@ function TimetableManager() {
       ) : entries.length === 0 ? (
         <div className="rounded-2xl border border-xavier/10 bg-card p-10 text-center text-muted-foreground">
           <Clock className="size-10 mx-auto mb-3 text-gold/40" />
-          No timetable entries yet. Click &ldquo;Add Entry&rdquo; to create the first one.
+          No timetable entries yet. Click &quot;Add Entry&quot; to create the first one.
         </div>
       ) : (
         <div className="grid gap-3 sm:gap-4 lg:grid-cols-2 xl:grid-cols-3">
@@ -1004,7 +1004,7 @@ function FeesManager() {
       ) : rows.length === 0 ? (
         <div className="rounded-2xl border border-xavier/10 bg-card p-10 text-center text-muted-foreground">
           <Receipt className="size-10 mx-auto mb-3 text-gold/40" />
-          No fee rows yet. Click &ldquo;Add Fee Row&rdquo; to begin.
+          No fee rows yet. Click &quot;Add Fee Row&quot; to begin.
         </div>
       ) : (
         <div className="rounded-2xl border border-xavier/10 bg-card overflow-hidden">
