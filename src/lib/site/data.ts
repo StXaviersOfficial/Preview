@@ -58,7 +58,7 @@ export const SCHOOL = {
   // Verified facilities list from careers360
   facilities: {
     sports: ["Swimming Pool", "Sports Academy", "Aerobics", "Yoga Activity", "Indoor Games"],
-    infrastructure: ["Hostel", "IT Infrastructure", "Kindergarten", "Library", "Music Rooms", "Gymnasium", "Symposium", "Toilet facilities", "Transport", "Auditorium", "Cafeteria", "Classroom", "Convenience Store", "Dance Rooms"],
+    infrastructure: ["IT Infrastructure", "Kindergarten", "Library", "Music Rooms", "Gymnasium", "Symposium", "Toilet facilities", "Transport", "Auditorium", "Cafeteria", "Classroom", "Convenience Store", "Dance Rooms"],
     advanced: ["Labs", "Medical Facility", "Security/CCTV", "Health and Medical Check up", "Transfer Facility among school chain", "Cultural Exchange Program"],
     activities: ["Science Exhibition", "Seminars", "Festival Celebrations", "Sports Day", "Youth Parliament", "Summer Camp", "Workshops", "Annual Day/Fest", "Christmas Carnival", "Art & Craft", "Blood Donation Camps"],
   },

@@ -13,7 +13,7 @@ export function LanguageToggle({ className }: { className?: string }) {
       aria-label="Switch language"
       title={lang === 'en' ? "हिंदी में देखें" : "View in English"}
       className={cn(
-        "relative inline-flex h-11 items-center gap-1.5 rounded-full bg-xavier/10 px-4 text-sm font-bold text-xavier-dark transition-colors hover:bg-xavier/20 shadow-sm",
+        "relative inline-flex h-11 items-center gap-1.5 rounded-full bg-xavier/10 px-4 text-xs font-bold text-xavier-dark transition-colors hover:bg-xavier/20 shadow-sm",
         className
       )}
     >

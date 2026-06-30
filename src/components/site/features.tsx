@@ -10,7 +10,6 @@ import { StaggerReveal, StaggerItem, Spotlight, TiltCard } from "@/components/si
 
 const FEATURES = [
   { icon: Waves, title: "Swimming Pool", body: "A dedicated swimming pool — among the very few school pools in Muzaffarpur — coached by certified trainers." },
-  { icon: Home, title: "Hostel Facility", body: "Safe, supervised residential wing for outstation students with study hours, nutritious meals and caring wardens." },
   { icon: FlaskConical, title: "Well-Equipped Labs", body: "Modern Physics, Chemistry, Biology, Computer & Language labs providing hands-on scientific curiosity." },
   { icon: Dumbbell, title: "Sports Academy", body: "Structured sports academy with basketball, indoor games, yoga, aerobics and annual sports day events." },
   { icon: Building2, title: "Auditorium", body: "A full-fledged auditorium hosting annual day, seminars, youth parliament and cultural performances." },
