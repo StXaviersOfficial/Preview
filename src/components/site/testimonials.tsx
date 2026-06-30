@@ -35,12 +35,6 @@ const TESTIMONIALS = [
     initials: "AB",
   },
   {
-    name: "Parent of Boarding Student",
-    role: "Outstation Family • Sitamarhi",
-    quote:
-      "Sending our son to a boarding school was a tough decision, but the hostel wardens at Xavier's feel like family. Study hours are supervised, meals are nutritious, and we get regular updates. He's happier here than he ever was at home.",
-    initials: "PB",
-  },
   {
     name: "Commerce Stream Alumna",
     role: "Class of 2020 • CA Finalist",
