@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import { MapPin, Phone, Mail, Instagram, Facebook, Send, CheckCircle2, MessageCircle } from "lucide-react";
 import { SCHOOL } from "@/lib/site/data";
+import { trackEnquiry, trackOutbound } from "@/lib/site/analytics";
 import { Reveal } from "@/components/site/reveal";
 
 export function Contact() {
@@ -73,6 +74,7 @@ export function Contact() {
         throw new Error(data.error || "Submission failed. Please try again.");
       }
       setSubmitted(true);
+      trackEnquiry();
       setForm({ name: "", email: "", phone: "", grade: "", message: "" });
       setTimeout(() => setSubmitted(false), 6000);
     } catch (err) {
@@ -175,10 +177,10 @@ export function Contact() {
                   Thank you for reaching out to St. Xavier&apos;s. We&apos;ve received your enquiry and will get back to you shortly. For urgent queries, please call us directly.
                 </p>
                 <div className="mt-5 flex flex-wrap gap-2 justify-center">
-                  <a href={`tel:+91${SCHOOL.phones[0]}`} className="inline-flex items-center gap-1.5 rounded-full bg-xavier-gradient px-4 py-2 text-xs font-semibold text-cream">
+                  <a href={`tel:+91${SCHOOL.phones[0]}`} onClick={() => trackOutbound("phone", "contact_success")} className="inline-flex items-center gap-1.5 rounded-full bg-xavier-gradient px-4 py-2 text-xs font-semibold text-cream">
                     <Phone className="size-3.5" /> Call Now
                   </a>
-                  <a href={`https://wa.me/91${SCHOOL.phones[0]}`} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 rounded-full border border-xavier/20 px-4 py-2 text-xs font-semibold text-xavier-dark">
+                  <a href={`https://wa.me/91${SCHOOL.phones[0]}`} target="_blank" rel="noopener noreferrer" onClick={() => trackOutbound("whatsapp", "contact_success")} className="inline-flex items-center gap-1.5 rounded-full border border-xavier/20 px-4 py-2 text-xs font-semibold text-xavier-dark">
                     <MessageCircle className="size-3.5" /> WhatsApp
                   </a>
                   <button

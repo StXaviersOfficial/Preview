@@ -4,6 +4,7 @@ import { useState } from "react";
 import { ArrowRight, ChevronDown, Sparkles, Award, BookOpen, Users, Phone } from "lucide-react";
 import { SCHOOL, IMAGES } from "@/lib/site/data";
 import { Magnetic, ConfettiBurst } from "@/components/site/animations";
+import { trackApplyNow, trackOutbound } from "@/lib/site/analytics";
 import { Reveal } from "@/components/site/reveal";
 
 export function Hero() {
@@ -99,7 +100,7 @@ export function Hero() {
               <Magnetic>
                 <a
                   href="#admissions"
-                  onClick={triggerConfetti}
+                  onClick={(e) => { triggerConfetti(e); trackApplyNow("hero"); }}
                   className="shine-on-hover group relative inline-flex items-center justify-center gap-2 rounded-full bg-gold-gradient px-6 sm:px-8 py-3.5 sm:py-4 text-sm sm:text-base font-semibold text-xavier-dark shadow-glow-gold overflow-hidden"
                 >
                   <span className="relative z-10">Begin Your Journey</span>
@@ -156,6 +157,7 @@ export function Hero() {
       {/* Floating contact bubble */}
       <a
         href={`tel:+91${SCHOOL.phones[0]}`}
+        onClick={() => trackOutbound("phone", "hero")}
         className="absolute bottom-6 left-5 sm:bottom-10 sm:left-6 z-20 flex items-center gap-2 rounded-full glass-dark px-4 py-2.5 text-cream hover:bg-cream/10 transition-colors"
       >
         <Phone className="size-4 text-gold-light" />

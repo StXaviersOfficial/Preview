@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
 import { Phone, MessageCircle, ArrowRight } from "lucide-react";
 import { SCHOOL } from "@/lib/site/data";
+import { trackApplyNow, trackOutbound } from "@/lib/site/analytics";
 
 /**
  * Sticky mobile Apply Now bar.
@@ -39,6 +40,7 @@ export function StickyApplyBar() {
                 href={`tel:+91${SCHOOL.phones[0]}`}
                 className="flex size-10 shrink-0 items-center justify-center rounded-full bg-cream/10 text-cream"
                 aria-label="Call school"
+                onClick={() => trackOutbound("phone", "sticky_bar")}
               >
                 <Phone className="size-4" />
               </a>
@@ -49,12 +51,14 @@ export function StickyApplyBar() {
                 rel="noopener noreferrer"
                 className="flex size-10 shrink-0 items-center justify-center rounded-full bg-[#25D366] text-white"
                 aria-label="Chat on WhatsApp"
+                onClick={() => trackOutbound("whatsapp", "sticky_bar")}
               >
                 <MessageCircle className="size-4" />
               </a>
               {/* Apply Now CTA */}
               <a
                 href="#admissions"
+                onClick={() => trackApplyNow("sticky")}
                 className="flex flex-1 items-center justify-center gap-1.5 rounded-full bg-gold-gradient px-4 py-2.5 text-xs font-bold text-xavier-dark shadow-glow-gold"
               >
                 Apply Now

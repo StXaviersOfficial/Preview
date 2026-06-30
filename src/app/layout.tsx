@@ -4,6 +4,7 @@ import "./globals.css";
 import { CustomCursor, ScrollProgressRing } from "@/components/site/animations";
 import { ThemeProvider } from "@/components/theme-provider";
 import { LanguageProvider } from "@/components/site/language-provider";
+import { analyticsScript, gaId } from "@/lib/site/analytics";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -174,6 +175,16 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
+        {analyticsScript && (
+          <>
+            <script async src={analyticsScript} />
+            <script
+              dangerouslySetInnerHTML={{
+                __html: `window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', '${gaId}', { send_page_view: true });`,
+              }}
+            />
+          </>
+        )}
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${playfair.variable} ${cormorant.variable} ${notoSansDev.variable} ${notoSerifDev.variable} antialiased bg-background text-foreground font-sans`}
