@@ -89,8 +89,7 @@ export function Reveal({
   variant = "up",
   delay = 0,
   as: As = "div",
-  once = true,
-  ...rest
+  once = false,
 }: {
   children: ReactNode;
   className?: string;
@@ -98,7 +97,6 @@ export function Reveal({
   delay?: number;
   as?: ElementType;
   once?: boolean;
-  [key: string]: unknown;
 }) {
   const ref = useRef<HTMLElement>(null);
   const animFrame = useRef<number>(0);
@@ -120,8 +118,7 @@ export function Reveal({
 
       const start = INITIAL[variant];
       const end = FINAL[variant];
-      // Slower, more readable durations — animations visible even when scrolling slowly
-      const duration = variant === "elastic" ? 800 : variant === "glitch" ? 700 : 600;
+      const duration = variant === "elastic" ? 1200 : variant === "glitch" ? 1000 : 900;
       const startTime = performance.now() + delay * 1000;
 
       const animate = (now: number) => {
@@ -192,7 +189,7 @@ export function Reveal({
           }
         });
       },
-      { threshold: 0, rootMargin: "100px 0px 100px 0px" }
+      { threshold: 0, rootMargin: "200px 0px 200px 0px" }
     );
 
     obs.observe(el);
@@ -206,7 +203,7 @@ export function Reveal({
   const init = INITIAL[variant];
   return (
     <As
-      ref={ref as React.Ref<HTMLElement>}
+      ref={ref as React.RefObject<HTMLDivElement>}
       className={className}
       style={{
         opacity: init.opacity,
@@ -214,9 +211,7 @@ export function Reveal({
         filter: init.filter || "none",
         willChange: "opacity, transform, filter",
         backfaceVisibility: "hidden",
-        transition: "opacity 0.3s ease, transform 0.3s ease, filter 0.3s ease",
       }}
-      {...rest}
     >
       {children}
     </As>

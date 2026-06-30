@@ -27,7 +27,6 @@ export function ThemeProvider({ children, defaultTheme = 'system', storageKey = 
   const [theme, setThemeState] = useState<Theme>(defaultTheme);
   const [resolvedTheme, setResolvedTheme] = useState<ResolvedTheme>('light');
 
-  // Load from localStorage on mount
   useEffect(() => {
     try {
       const stored = localStorage.getItem(storageKey) as Theme;
@@ -35,7 +34,6 @@ export function ThemeProvider({ children, defaultTheme = 'system', storageKey = 
     } catch {}
   }, [storageKey]);
 
-  // Resolve theme + apply to document
   useEffect(() => {
     const root = document.documentElement;
     const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
@@ -46,7 +44,6 @@ export function ThemeProvider({ children, defaultTheme = 'system', storageKey = 
     root.classList.toggle('light', !isDark);
     root.style.colorScheme = isDark ? 'dark' : 'light';
 
-    // Listen for system changes
     if (theme === 'system') {
       const mq = window.matchMedia('(prefers-color-scheme: dark)');
       const handler = (e: MediaQueryListEvent) => {
