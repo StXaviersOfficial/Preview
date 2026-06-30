@@ -57,7 +57,6 @@ export function HindiOverlay({ children }: { children: ReactNode }) {
       "Holistic Development": "समग्र विकास",
       "Expert Faculty": "विशेषज्ञ संकाय",
       "Modern Labs": "आधुनिक प्रयोगशालाएं",
-      "Sports Academy": "खेल अकादमी",
       "Cultural Excellence": "सांस्कृतिक उत्कृष्टता",
 
       // ═══ ABOUT ═══
@@ -221,7 +220,6 @@ export function HindiOverlay({ children }: { children: ReactNode }) {
       "Round-the-clock CCTV surveillance and trained security personnel for complete peace of mind.": "24x7 सीसीटीवी निगरानी और प्रशिक्षित सुरक्षा कर्मी।",
       "Medical Facility": "चिकित्सा सुविधा",
       "On-campus medical facility with regular health and medical check-ups for every student.": "परिसर में चिकित्सा सुविधा और नियमित स्वास्थ्य जांच।",
-      "Transport": "परिवहन",
       "Safe, punctual school transport fleet covering Muzaffarpur town and nearby areas.": "मुजफ्फरपुर शहर और आसपास के क्षेत्रों के लिए सुरक्षित, समयबद्ध परिवहन।",
       "Kindergarten Wing": "किंडरगार्टन विंग",
       "A dedicated, colourful kindergarten block designed for our youngest learners at Nursery–UKG.": "सबसे छोटे शिक्षार्थियों के लिए समर्पित रंगीन किंडरगार्टन ब्लॉक।",
@@ -233,12 +231,7 @@ export function HindiOverlay({ children }: { children: ReactNode }) {
       "Sports Academy": "Sports Academy",
 
       // ═══ BUTTONS / MISC ═══
-      "Apply for Admission": "प्रवेश हेतु आवेदन करें",
-      "Send Another Enquiry": "एक और पूछताछ भेजें",
       "Failed to load fee structure. Please try again later.": "शुल्क संरचना लोड करने में विफल। कृपया बाद में पुनः प्रयास करें।",
-      "Loading fee structure…": "शुल्क संरचना लोड हो रही है…",
-      "Loading timetable…": "समय सारिणी लोड हो रही है…",
-      "No entries": "कोई प्रविष्टि नहीं",
     };
 
     // Walk all text nodes and translate
