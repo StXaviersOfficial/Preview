@@ -11,7 +11,10 @@ export function CustomCursor() {
   const ringRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    // Disable on touch devices
     if (window.matchMedia("(pointer: coarse)").matches) return;
+    // Disable on reduced-motion preference
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
     let mx = window.innerWidth / 2;
     let my = window.innerHeight / 2;
@@ -723,7 +726,10 @@ export function CursorTrail() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
+    // Disable on touch devices
     if (window.matchMedia("(pointer: coarse)").matches) return;
+    // Disable on reduced-motion preference
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext("2d");

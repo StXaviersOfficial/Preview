@@ -1,7 +1,7 @@
 'use client'
 
 import { motion, AnimatePresence } from "framer-motion";
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { X, ChevronLeft, ChevronRight, ZoomIn, Camera } from "lucide-react";
 import { IMAGES } from "@/lib/site/data";
 import { Reveal } from "@/components/site/reveal";
@@ -27,6 +27,18 @@ export function Gallery() {
   const [lightbox, setLightbox] = useState<number | null>(null);
 
   const filtered = filter === "All" ? GALLERY : GALLERY.filter((g) => g.category === filter);
+
+  // Keyboard navigation for lightbox
+  useEffect(() => {
+    if (lightbox === null) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setLightbox(null);
+      else if (e.key === "ArrowRight") setLightbox((i) => (i === null ? i : (i + 1) % filtered.length));
+      else if (e.key === "ArrowLeft") setLightbox((i) => (i === null ? i : (i - 1 + filtered.length) % filtered.length));
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [lightbox, filtered.length]);
 
   const close = useCallback(() => setLightbox(null), []);
   const next = useCallback(() => setLightbox((i) => (i === null ? i : (i + 1) % filtered.length)), [filtered.length]);

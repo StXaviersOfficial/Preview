@@ -24,6 +24,10 @@ export default function Home() {
   return (
     <HindiOverlay>
       <div className="relative min-h-screen flex flex-col bg-background">
+        {/* Skip to content link for screen readers */}
+        <a href="#home" className="sr-only sr-only-focusable">
+          Skip to content
+        </a>
         <NoticeTicker />
         <Navbar />
         <main className="flex-1">

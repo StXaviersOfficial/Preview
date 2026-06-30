@@ -108,6 +108,16 @@ export function Reveal({
     const el = ref.current;
     if (!el) return;
 
+    // Accessibility: respect prefers-reduced-motion — show content instantly
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (prefersReducedMotion) {
+      el.style.opacity = "1";
+      el.style.transform = "none";
+      el.style.filter = "none";
+      el.setAttribute("data-reveal", "done");
+      return;
+    }
+
     const setHidden = () => {
       const init = INITIAL[variant];
       el.style.opacity = String(init.opacity);
@@ -206,6 +216,7 @@ export function Reveal({
   return (
     <As
       ref={ref as React.Ref<HTMLElement>}
+      data-reveal=""
       className={className}
       style={{
         opacity: init.opacity,
