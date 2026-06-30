@@ -258,6 +258,8 @@ function LoginScreen({ onLogin }: { onLogin: () => void }) {
                 onChange={(e) => setCode(e.target.value)}
                 required
                 autoFocus
+                maxLength={100}
+                autoComplete="off"
                 placeholder="Enter the admin code"
                 className="w-full rounded-xl bg-cream/10 border border-cream/15 px-4 py-3 text-sm text-cream placeholder:text-cream/40 focus:outline-none focus:ring-2 focus:ring-gold/40 focus:border-gold/40 transition-all"
               />
