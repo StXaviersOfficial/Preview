@@ -1,11 +1,34 @@
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/db";
 import { sendEnquiryEmail } from "@/lib/site/email";
+import { checkRateLimit, getClientIP } from "@/lib/site/rate-limit";
 
 export const runtime = "nodejs";
 
+// Rate limit: 5 submissions per hour per IP
+const RATE_LIMIT_MAX = 5;
+const RATE_LIMIT_WINDOW_MS = 60 * 60 * 1000; // 1 hour
+
 export async function POST(req: NextRequest) {
   try {
+    // Rate limiting
+    const ip = getClientIP(req);
+    const rateLimit = checkRateLimit(`contact:${ip}`, RATE_LIMIT_MAX, RATE_LIMIT_WINDOW_MS);
+    if (!rateLimit.allowed) {
+      const retryAfter = Math.ceil((rateLimit.resetAt - Date.now()) / 1000);
+      return NextResponse.json(
+        { ok: false, error: "Too many enquiries. Please try again later." },
+        {
+          status: 429,
+          headers: {
+            "Retry-After": String(retryAfter),
+            "X-RateLimit-Remaining": "0",
+            "X-RateLimit-Reset": String(rateLimit.resetAt),
+          },
+        }
+      );
+    }
+
     const body = await req.json();
 
     // Basic validation
@@ -21,15 +44,35 @@ export async function POST(req: NextRequest) {
         { status: 400 }
       );
     }
+    if (name.length < 2 || name.length > 200) {
+      return NextResponse.json(
+        { ok: false, error: "Name must be between 2 and 200 characters." },
+        { status: 400 }
+      );
+    }
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       return NextResponse.json(
         { ok: false, error: "Please provide a valid email address." },
         { status: 400 }
       );
     }
-    if (name.length > 200 || message.length > 5000) {
+    // Phone validation: optional, but if provided must be 6-20 digits with optional +, spaces, -
+    if (phone && !/^[+]?[\d\s-]{6,20}$/.test(phone)) {
       return NextResponse.json(
-        { ok: false, error: "Input too long." },
+        { ok: false, error: "Please provide a valid phone number." },
+        { status: 400 }
+      );
+    }
+    // Grade validation: optional, max 50 chars, no HTML
+    if (grade && (grade.length > 50 || /<[^>]+>/.test(grade))) {
+      return NextResponse.json(
+        { ok: false, error: "Invalid grade value." },
+        { status: 400 }
+      );
+    }
+    if (message.length > 5000) {
+      return NextResponse.json(
+        { ok: false, error: "Message too long (max 5000 characters)." },
         { status: 400 }
       );
     }
@@ -42,7 +85,11 @@ export async function POST(req: NextRequest) {
     // Fire-and-forget email send
     await sendEnquiryEmail({ name, email, phone, grade, message });
 
-    return NextResponse.json({ ok: true, id: submission.id });
+    return NextResponse.json({
+      ok: true,
+      id: submission.id,
+      remaining: rateLimit.remaining,
+    });
   } catch (err) {
     console.error("[/api/contact] Error:", err);
     return NextResponse.json(

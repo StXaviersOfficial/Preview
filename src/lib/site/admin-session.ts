@@ -17,10 +17,18 @@ const COOKIE_NAME = "sx_admin_session";
 const SESSION_TTL_MS = 1000 * 60 * 60 * 8; // 8 hours
 
 function getSecret(): string {
-  // Pull a stable secret from env if available, otherwise derive at boot.
-  // Using a derived secret means the session becomes invalid if the admin
-  // code is rotated — which is actually desirable.
-  return process.env.ADMIN_SESSION_SECRET || "sx-session-secret-v1-xavier";
+  const secret = process.env.ADMIN_SESSION_SECRET;
+  if (secret && secret.length >= 32) {
+    return secret;
+  }
+  // In production, FAIL CLOSED — don't use a hardcoded fallback
+  // that an attacker could read from the source code.
+  if (process.env.NODE_ENV === "production") {
+    throw new Error("ADMIN_SESSION_SECRET must be set in production (min 32 chars)");
+  }
+  // Dev-only fallback with warning
+  console.warn("[SECURITY] ADMIN_SESSION_SECRET not set — using insecure dev fallback");
+  return "dev-only-insecure-secret-do-not-use-in-production";
 }
 
 function hmac(value: string): string {

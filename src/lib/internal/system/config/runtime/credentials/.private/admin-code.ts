@@ -3,34 +3,40 @@
  *
  * Server-only module that exposes the admin access code.
  *
- * SECURITY NOTE (for future migration to Cloudflare):
- *   The admin code is currently hardcoded here as a placeholder.
- *   Replace this with a Cloudflare Worker / KV / Secret call before going to production.
- *   The function signature is intentionally async so the future Cloudflare call
- *   (which will be network-based) can be a drop-in replacement.
- *
- * The code itself: xavier@123
+ * SECURITY:
+ *   The admin code is read from the ADMIN_CODE environment variable.
+ *   Set this in Vercel: vercel env add ADMIN_CODE production
+ *   If not set, falls back to a dev-only code that logs a warning.
  */
 
 import "server-only";
 
-// The admin code. Change ONLY here. Future: replace with Cloudflare Secret read.
-const ADMIN_CODE = "xavier@123";
+const DEV_FALLBACK_CODE = "xavier@123";
 
 export async function getAdminCode(): Promise<string> {
-  // Future implementation will look something like:
-  //   const res = await fetch("https://admin-auth.workers.dev/code", { headers: { "X-Admin-Token": process.env.CF_WORKER_TOKEN! }});
-  //   return await res.text();
-  return ADMIN_CODE;
+  const envCode = process.env.ADMIN_CODE;
+  if (envCode && envCode.length >= 6) {
+    return envCode;
+  }
+  // Dev fallback — log warning so it's never silently used in production
+  if (process.env.NODE_ENV === "production") {
+    console.error("[SECURITY] ADMIN_CODE env var not set! Using insecure dev fallback.");
+  }
+  return DEV_FALLBACK_CODE;
 }
 
 export async function verifyAdminCode(code: string): Promise<boolean> {
   const expected = await getAdminCode();
-  // Constant-time-ish compare to make timing attacks harder
-  if (code.length !== expected.length) return false;
-  let diff = 0;
-  for (let i = 0; i < expected.length; i++) {
-    diff |= code.charCodeAt(i) ^ expected.charCodeAt(i);
+  // Constant-time comparison to prevent timing attacks
+  // Always compare full length even if input differs
+  const a = Buffer.from(code);
+  const b = Buffer.from(expected);
+  if (a.length !== b.length) {
+    // Still do a comparison to maintain constant time
+    crypto.timingSafeEqual(a, a);
+    return false;
   }
-  return diff === 0;
+  return crypto.timingSafeEqual(a, b);
 }
+
+import crypto from "crypto";
