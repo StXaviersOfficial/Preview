@@ -113,7 +113,7 @@ export function Facilities() {
             { value: "2+ acres", label: "Green Campus" },
             { value: `${SCHOOL.classroomsCount}`, label: "Classrooms" },
             { value: "Swimming Pool", label: "Plus Sports Academy" },
-            { value: "Transport", label: "दिवस विद्यार्थी" },
+            { value: "Safe Fleet", label: "Transport" },
           ].map((s, i) => (
             <motion.div
               key={s.label}

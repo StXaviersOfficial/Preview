@@ -1,7 +1,6 @@
 'use client'
 
-import { motion } from "framer-motion";
-import { MapPin, Phone, Mail, Instagram, Facebook, ArrowUp, Globe, Heart } from "lucide-react";
+import { MapPin, Phone, Mail, Instagram, Facebook, ArrowRight, Globe, Heart } from "lucide-react";
 import { SCHOOL } from "@/lib/site/data";
 import { Reveal } from "@/components/site/reveal";
 
@@ -30,7 +29,7 @@ export function Footer() {
               Ready to give your child the Xavier&apos;s edge?
             </h3>
             <p className="mt-2 text-sm sm:text-base text-cream/70 max-w-xl">
-              Admissions open for Nursery — Class 11. Limited seats — apply early to avoid disappointment.
+              Admissions open for Nursery — Class 12. Limited seats — apply early to avoid disappointment.
             </p>
           </div>
           <a
@@ -38,7 +37,7 @@ export function Footer() {
             className="shrink-0 inline-flex items-center gap-2 rounded-full bg-gold-gradient px-6 sm:px-7 py-3.5 text-sm font-bold text-xavier-dark shadow-glow-gold"
           >
             Apply Now
-            <ArrowUp className="size-4 rotate-45" />
+            <ArrowRight className="size-4" />
           </a>
         </Reveal>
 
@@ -140,22 +139,11 @@ export function Footer() {
         <div className="pt-5 sm:pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-cream/50">
           <p className="text-center sm:text-left">© {new Date().getFullYear()} St. Xavier&apos;s Jr./Sr. School, Muzaffarpur. All rights reserved.</p>
           <p className="flex items-center gap-1.5">
-            Crafted with <Heart className="size-3 text-gold fill-gold" /> for the St. Xavier's community
+            Crafted with <Heart className="size-3 text-gold fill-gold" /> for the St. Xavier&apos;s community
           </p>
         </div>
       </div>
 
-      {/* Back to top button */}
-      <motion.button
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1 }}
-        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-        className="fixed bottom-5 right-5 sm:bottom-6 sm:right-6 z-40 size-11 sm:size-12 rounded-full bg-gold-gradient flex items-center justify-center shadow-glow-gold"
-        aria-label="Back to top"
-      >
-        <ArrowUp className="size-5 text-xavier-dark" />
-      </motion.button>
     </footer>
   );
 }

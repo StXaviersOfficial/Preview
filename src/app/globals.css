@@ -11,6 +11,8 @@
   --font-mono: var(--font-geist-mono);
   --font-serif: var(--font-playfair);
   --font-display: var(--font-cormorant);
+  --font-devanagari: var(--font-noto-devanagari);
+  --font-devanagari-serif: var(--font-noto-serif-devanagari);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -387,3 +389,121 @@
 
 /* Smooth scroll anchor offset for sticky header */
 [id] { scroll-margin-top: 90px; }
+
+/* ═══════════════════════════════════════════════════════════════
+   HINDI MODE — when body[data-hi-active="true"]
+   Devanagari text needs different font + spacing for readability
+   ═══════════════════════════════════════════════════════════════ */
+body[data-hi-active="true"] {
+  /* Use Devanagari fonts as primary, Latin as fallback */
+  --font-sans: var(--font-noto-devanagari), var(--font-geist-sans);
+  --font-serif: var(--font-noto-serif-devanagari), var(--font-playfair);
+  --font-display: var(--font-noto-serif-devanagari), var(--font-cormorant);
+}
+
+body[data-hi-active="true"] {
+  /* Hindi needs slightly larger line-height for matras (top bars) */
+  line-height: 1.7;
+}
+
+body[data-hi-active="true"] .font-serif,
+body[data-hi-active="true"] .font-display {
+  font-family: var(--font-noto-serif-devanagari), var(--font-playfair), serif;
+  /* Slightly increase letter spacing for Hindi serif */
+  letter-spacing: 0.005em;
+}
+
+body[data-hi-active="true"] .font-sans,
+body[data-hi-active="true"] body,
+body[data-hi-active="true"] p,
+body[data-hi-active="true"] span,
+body[data-hi-active="true"] li,
+body[data-hi-active="true"] a,
+body[data-hi-active="true"] button,
+body[data-hi-active="true"] input,
+body[data-hi-active="true"] textarea,
+body[data-hi-active="true"] label,
+body[data-hi-active="true"] h1,
+body[data-hi-active="true"] h2,
+body[data-hi-active="true"] h3,
+body[data-hi-active="true"] h4,
+body[data-hi-active="true"] h5,
+body[data-hi-active="true"] h6 {
+  font-family: var(--font-noto-devanagari), var(--font-geist-sans), system-ui, sans-serif;
+}
+
+/* Hindi headings — use serif Devanagari for elegance */
+body[data-hi-active="true"] h1,
+body[data-hi-active="true"] h2,
+body[data-hi-active="true"] h3 {
+  font-family: var(--font-noto-serif-devanagari), var(--font-playfair), serif;
+  line-height: 1.25;
+  letter-spacing: 0;
+}
+
+/* Hindi word spacing — prevent cramped text */
+body[data-hi-active="true"] p,
+body[data-hi-active="true"] li,
+body[data-hi-active="true"] span,
+body[data-hi-active="true"] a,
+body[data-hi-active="true"] button {
+  word-spacing: 0.05em;
+  letter-spacing: 0.01em;
+}
+
+/* Hindi input/textarea — prevent text clipping */
+body[data-hi-active="true"] input,
+body[data-hi-active="true"] textarea {
+  line-height: 1.6;
+}
+
+/* Smooth font rendering for Devanagari */
+body[data-hi-active="true"] {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   ACCESSIBILITY — prefers-reduced-motion
+   Respect users who disable animations
+   ═══════════════════════════════════════════════════════════════ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  /* Reveal elements should appear instantly */
+  [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+  }
+}
+
+/* Focus visible — clear keyboard focus indicator for accessibility */
+:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Skip-to-content link for screen readers */
+.sr-only-focusable:focus {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: auto;
+  height: auto;
+  padding: 1rem;
+  background: var(--xavier-dark);
+  color: var(--cream);
+  z-index: 9999;
+  clip: auto;
+  white-space: nowrap;
+}
