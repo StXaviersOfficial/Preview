@@ -1,19 +1,16 @@
 import { NextResponse } from "next/server";
-import { db } from "@/lib/db";
+import { getTimetable } from "@/lib/site/seed-data";
 
 export const runtime = "nodejs";
 
 export async function GET() {
   try {
-
-  const entries = await db.timetableEntry.findMany({
-    orderBy: [{ day: "asc" }, { period: "asc" }],
-  });
-  return NextResponse.json({ ok: true, entries });
+    const entries = await getTimetable();
+    return NextResponse.json({ ok: true, entries });
   } catch (err) {
-    console.error("[' + p + '] Error:", err);
+    console.error("[/api/timetable] Error:", err);
     return NextResponse.json(
-      { ok: false, error: "Something went wrong." },
+      { ok: false, error: "Failed to load timetable.", entries: [] },
       { status: 500 }
     );
   }

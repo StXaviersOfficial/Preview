@@ -18,6 +18,7 @@ import { Contact } from "@/components/site/contact";
 import { Footer } from "@/components/site/footer";
 import { WhatsAppButton } from "@/components/site/whatsapp-button";
 import { BackToTop } from "@/components/site/back-to-top";
+import { StickyApplyBar } from "@/components/site/sticky-apply-bar";
 import { HindiOverlay } from "@/components/site/hindi-overlay";
 
 export default function Home() {
@@ -50,6 +51,7 @@ export default function Home() {
         <Footer />
         <WhatsAppButton />
         <BackToTop />
+        <StickyApplyBar />
       </div>
     </HindiOverlay>
   );

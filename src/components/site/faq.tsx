@@ -25,18 +25,30 @@ export function FAQ() {
   const [open, setOpen] = useState<string | null>(null);
   const [filter, setFilter] = useState<string>("all");
 
-  useEffect(() => {
+  const [error, setError] = useState(false);
+
+  const loadFaqs = () => {
+    setLoading(true);
+    setError(false);
     fetch("/api/faqs")
       .then((r) => r.json())
       .then((d) => {
         if (d.ok) {
           setFaqs(d.faqs);
           if (d.faqs.length > 0) setOpen(d.faqs[0].id);
+        } else {
+          setError(true);
         }
         setLoading(false);
       })
-      .catch(() => setLoading(false));
-  }, []);
+      .catch((err) => {
+        console.error("[FAQ] Fetch failed:", err);
+        setError(true);
+        setLoading(false);
+      });
+  };
+
+  useEffect(() => { loadFaqs(); }, []);
 
   const categories = Array.from(new Set(faqs.map((f) => f.category)));
   const filtered = filter === "all" ? faqs : faqs.filter((f) => f.category === filter);
@@ -95,8 +107,23 @@ export function FAQ() {
 
         {/* FAQ accordion */}
         {loading ? (
-          <div className="rounded-2xl border border-xavier/10 bg-card p-8 text-center text-muted-foreground flex items-center justify-center gap-2">
-            <RefreshCw className="size-4 animate-spin" /> Loading FAQs…
+          <div className="space-y-2.5">
+            {[...Array(6)].map((_, i) => (
+              <div key={i} className="rounded-2xl border border-xavier/10 bg-card p-5">
+                <div className="flex items-center gap-3">
+                  <div className="h-4 w-8 bg-gold/10 rounded animate-pulse" />
+                  <div className="h-4 flex-1 bg-xavier/10 rounded animate-pulse" />
+                  <div className="size-7 bg-xavier/10 rounded-full animate-pulse" />
+                </div>
+              </div>
+            ))}
+          </div>
+        ) : error ? (
+          <div className="rounded-2xl border border-destructive/20 bg-destructive/5 p-8 text-center">
+            <p className="text-sm text-destructive mb-3">Couldn't load FAQs.</p>
+            <button onClick={loadFaqs} className="inline-flex items-center gap-2 rounded-full bg-xavier-gradient px-4 py-2 text-xs font-semibold text-cream">
+              <RefreshCw className="size-3.5" /> Tap to retry
+            </button>
           </div>
         ) : filtered.length === 0 ? (
           <div className="rounded-2xl border border-xavier/10 bg-card p-8 text-center text-muted-foreground">

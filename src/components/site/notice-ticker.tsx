@@ -22,7 +22,9 @@ export function NoticeTicker() {
       .then((d) => {
         if (d.ok) setNotices(d.notices);
       })
-      .catch(() => {});
+      .catch((err) => {
+        console.error("[Notices] Fetch failed:", err);
+      });
   }, []);
 
   useEffect(() => {

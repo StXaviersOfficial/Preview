@@ -23,15 +23,26 @@ export function Timetable() {
   const [loading, setLoading] = useState(true);
   const [selectedClass, setSelectedClass] = useState<string | null>(null);
 
-  useEffect(() => {
+  const [error, setError] = useState(false);
+
+  const loadTimetable = () => {
+    setLoading(true);
+    setError(false);
     fetch("/api/timetable")
       .then((r) => r.json())
       .then((d) => {
         if (d.ok) setEntries(d.entries);
+        else setError(true);
         setLoading(false);
       })
-      .catch(() => setLoading(false));
-  }, []);
+      .catch((err) => {
+        console.error("[Timetable] Fetch failed:", err);
+        setError(true);
+        setLoading(false);
+      });
+  };
+
+  useEffect(() => { loadTimetable(); }, []);
 
   const classGrades = Array.from(new Set(entries.map((e) => e.classGrade)));
   const filtered = selectedClass ? entries.filter((e) => e.classGrade === selectedClass) : entries;
@@ -82,8 +93,31 @@ export function Timetable() {
         </div>
 
         {loading ? (
-          <div className="rounded-2xl border border-xavier/10 bg-card p-10 text-center text-muted-foreground flex items-center justify-center gap-2">
-            <RefreshCw className="size-4 animate-spin" /> Loading timetable…
+          <div className="grid gap-3 sm:gap-4 lg:grid-cols-2 xl:grid-cols-3">
+            {[...Array(6)].map((_, i) => (
+              <div key={i} className="rounded-2xl border border-xavier/10 bg-card overflow-hidden">
+                <div className="bg-xavier-gradient px-4 py-3 flex items-center justify-between">
+                  <div className="h-4 w-20 bg-cream/20 rounded animate-pulse" />
+                  <div className="h-3 w-12 bg-cream/20 rounded animate-pulse" />
+                </div>
+                {[...Array(4)].map((_, j) => (
+                  <div key={j} className="px-4 py-3 flex items-center gap-3 border-t border-xavier/5">
+                    <div className="size-9 bg-gold/10 rounded-lg animate-pulse" />
+                    <div className="flex-1">
+                      <div className="h-4 w-24 bg-xavier/10 rounded animate-pulse mb-1" />
+                      <div className="h-3 w-32 bg-xavier/10 rounded animate-pulse" />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            ))}
+          </div>
+        ) : error ? (
+          <div className="rounded-2xl border border-destructive/20 bg-destructive/5 p-8 text-center">
+            <p className="text-sm text-destructive mb-3">Couldn't load the timetable.</p>
+            <button onClick={loadTimetable} className="inline-flex items-center gap-2 rounded-full bg-xavier-gradient px-4 py-2 text-xs font-semibold text-cream">
+              <RefreshCw className="size-3.5" /> Tap to retry
+            </button>
           </div>
         ) : entries.length === 0 ? (
           <div className="rounded-2xl border border-xavier/10 bg-card p-10 text-center text-muted-foreground">

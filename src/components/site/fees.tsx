@@ -34,15 +34,26 @@ export function Fees() {
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState<string>("all");
 
-  useEffect(() => {
+  const [error, setError] = useState(false);
+
+  const loadFees = () => {
+    setLoading(true);
+    setError(false);
     fetch("/api/fees")
       .then((r) => r.json())
       .then((d) => {
         if (d.ok) setRows(d.rows);
+        else setError(true);
         setLoading(false);
       })
-      .catch(() => setLoading(false));
-  }, []);
+      .catch((err) => {
+        console.error("[Fees] Fetch failed:", err);
+        setError(true);
+        setLoading(false);
+      });
+  };
+
+  useEffect(() => { loadFees(); }, []);
 
   const categories = Array.from(new Set(rows.map((r) => r.category)));
   const filtered = filter === "all" ? rows : rows.filter((r) => r.category === filter);
@@ -105,8 +116,28 @@ export function Fees() {
 
         {/* Fee table */}
         {loading ? (
-          <div className="rounded-2xl border border-xavier/10 bg-card p-10 text-center text-muted-foreground flex items-center justify-center gap-2">
-            <RefreshCw className="size-4 animate-spin" /> Loading fee structure…
+          <div className="rounded-2xl border border-xavier/10 bg-card overflow-hidden">
+            {/* Skeleton loader */}
+            <div className="hidden sm:grid grid-cols-12 gap-3 px-5 py-3 bg-xavier/5">
+              {[...Array(4)].map((_, i) => (
+                <div key={i} className="col-span-3 h-3 bg-xavier/10 rounded animate-pulse" />
+              ))}
+            </div>
+            {[...Array(8)].map((_, i) => (
+              <div key={i} className="px-5 py-3 grid grid-cols-12 gap-3 items-center border-t border-xavier/5">
+                <div className="col-span-12 sm:col-span-5 h-4 bg-xavier/10 rounded animate-pulse" />
+                <div className="col-span-6 sm:col-span-2 h-5 bg-gold/10 rounded-full animate-pulse" />
+                <div className="col-span-6 sm:col-span-2 h-3 bg-xavier/10 rounded animate-pulse" />
+                <div className="col-span-12 sm:col-span-3 h-5 bg-xavier/10 rounded animate-pulse justify-self-end" />
+              </div>
+            ))}
+          </div>
+        ) : error ? (
+          <div className="rounded-2xl border border-destructive/20 bg-destructive/5 p-8 text-center">
+            <p className="text-sm text-destructive mb-3">Couldn't load the fee structure.</p>
+            <button onClick={loadFees} className="inline-flex items-center gap-2 rounded-full bg-xavier-gradient px-4 py-2 text-xs font-semibold text-cream">
+              <RefreshCw className="size-3.5" /> Tap to retry
+            </button>
           </div>
         ) : rows.length === 0 ? (
           <div className="rounded-2xl border border-xavier/10 bg-card p-10 text-center text-muted-foreground">
