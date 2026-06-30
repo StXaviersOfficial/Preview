@@ -127,14 +127,7 @@ export function HindiOverlay({ children }: { children: React.ReactNode }) {
       const trimmed = original.trim();
       if (!trimmed) return original;
       
-      // Direct key match
-      for (const [key, value] of Object.entries(hi)) {
-        // Check if the text matches the English version
-        const enText = getEnglishText(key);
-        if (trimmed === enText) return value;
-      }
-      
-      // Partial matches for common phrases
+      // Translation replacements for common phrases
       const replacements: Record<string, string> = {
         "Apply Now": "अभी आवेदन करें",
         "Apply for Admission": "प्रवेश हेतु आवेदन करें",
