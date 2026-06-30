@@ -25,6 +25,7 @@ export function Hero() {
           src={IMAGES.home}
           alt="St. Xavier's Jr./Sr. School, Goshala Road, Muzaffarpur"
           className="h-full w-full object-cover"
+          fetchPriority="high"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-xavier-dark/55 via-xavier-dark/80 to-xavier-dark" />
         <div className="absolute inset-0 bg-gradient-to-r from-xavier-dark/90 via-xavier-dark/55 to-xavier-dark/30" />

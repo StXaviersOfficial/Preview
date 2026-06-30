@@ -113,6 +113,16 @@ export const metadata: Metadata = {
   category: "education",
 };
 
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#fdf6ec" },
+    { media: "(prefers-color-scheme: dark)", color: "#4a1c26" },
+  ],
+};
+
 // JSON-LD structured data — School schema for Google rich results
 const jsonLd = {
   "@context": "https://schema.org",

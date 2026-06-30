@@ -44,6 +44,8 @@ export function NoticeTicker() {
       exit={{ y: -50, opacity: 0 }}
       transition={{ type: "spring", stiffness: 200, damping: 20 }}
       className="relative z-40 bg-xavier-gradient text-cream overflow-hidden"
+      role="region"
+      aria-label="School notices"
     >
       {/* Animated shine sweep */}
       <motion.div
@@ -65,7 +67,7 @@ export function NoticeTicker() {
           </motion.div>
           <span className="hidden sm:inline text-[10px] uppercase tracking-widest text-gold-light font-bold">Notice</span>
         </div>
-        <div className="flex-1 min-w-0 overflow-hidden">
+        <div className="flex-1 min-w-0 overflow-hidden" aria-live="polite" aria-atomic="true">
           <AnimatePresence mode="wait">
             <motion.div
               key={notice.id}
