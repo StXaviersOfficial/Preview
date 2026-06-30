@@ -452,6 +452,13 @@ const TRANSLATIONS: Record<string, string> = {
   "Latest News": "ताज़ा समाचार",
   "Upcoming Events": "आगामी कार्यक्रम",
   "Recent Updates": "हाल के अपडेट",
+
+  // ═══ Round 2 additions — strings found in re-audit ═══
+  "Follow us": "हमें फ़ॉलो करें",
+  "No photos in this category yet. Check back soon!": "इस श्रेणी में अभी कोई फ़ोटो नहीं हैं। जल्द ही वापस जाँचें!",
+  "Where Discipline Meets Opportunity.": "जहाँ अनुशासन मिलता है अवसर से।",
+  "Jr./Sr. School • Muzaffarpur": "Jr./Sr. School • मुजफ्फरपुर",
+  "ESTABLISHED 1976 • NEARLY FIVE DECADES OF LEGACY": "स्थापित 1976 • लगभग पाँच दशकों की विरासत",
 };
 
 // ═══════════════════════════════════════════════════════════════

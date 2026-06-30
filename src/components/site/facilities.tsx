@@ -3,7 +3,6 @@
 import { motion } from "framer-motion";
 import { IMAGES, SCHOOL } from "@/lib/site/data";
 import { Waves, FlaskConical, Dumbbell, BookOpen, Music, Building2, Users, Home } from "lucide-react";
-import { TiltCard } from "@/components/site/animations";
 import { Reveal } from "@/components/site/reveal";
 
 const FACILITIES = [

@@ -2,8 +2,8 @@
 
 import { motion } from "framer-motion";
 import {
-  Cpu, ShieldCheck, Bus, Home, Trophy,
-  FlaskConical, Palette, HeartPulse, BookOpen, Waves, Dumbbell, Music, Building2, Sparkles, Stethoscope, Truck, Users, GraduationCap, Globe2,
+  Cpu, ShieldCheck,
+  FlaskConical, BookOpen, Waves, Dumbbell, Music, Building2, Sparkles, Stethoscope, Truck, Users, GraduationCap, Globe2,
 } from "lucide-react";
 import { SCHOOL } from "@/lib/site/data";
 import { StaggerReveal, StaggerItem, Spotlight, TiltCard } from "@/components/site/animations";

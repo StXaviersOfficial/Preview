@@ -4,7 +4,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import { Quote, Target, Eye, Heart, MapPin, Building2, Users, BookMarked } from "lucide-react";
 import { SCHOOL, IMAGES } from "@/lib/site/data";
-import { Parallax, TiltCard } from "@/components/site/animations";
+import { TiltCard } from "@/components/site/animations";
 import { Reveal } from "@/components/site/reveal";
 
 const PILLARS = [
@@ -103,7 +103,7 @@ export function About() {
                   <span className="font-serif text-xl sm:text-2xl font-bold text-xavier-dark leading-none">
                     {new Date().getFullYear() - SCHOOL.established}+
                   </span>
-                  <span className="text-[8px] sm:text-[9px] uppercase tracking-wider text-xavier-dark/80 mt-1">Years of Trust</span>
+                  <span className="text-[10px] sm:text-[10px] uppercase tracking-wider text-xavier-dark/80 mt-1">Years of Trust</span>
                 </motion.div>
               </TiltCard>
 

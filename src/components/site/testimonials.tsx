@@ -1,7 +1,6 @@
 'use client'
 
 import { Quote, Award } from "lucide-react";
-import { SCHOOL } from "@/lib/site/data";
 import { Reveal } from "@/components/site/reveal";
 
 const TESTIMONIALS = [

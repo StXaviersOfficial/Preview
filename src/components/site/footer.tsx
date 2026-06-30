@@ -47,11 +47,11 @@ export function Footer() {
           <Reveal variant="up" className="sm:col-span-2 lg:col-span-5">
             <div className="flex items-center gap-3 mb-4">
               <div className="size-11 sm:size-12 rounded-full bg-xavier-gradient flex items-center justify-center shadow-glow-xavier overflow-hidden">
-                <img src="/school/logo-white.png" alt="St. Xavier's logo" className="h-full w-full object-contain scale-110" />
+                <img src="/school/logo-white.png" alt="St. Xavier's logo" className="h-full w-full object-contain scale-110" loading="lazy" />
               </div>
               <div>
                 <p className="font-serif text-lg sm:text-xl font-bold">St. Xavier&apos;s</p>
-                <p className="text-[9px] sm:text-[10px] uppercase tracking-[0.18em] text-cream/60">Jr./Sr. School • Muzaffarpur</p>
+                <p className="text-[10px] sm:text-[10px] uppercase tracking-[0.18em] text-cream/60">Jr./Sr. School • Muzaffarpur</p>
               </div>
             </div>
             <p className="text-sm text-cream/70 leading-relaxed mb-5 max-w-sm">

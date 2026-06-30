@@ -81,6 +81,12 @@ export function Gallery() {
         </div>
 
         {/* Grid with 3D hover + AnimatePresence for filter changes */}
+        {filtered.length === 0 ? (
+          <div className="rounded-2xl border border-xavier/10 bg-card p-10 text-center text-muted-foreground">
+            <Camera className="size-10 mx-auto mb-3 text-gold/40" />
+            <p>No photos in this category yet. Check back soon!</p>
+          </div>
+        ) : (
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2.5 sm:gap-4">
           {filtered.map((item, i) => (
             <Reveal
@@ -101,7 +107,7 @@ export function Gallery() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-xavier-dark/85 via-xavier-dark/10 to-transparent opacity-80 group-hover:opacity-95 transition-opacity" />
               <div className="absolute bottom-0 left-0 right-0 p-3 sm:p-4 text-left translate-y-2 group-hover:translate-y-0 transition-transform">
-                <p className="text-[9px] sm:text-[10px] uppercase tracking-widest text-gold-light/80 mb-0.5">{item.category}</p>
+                <p className="text-[10px] sm:text-[10px] uppercase tracking-widest text-gold-light/80 mb-0.5">{item.category}</p>
                 <p className="font-serif text-xs sm:text-sm font-semibold text-cream leading-tight">{item.title}</p>
               </div>
               <div className="absolute top-2 right-2 sm:top-3 sm:right-3 size-7 sm:size-8 rounded-full glass-dark flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
@@ -115,6 +121,7 @@ export function Gallery() {
             </Reveal>
           ))}
         </div>
+        )}
 
         <p className="mt-6 text-center text-xs text-muted-foreground">
           All photographs are from the school&apos;s official media gallery.
@@ -166,6 +173,7 @@ export function Gallery() {
                 src={filtered[lightbox].src}
                 alt={filtered[lightbox].title}
                 className="w-full max-h-[75vh] object-contain rounded-xl sm:rounded-2xl shadow-2xl"
+                loading="eager"
               />
               <figcaption className="mt-3 sm:mt-4 text-center">
                 <p className="text-[10px] uppercase tracking-widest text-gold-light/80">{filtered[lightbox].category}</p>

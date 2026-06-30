@@ -109,7 +109,7 @@ export function Navbar() {
                   <span className="font-serif text-sm sm:text-lg font-bold tracking-tight text-xavier-dark">
                     St. Xavier&apos;s
                   </span>
-                  <span className="text-[8px] sm:text-[10px] uppercase tracking-[0.15em] sm:tracking-[0.18em] text-muted-foreground font-medium">
+                  <span className="text-[10px] sm:text-[10px] uppercase tracking-[0.15em] sm:tracking-[0.18em] text-muted-foreground font-medium">
                     Jr./Sr. School • Muzaffarpur
                   </span>
                 </div>
@@ -173,11 +173,11 @@ export function Navbar() {
               <div className="flex items-center justify-between p-5 border-b border-xavier/10">
                 <div className="flex items-center gap-3">
                   <div className="size-10 rounded-full bg-xavier-gradient flex items-center justify-center overflow-hidden">
-                    <img src="/school/logo-white.png" alt="St. Xavier's logo" className="h-full w-full object-contain scale-110" />
+                    <img src="/school/logo-white.png" alt="St. Xavier's logo" className="h-full w-full object-contain scale-110" loading="lazy" />
                   </div>
                   <div>
                     <p className="font-serif font-bold text-xavier-dark text-sm">St. Xavier&apos;s</p>
-                    <p className="text-[9px] uppercase tracking-widest text-muted-foreground">Muzaffarpur</p>
+                    <p className="text-[10px] uppercase tracking-widest text-muted-foreground">Muzaffarpur</p>
                   </div>
                 </div>
                 <button
