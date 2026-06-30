@@ -36,12 +36,11 @@ const cormorant = Cormorant_Garamond({
 export const metadata: Metadata = {
   title: "St. Xavier's Jr./Sr. School, Muzaffarpur | Where Discipline Meets Opportunity",
   description:
-    "St. Xavier's Jr./Sr. School, Goshala Road, Muzaffarpur — a premier CBSE co-educational institution since 1976. Day scholar + boarding, Nursery to Class 12, smart classes, holistic development.",
+    "St. Xavier's Jr./Sr. School, Goshala Road, Muzaffarpur — a premier CBSE co-educational institution since 1976. Day school, Nursery to Class 12, smart classes, holistic development.",
   keywords: [
     "St. Xavier's Muzaffarpur",
     "CBSE school Muzaffarpur",
     "best school in Muzaffarpur",
-    "boarding school Bihar",
     "St. Xavier's Jr. Sr. School",
     "Goshala Road school",
     "admission Muzaffarpur",

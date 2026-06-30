@@ -72,7 +72,7 @@ type Tab = "dashboard" | "enquiries" | "timetable" | "fees" | "notices" | "faqs"
 
 const DAYS = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 const FREQUENCIES = ["One Time", "Yearly", "Quarterly", "Monthly"];
-const CATEGORIES = ["general", "lab", "hostel", "transport", "exam"];
+const CATEGORIES = ["general", "lab", "transport", "exam"];
 
 export default function AdminPage() {
   const [authed, setAuthed] = useState(false);

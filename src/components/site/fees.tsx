@@ -18,7 +18,6 @@ type FeeRow = {
 const CATEGORY_LABELS: Record<string, string> = {
   general: "General",
   lab: "Laboratory",
-  hostel: "Hostel",
   transport: "Transport",
   exam: "Examination",
 };
@@ -26,7 +25,6 @@ const CATEGORY_LABELS: Record<string, string> = {
 const CATEGORY_COLORS: Record<string, string> = {
   general: "bg-xavier/10 text-xavier-dark",
   lab: "bg-gold/15 text-gold",
-  hostel: "bg-xavier-light/15 text-xavier-light",
   transport: "bg-gold-light/20 text-xavier-dark",
   exam: "bg-xavier/10 text-xavier-dark",
 };

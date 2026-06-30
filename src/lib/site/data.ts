@@ -17,7 +17,7 @@ export const SCHOOL = {
   board: "Central Board of Secondary Education (CBSE), New Delhi",
   boardLevel: "up to 10+2 Level",
   type: "Co-Educational English Medium",
-  format: "Day-cum-Boarding School",
+  format: "Day School",
   classesRange: "Nursery to Std. XII",
   tagline: "Where Discipline Meets Opportunity",
   motto: "Inspiring Excellence, Empowering Success",

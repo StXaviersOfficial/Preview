@@ -52,7 +52,6 @@ export function HindiOverlay({ children }: { children: ReactNode }) {
       "CBSE Affiliated": "सीबीएसई संबद्ध",
       "Smart Classes": "स्मार्ट कक्षाएं",
       "Day Scholar + Day School": "दिवस विद्यार्थी + दिवस विद्यालय",
-      "Day Scholar + Boarding": "दिवस विद्यार्थी + दिवस विद्यालय",
       "Nursery → Class 12": "नर्सरी → कक्षा 12",
       "Co-Educational": "सह-शिक्षा",
       "Holistic Development": "समग्र विकास",

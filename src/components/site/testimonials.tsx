@@ -35,7 +35,6 @@ const TESTIMONIALS = [
     initials: "AB",
   },
   {
-  {
     name: "Commerce Stream Alumna",
     role: "Class of 2020 • CA Finalist",
     quote:
