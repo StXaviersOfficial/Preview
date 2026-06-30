@@ -5,7 +5,7 @@ import { Sparkle } from "lucide-react";
 const items = [
   "CBSE Affiliated",
   "Smart Classes",
-  "Day Scholar + Day School",
+  "Day School",
   "Nursery → Class 12",
   "Co-Educational",
   "Holistic Development",
