@@ -170,7 +170,17 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <script dangerouslySetInnerHTML={{ __html: `(function(){try{var k='xavier-theme';var t=localStorage.getItem(k)||'system';var d=t==='dark'||(t==='system'&&window.matchMedia('(prefers-color-scheme: dark)').matches);var c=document.documentElement.classList;c.add(d?'dark':'light');c.remove(d?'light':'dark');document.documentElement.style.colorScheme=d?'dark':'light';}catch(e){}})();` }} />
+        <script dangerouslySetInnerHTML={{ __html: `(function(){try{
+// THEME — apply before paint to prevent flash
+var tk='xavier-theme';var t=localStorage.getItem(tk)||'system';
+var d=t==='dark'||(t==='system'&&window.matchMedia('(prefers-color-scheme: dark)').matches);
+var c=document.documentElement.classList;
+c.add(d?'dark':'light');c.remove(d?'light':'dark');
+document.documentElement.style.colorScheme=d?'dark':'light';
+// LANGUAGE — apply before React hydrates
+var lk='xavier-lang';var l=localStorage.getItem(lk);
+if(l==='hi'){document.documentElement.lang='hi';document.documentElement.dataset.preferredLang='hi';}
+}catch(e){}})();` }} />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

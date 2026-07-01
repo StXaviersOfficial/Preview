@@ -129,6 +129,19 @@ export function ScrollProgressRing() {
   const { scrollYProgress } = useScroll();
   const pathLength = useSpring(scrollYProgress, { stiffness: 80, damping: 20 });
 
+  // Pause animations when tab is hidden (saves battery + CPU)
+  useEffect(() => {
+    const onVisibility = () => {
+      if (document.hidden) {
+        document.documentElement.style.setProperty('animation-play-state', 'paused');
+      } else {
+        document.documentElement.style.removeProperty('animation-play-state');
+      }
+    };
+    document.addEventListener('visibilitychange', onVisibility);
+    return () => document.removeEventListener('visibilitychange', onVisibility);
+  }, []);
+
   return (
     <div className="sx-scroll-ring">
       <svg width="56" height="56" viewBox="0 0 56 56">

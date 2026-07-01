@@ -572,3 +572,69 @@ body[data-hi-active="true"] .text-balance {
   clip: auto;
   white-space: nowrap;
 }
+
+/* ═══════════════════════════════════════════════════════════════
+   PERFORMANCE — content-visibility: auto
+   "Minecraft chunks" for the DOM — browser skips rendering,
+   layout, and paint for sections that are off-screen.
+   Animations still work — they just don't run until visible.
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Apply to major page sections — skip rendering when off-screen */
+section[id] {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 800px;
+}
+
+/* Hero is above-the-fold — always render */
+section#home {
+  content-visibility: visible;
+}
+
+/* Cards in grids — batch skip when off-screen */
+.break-inside-avoid,
+.group.relative.overflow-hidden.rounded-2xl {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 300px;
+}
+
+/* Gallery grid items */
+.group.relative.overflow-hidden.rounded-xl,
+.group.relative.overflow-hidden.rounded-2xl.aspect-square {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 250px;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   PERFORMANCE — Reduce paint areas
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Contain layout/paint for animated cards */
+.group {
+  contain: layout style;
+}
+
+/* Backdrop blur is expensive — contain it */
+.glass, .glass-dark, .glass-gold {
+  contain: layout paint style;
+  backface-visibility: hidden;
+}
+
+/* Transform-only animations get GPU layer */
+[data-reveal] {
+  transform: translateZ(0);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   PERFORMANCE — Optimize scroll-driven animations
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Smooth scrolling without jank */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Prevent layout shift from scrollbar */
+html {
+  scrollbar-gutter: stable;
+}

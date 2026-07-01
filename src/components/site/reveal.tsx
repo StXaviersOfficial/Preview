@@ -179,6 +179,10 @@ export function Reveal({
 
         if (progress < 1) {
           animFrame.current = requestAnimationFrame(animate);
+        } else {
+          // Animation complete — clear willChange to free GPU memory
+          el.style.willChange = 'auto';
+          el.setAttribute('data-reveal', 'done');
         }
       };
       animFrame.current = requestAnimationFrame(animate);

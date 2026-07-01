@@ -17,29 +17,25 @@ const LanguageContext = createContext<LanguageContextType>({
 });
 
 export function LanguageProvider({ children, defaultLang = 'en' }: { children: ReactNode; defaultLang?: Lang }) {
-  const [lang, setLangState] = useState<Lang>(defaultLang);
-  // Track whether we've read from localStorage yet — prevents the write
-  // effect from overwriting the stored value with the default 'en' on
-  // the very first mount.
-  const [hasReadStorage, setHasReadStorage] = useState(false);
-
-  // Read localStorage on mount ONLY — set state and mark as read.
-  useEffect(() => {
+  // Initialize from localStorage IMMEDIATELY (synchronous) to prevent flash.
+  // The inline script in layout.tsx already set <html lang="hi"> if needed,
+  // so we match that here to avoid any English->Hindi flash on reload.
+  const [lang, setLangState] = useState<Lang>(() => {
+    if (typeof window === 'undefined') return defaultLang;
     try {
       const stored = localStorage.getItem('xavier-lang') as Lang;
-      if (stored === 'en' || stored === 'hi') setLangState(stored);
+      if (stored === 'en' || stored === 'hi') return stored;
     } catch {}
-    setHasReadStorage(true);
-  }, []);
+    return defaultLang;
+  });
 
-  // Write to localStorage when lang changes — but ONLY after we've read.
+  // Write to localStorage + update <html lang> when lang changes
   useEffect(() => {
-    if (!hasReadStorage) return;
     try {
       localStorage.setItem('xavier-lang', lang);
       document.documentElement.lang = lang;
     } catch {}
-  }, [lang, hasReadStorage]);
+  }, [lang]);
 
   const setLang = (l: Lang) => setLangState(l);
   const toggleLang = () => setLangState(prev => prev === 'en' ? 'hi' : 'en');
