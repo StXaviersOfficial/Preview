@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { getNotices } from "@/lib/site/seed-data";
+import { getNotices } from "@/lib/firestore-db";
 
 export const runtime = "nodejs";
 
