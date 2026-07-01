@@ -97,7 +97,7 @@ export function About() {
                   whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: 0.6, type: "spring", stiffness: 200 }}
-                  animate={{ y: [0, -8, 0] }}
+                  animate={{ y: [0, -8], transition: { duration: 2, repeat: Infinity, repeatType: "reverse", ease: "easeInOut" } }}
                   className="absolute -top-5 -right-3 sm:-top-5 sm:-right-5 size-20 sm:size-24 rounded-full bg-gold-gradient flex flex-col items-center justify-center shadow-glow-gold"
                 >
                   <span className="font-serif text-xl sm:text-2xl font-bold text-xavier-dark leading-none">
