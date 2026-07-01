@@ -880,6 +880,77 @@ const TRANSLATIONS: Record<string, string> = {
   "Email:": "ईमेल:",
   "replied": "उत्तर दिया गया",
 
+
+  // ═══ Round ULTRA: Translate every remaining English word ═══
+
+  // ─── Event/competition names (translate the generic words, keep proper nouns) ───
+  "District Swimming Championship": "ज़िला तैराकी चैंपियनशिप",
+  "CBSE Cluster Basketball Tournament": "CBSE क्लस्टर बास्केटबॉल टूर्नामेंट",
+  "District Athletics Meet": "ज़िला एथलेटिक्स मीट",
+  "Inter-School Cricket Tournament": "अंतर-विद्यालय क्रिकेट टूर्नामेंट",
+  "State Yoga Championship": "राज्य योगा चैंपियनशिप",
+  "District Table Tennis": "ज़िला टेबल टेनिस",
+  "National Science Olympiad (NSO)": "राष्ट्रीय विज्ञान ओलंपियाड (NSO)",
+  "International Mathematics Olympiad (IMO)": "अंतर्राष्ट्रीय गणित ओलंपियाड (IMO)",
+  "English Olympiad (IEO)": "अंग्रेज़ी ओलंपियाड (IEO)",
+  "National Cyber Olympiad (NCO)": "राष्ट्रीय साइबर ओलंपियाड (NCO)",
+
+  // ─── Alumni professions ───
+  "Cardiologist, AIIMS Delhi": "कार्डियोलॉजिस्ट, AIIMS दिल्ली",
+  "Software Engineer, Google Bangalore": "सॉफ़्टवेयर इंजीनियर, Google बैंगलोर",
+  "IAS Officer, Bihar Cadre": "IAS अधिकारी, बिहार कैडर",
+  "Research Scientist, ISRO": "शोध वैज्ञानिक, ISRO",
+  "CA, Founder — Agarwal & Associates": "CA, संस्थापक — Agarwal & Associates",
+  "Architect, Mumbai": "वास्तुकार, मुंबई",
+  "Lt. Colonel, Indian Army": "ले. कर्नल, भारतीय सेना",
+  "Advocate, Patna High Court": "अधिवक्ता, पटना उच्च न्यायालय",
+
+  // ─── Stream names with Science ───
+  "Science (PCM)": "विज्ञान (PCM)",
+  "Science (PCB)": "विज्ञान (PCB)",
+
+  // ─── Misc ───
+  "2+ acres": "2+ एकड़",
+  "Chandra Children Welfare Society": "Chandra Children Welfare Society",
+  "you@example.com": "आप@उदाहरण.com",
+  "📍 Goshala Road, Ramna, Muzaffarpur — 842002 (Bihar)": "📍 गोशाला रोड, रमना, मुजफ्फरपुर — 842002 (बिहार)",
+
+  // ─── Word-level translations (for partial replacement) ───
+  // These ensure individual English words inside sentences get translated
+  " acres": " एकड़",
+  " boys": " लड़के",
+  " girls": " लड़कियाँ",
+  " medal": " पदक",
+  " medals": " पदक",
+  " Gold": " स्वर्ण",
+  " Silver": " रजत",
+  " Bronze": " कांस्य",
+  " Champion": " चैंपियन",
+  " Championship": " चैंपियनशिप",
+  " Tournament": " टूर्नामेंट",
+  " Meet": " मीट",
+  " Olympiad": " ओलंपियाड",
+  " District": " ज़िला",
+  " State": " राज्य",
+  " National": " राष्ट्रीय",
+  " International": " अंतर्राष्ट्रीय",
+  " Inter-School": " अंतर-विद्यालय",
+  " Engineer": " इंजीनियर",
+  " Scientist": " वैज्ञानिक",
+  " Officer": " अधिकारी",
+  " Architect": " वास्तुकार",
+  " Advocate": " अधिवक्ता",
+  " Founder": " संस्थापक",
+  " Colonel": " कर्नल",
+  " Army": " सेना",
+  " Cadre": " कैडर",
+  " Court": " न्यायालय",
+  " High Court": " उच्च न्यायालय",
+  " Indian": " भारतीय",
+  " Research": " शोध",
+  " Software": " सॉफ़्टवेयर",
+  " Cardiologist": " कार्डियोलॉजिस्ट",
+
 };
 
 // ═══════════════════════════════════════════════════════════════
