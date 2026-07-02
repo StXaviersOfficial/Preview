@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef, type ReactNode, type ElementType } from "react";
+import React, { useEffect, useRef, type ReactNode, type ElementType } from "react";
 
 type Variant = "up" | "left" | "right" | "scale" | "stagger" | "flip" | "blur" | "rotate3d" | "elastic" | "glitch" | "explode" | "wave";
 
@@ -83,6 +83,17 @@ function getGlitchTransform(progress: number, start: string, end: string): strin
  * - The initial opacity:0 is in the SSR HTML (parsed before paint)
  * - No white flash — element goes from invisible → animated → visible
  */
+type RevealProps = {
+  children: ReactNode;
+  className?: string;
+  variant?: Variant;
+  delay?: number;
+  as?: ElementType;
+  once?: boolean;
+  onClick?: (e: React.MouseEvent) => void;
+  [key: string]: unknown;
+};
+
 export function Reveal({
   children,
   className = "",
@@ -91,15 +102,7 @@ export function Reveal({
   as: As = "div",
   once = true,
   ...rest
-}: {
-  children: ReactNode;
-  className?: string;
-  variant?: Variant;
-  delay?: number;
-  as?: ElementType;
-  once?: boolean;
-  [key: string]: unknown;
-}) {
+}: RevealProps) {
   const ref = useRef<HTMLElement>(null);
   const animFrame = useRef<number>(0);
   const isVisible = useRef(false);
@@ -217,23 +220,24 @@ export function Reveal({
   }, [variant, delay, once]);
 
   const init = INITIAL[variant];
-  return (
-    <As
-      ref={ref as React.Ref<HTMLElement>}
-      data-reveal=""
-      className={className}
-      style={{
+  // Use createElement to avoid TypeScript dynamic component type issues
+  return React.createElement(
+    As,
+    {
+      ref: ref as unknown as React.Ref<HTMLElement>,
+      "data-reveal": "",
+      className,
+      style: {
         opacity: init.opacity,
         transform: init.transform,
         filter: init.filter || "none",
         willChange: "opacity, transform, filter",
         backfaceVisibility: "hidden",
         transition: "opacity 0.3s ease, transform 0.3s ease, filter 0.3s ease",
-      }}
-      {...rest}
-    >
-      {children}
-    </As>
+      },
+      ...rest,
+    },
+    children
   );
 }
 

@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   LayoutDashboard, Mail, Clock, Receipt, LogOut, Lock, Send,
@@ -118,7 +118,7 @@ export default function AdminPage() {
               <span className="hidden sm:inline">Back to Website</span>
             </a>
             <div className="size-9 rounded-full bg-gold-gradient flex items-center justify-center overflow-hidden shrink-0">
-              <img src="/school/logo-white.png" alt="Logo" className="h-full w-full object-contain scale-110" />
+              <img loading="lazy" src="/school/logo-white.png" alt="Logo" className="h-full w-full object-contain scale-110" />
             </div>
             <div className="min-w-0">
               <p className="font-serif font-bold text-sm sm:text-base leading-tight truncate">St. Xavier&apos;s Admin</p>
@@ -169,7 +169,7 @@ export default function AdminPage() {
                   : "bg-card border border-xavier/10 text-foreground/70 hover:text-xavier-dark"
               }`}
             >
-              <t.icon className="size-3.5 sm:size-4" />
+              {React.createElement(t.icon as React.ElementType, { className: "size-3.5 sm:size-4" })}
               {t.label}
             </button>
           ))}
@@ -622,7 +622,7 @@ function StatusBadge({ status }: { status: string }) {
 function InfoChip({ icon: Icon, label, value }: { icon: React.ElementType; label: string; value: string }) {
   return (
     <div className="rounded-xl bg-cream/50 p-3 flex items-start gap-2.5">
-      <Icon className="size-4 text-gold mt-0.5 shrink-0" />
+      {React.createElement(Icon as React.ElementType, { className: "size-4 text-gold mt-0.5 shrink-0" })}
       <div className="min-w-0">
         <p className="text-[10px] uppercase tracking-widest text-muted-foreground">{label}</p>
         <p className="text-sm text-foreground/85 break-words">{value}</p>

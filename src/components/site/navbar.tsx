@@ -98,7 +98,7 @@ export function Navbar() {
               <a href="#home" className="flex items-center gap-2 sm:gap-3 shrink-0">
                 <div className="relative">
                   <div className="size-9 sm:size-11 rounded-full bg-xavier-gradient flex items-center justify-center shadow-glow-xavier overflow-hidden">
-                    <img
+                    <img loading="lazy"
                       src="/school/logo-white.png"
                       alt="St. Xavier's logo"
                       className="h-full w-full object-contain scale-110"

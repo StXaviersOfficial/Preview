@@ -1,5 +1,7 @@
 'use client'
 
+import React from "react";
+
 import { motion } from "framer-motion";
 import { Crown, Briefcase, Users, GraduationCap, Quote } from "lucide-react";
 import { SCHOOL } from "@/lib/site/data";
@@ -57,7 +59,7 @@ export function Leadership() {
                   <div className="absolute inset-0 bg-gradient-to-t from-xavier-dark via-xavier-dark/30 to-transparent" />
 
                   <div className="absolute top-2 left-2 sm:top-3 sm:left-3 inline-flex items-center gap-1 rounded-full glass-dark px-2 py-1 sm:px-3 sm:py-1.5 text-[10px] sm:text-[10px] uppercase tracking-widest font-semibold text-gold-light">
-                    <Icon className="size-2.5 sm:size-3" />
+                    {React.createElement(Icon as React.ElementType, { className: "size-2.5 sm:size-3" })}
                     {leader.role}
                   </div>
                 </div>

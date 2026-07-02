@@ -103,7 +103,7 @@ export function Gallery() {
                 src={item.src}
                 alt={`${item.title} — St. Xavier's Jr./Sr. School, Muzaffarpur`}
                 loading="lazy"
-                className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
+                className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-110 group-hover:rotate-1" style={{transformStyle:"preserve-3d",perspective:"1000px"}}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-xavier-dark/85 via-xavier-dark/10 to-transparent opacity-80 group-hover:opacity-95 transition-opacity" />
               <div className="absolute bottom-0 left-0 right-0 p-3 sm:p-4 text-left translate-y-2 group-hover:translate-y-0 transition-transform">

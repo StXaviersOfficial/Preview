@@ -4,6 +4,7 @@ import { useState } from "react";
 import { ArrowRight, ChevronDown, Sparkles, Award, BookOpen, Users, Phone } from "lucide-react";
 import { SCHOOL, IMAGES } from "@/lib/site/data";
 import { Magnetic, ConfettiBurst } from "@/components/site/animations";
+import { Hero3DBg } from "@/components/three/hero-3d-bg";
 import { trackApplyNow, trackOutbound } from "@/lib/site/analytics";
 import { Reveal } from "@/components/site/reveal";
 
@@ -41,6 +42,9 @@ export function Hero() {
         className="absolute bottom-[15%] right-[8%] size-80 rounded-full pointer-events-none z-10"
         style={{ background: "radial-gradient(circle, rgba(160,40,55,0.22), transparent 70%)" }}
       />
+
+      {/* 3D animated background */}
+      <Hero3DBg />
 
       {/* Grain texture */}
       <div className="absolute inset-0 z-10 bg-grain-gold opacity-20 mix-blend-overlay pointer-events-none" />

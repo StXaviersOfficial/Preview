@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence, useMotionValue, useSpring, useScroll, useTransform, useVelocity, useAnimationFrame } from "framer-motion";
 
 /* ============================================================
@@ -184,14 +184,15 @@ export function KineticText({
   as?: React.ElementType;
   delay?: number;
 }) {
-  const ref = useRef<HTMLElement>(null);
+  const ref = useRef<HTMLDivElement>(null);
   const [revealed, setRevealed] = useState(false);
+  const words = text.split(" ");
 
   useEffect(() => {
     const obs = new IntersectionObserver(
       (entries) => {
-        entries.forEach((e) => {
-          if (e.isIntersecting) {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
             setTimeout(() => setRevealed(true), delay);
             obs.disconnect();
           }
@@ -203,27 +204,25 @@ export function KineticText({
     return () => obs.disconnect();
   }, [delay]);
 
-  const words = text.split(" ");
-
-  return (
-    <As ref={ref as React.RefObject<HTMLDivElement>} className={className}>
-      {words.map((word, i) => (
-        <span key={i} className="inline-block overflow-hidden align-bottom mr-[0.25em]">
-          <span
-            className={`sx-word ${revealed ? "revealed" : ""}`}
-            style={{ transitionDelay: `${i * 0.06}s` }}
-          >
-            {word}
-          </span>
-        </span>
-      ))}
-    </As>
+  return React.createElement(
+    As as React.ElementType,
+    { ref: ref as unknown as React.Ref<HTMLDivElement>, className },
+    words.map((word, i) =>
+      React.createElement(
+        "span",
+        { key: i, className: "inline-block overflow-hidden align-bottom mr-[0.25em]" },
+        React.createElement("span", {
+          className: "inline-block",
+          style: {
+            animation: revealed ? `kinetic-word 0.6s ease-out ${i * 0.08}s both` : "none",
+            opacity: revealed ? 1 : 0,
+          },
+        }, word)
+      )
+    )
   );
 }
 
-/* ============================================================
-   3D Tilt wrapper — tilts child based on mouse position
-   ============================================================ */
 export function TiltCard({
   children,
   className = "",

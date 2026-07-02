@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from "framer-motion";
-import { useState } from "react";
+import React, { useState } from "react";
 import { MapPin, Phone, Mail, Instagram, Facebook, Send, CheckCircle2, MessageCircle } from "lucide-react";
 import { SCHOOL } from "@/lib/site/data";
 import { trackEnquiry, trackOutbound } from "@/lib/site/analytics";
@@ -289,7 +289,7 @@ function ContactRow({ icon: Icon, label, lines }: { icon: React.ElementType; lab
   return (
     <div className="flex gap-3">
       <div className="size-9 sm:size-10 rounded-xl glass flex items-center justify-center shrink-0">
-        <Icon className="size-4 text-gold-light" />
+        {React.createElement(Icon as React.ElementType, { className: "size-4 text-gold-light" })}
       </div>
       <div className="min-w-0">
         <p className="text-[10px] uppercase tracking-widest text-cream/60 mb-0.5">{label}</p>

@@ -20,6 +20,7 @@ import { WhatsAppButton } from "@/components/site/whatsapp-button";
 import { BackToTop } from "@/components/site/back-to-top";
 import { StickyApplyBar } from "@/components/site/sticky-apply-bar";
 import { HindiOverlay } from "@/components/site/hindi-overlay";
+import { SectionDivider3D } from "@/components/three/section-divider-3d";
 
 export default function Home() {
   return (
@@ -36,11 +37,14 @@ export default function Home() {
           <Stats />
           <Marquee />
           <About />
+          <SectionDivider3D height={100} />
           <Features />
           <Academics />
+          <SectionDivider3D height={100} />
           <Admissions />
           <Fees />
           <FAQ />
+          <SectionDivider3D height={100} />
           <Facilities />
           <Gallery />
           <Leadership />
