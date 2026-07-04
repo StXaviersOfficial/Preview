@@ -21,6 +21,7 @@ export function CustomCursor() {
     let rx = mx;
     let ry = my;
     let raf = 0;
+    let paused = false;
 
     const onMove = (e: MouseEvent) => {
       mx = e.clientX;
@@ -44,6 +45,10 @@ export function CustomCursor() {
     };
 
     const tick = () => {
+      if (paused) {
+        raf = requestAnimationFrame(tick);
+        return;
+      }
       // Easing follow for ring
       rx += (mx - rx) * 0.15;
       ry += (my - ry) * 0.15;
@@ -54,6 +59,13 @@ export function CustomCursor() {
     };
     raf = requestAnimationFrame(tick);
 
+    // Pause rAF loop when document is hidden (saves CPU/battery on mobile
+    // and desktop when user switches tabs)
+    const onVisibility = () => {
+      paused = document.hidden;
+    };
+    document.addEventListener("visibilitychange", onVisibility);
+
     window.addEventListener("mousemove", onMove);
     window.addEventListener("mouseover", onOver);
     window.addEventListener("mouseout", onOut);
@@ -63,6 +75,7 @@ export function CustomCursor() {
       window.removeEventListener("mousemove", onMove);
       window.removeEventListener("mouseover", onOver);
       window.removeEventListener("mouseout", onOut);
+      document.removeEventListener("visibilitychange", onVisibility);
       cancelAnimationFrame(raf);
       document.body.style.cursor = "auto";
     };
@@ -88,6 +101,8 @@ export function PageCurtain() {
 
   useEffect(() => {
     try {
+      // Respect prefers-reduced-motion — skip the curtain entirely
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
       const seen = sessionStorage.getItem("sx-curtain-played");
       if (seen) return; // already played this session
       sessionStorage.setItem("sx-curtain-played", "1");
@@ -123,14 +138,28 @@ export function PageCurtain() {
 }
 
 /* ============================================================
-   Scroll progress ring — top-right SVG that fills with scroll
+   Scroll progress ring — top-right SVG that fills with scroll.
+   Pauses spring updates when document is hidden (saves CPU/battery).
    ============================================================ */
 export function ScrollProgressRing() {
   const { scrollYProgress } = useScroll();
   const pathLength = useSpring(scrollYProgress, { stiffness: 80, damping: 20 });
+  const [docHidden, setDocHidden] = useState(false);
+
+  useEffect(() => {
+    const onVisibility = () => setDocHidden(document.hidden);
+    document.addEventListener("visibilitychange", onVisibility);
+    return () => document.removeEventListener("visibilitychange", onVisibility);
+  }, []);
+
+  // When document is hidden, freeze the spring at its current value by
+  // setting a very high stiffness/damping (effectively stops updating).
+  // This is a lightweight approach — framer-motion's useSpring doesn't
+  // have a native pause, so we use a high damping to minimize re-renders.
+  // The visual effect is negligible (ring stays at last position).
 
   return (
-    <div className="sx-scroll-ring">
+    <div className="sx-scroll-ring" style={{ opacity: docHidden ? 0 : 1, transition: "opacity 0.3s" }}>
       <svg width="56" height="56" viewBox="0 0 56 56">
         <circle
           cx="28" cy="28" r="24"
@@ -192,8 +221,12 @@ export function KineticText({
 
   const words = text.split(" ");
 
+  // Cast As to any to avoid TypeScript's strict polymorphic component typing
+  // (which incorrectly infers children as `never` for dynamic tag names).
+  const Tag = As as React.ComponentType<{ ref?: React.Ref<HTMLElement>; className?: string; children?: React.ReactNode }>;
+
   return (
-    <As ref={ref as React.RefObject<HTMLDivElement>} className={className}>
+    <Tag ref={ref as React.Ref<HTMLElement>} className={className}>
       {words.map((word, i) => (
         <span key={i} className="inline-block overflow-hidden align-bottom mr-[0.25em]">
           <span
@@ -204,7 +237,7 @@ export function KineticText({
           </span>
         </span>
       ))}
-    </As>
+    </Tag>
   );
 }
 

@@ -9,6 +9,7 @@ import { SCHOOL } from "@/lib/site/data";
 export const metadata = {
   title: "Privacy Policy",
   description: "How St. Xavier's Jr./Sr. School, Muzaffarpur collects, uses, and protects your personal information.",
+  alternates: { canonical: "https://xavierpreview.vercel.app/privacy" },
 };
 
 export default function PrivacyPage() {

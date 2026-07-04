@@ -6,6 +6,8 @@ import { SCHOOL, IMAGES } from "@/lib/site/data";
 import { Magnetic, ConfettiBurst } from "@/components/site/animations";
 import { trackApplyNow, trackOutbound } from "@/lib/site/analytics";
 import { Reveal } from "@/components/site/reveal";
+import { Name3D } from "@/components/site/name-3d";
+import { SmartImage } from "@/components/site/smart-image";
 
 export function Hero() {
   const [confetti, setConfetti] = useState<{ x: number; y: number; active: boolean }>({ x: 0, y: 0, active: false });
@@ -22,11 +24,13 @@ export function Hero() {
     >
       {/* Background image — static */}
       <div className="absolute inset-0 z-0">
-        <img
-          src={IMAGES.home}
+        <SmartImage
+          src="/school/home.jpg"
           alt="St. Xavier's Jr./Sr. School, Goshala Road, Muzaffarpur"
-          className="h-full w-full object-cover"
-          fetchPriority="high"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-xavier-dark/55 via-xavier-dark/80 to-xavier-dark" />
         <div className="absolute inset-0 bg-gradient-to-r from-xavier-dark/90 via-xavier-dark/55 to-xavier-dark/30" />
@@ -73,13 +77,17 @@ export function Hero() {
             </div>
           </Reveal>
 
+          {/* 3D ANIMATED NAME — premium extruded gold text */}
+          <Reveal variant="scale" delay={0.2}>
+            <div className="mb-2 sm:mb-4">
+              <Name3D />
+            </div>
+          </Reveal>
+
           {/* HUGE Headline — EXPLODE (starts big + blurry, shrinks to normal) */}
-          <Reveal variant="explode" delay={0.15}>
-            <h1 className="font-serif text-cream font-bold tracking-tight text-balance leading-[0.92] text-[clamp(2.75rem,11vw,8rem)]">
-              St.{" "}
-              <span className="text-gradient-animated">Xavier&apos;s</span>
-              <br />
-              <span className="inline-block text-[0.55em] sm:text-[0.55em] text-cream/85 font-medium tracking-wide">
+          <Reveal variant="explode" delay={0.4}>
+            <h1 className="font-serif text-cream-fg font-bold tracking-tight text-balance leading-[0.92] text-[clamp(2.75rem,11vw,8rem)]">
+              <span className="inline-block text-[0.45em] sm:text-[0.45em] text-cream-fg/85 font-medium tracking-wide">
                 Jr./Sr. School
               </span>
             </h1>
@@ -87,7 +95,7 @@ export function Hero() {
 
           {/* Sub-tagline — BLUR fade */}
           <Reveal variant="blur" delay={0.3}>
-            <p className="mt-5 sm:mt-7 text-cream/85 text-base sm:text-xl lg:text-2xl font-light max-w-2xl leading-relaxed">
+            <p className="mt-5 sm:mt-7 text-cream-fg/85 text-base sm:text-xl lg:text-2xl font-light max-w-2xl leading-relaxed">
               <span className="font-serif italic text-gold-light">Where Discipline Meets Opportunity.</span>
               {" "}
               Nurturing curious minds since {SCHOOL.established}, on Goshala Road, Muzaffarpur.
@@ -110,7 +118,7 @@ export function Hero() {
               <Magnetic>
                 <a
                   href="#about"
-                  className="inline-flex items-center justify-center gap-2 rounded-full glass px-6 sm:px-8 py-3.5 sm:py-4 text-sm sm:text-base font-semibold text-cream hover:bg-cream/10 transition-colors"
+                  className="inline-flex items-center justify-center gap-2 rounded-full glass px-6 sm:px-8 py-3.5 sm:py-4 text-sm sm:text-base font-semibold text-cream-fg hover:bg-cream/10 transition-colors"
                 >
                   Explore Campus
                   <ChevronDown className="size-4" />
@@ -129,7 +137,7 @@ export function Hero() {
               ].map((item) => (
                 <div
                   key={item.label}
-                  className="card-lift inline-flex items-center gap-1.5 sm:gap-2 rounded-full glass px-3 sm:px-4 py-1.5 sm:py-2 text-[11px] sm:text-xs font-medium text-cream/90 hover:scale-105 transition-transform"
+                  className="card-lift inline-flex items-center gap-1.5 sm:gap-2 rounded-full glass px-3 sm:px-4 py-1.5 sm:py-2 text-[11px] sm:text-xs font-medium text-cream-fg/90 hover:scale-105 transition-transform"
                 >
                   <item.icon className="size-3 sm:size-3.5 text-gold-light" />
                   {item.label}
@@ -145,7 +153,7 @@ export function Hero() {
 
       {/* Scroll indicator */}
       <div className="hidden sm:flex absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex-col items-center gap-2">
-        <span className="text-[10px] uppercase tracking-[0.3em] text-cream/60">Scroll</span>
+        <span className="text-[10px] uppercase tracking-[0.3em] text-cream-fg/60">Scroll</span>
         <div className="relative size-9 rounded-full border border-cream/30 flex items-start justify-center p-2">
           <span
             className="size-1.5 rounded-full bg-gold-light"
@@ -158,7 +166,7 @@ export function Hero() {
       <a
         href={`tel:+91${SCHOOL.phones[0]}`}
         onClick={() => trackOutbound("phone", "hero")}
-        className="absolute bottom-6 left-5 sm:bottom-10 sm:left-6 z-20 flex items-center gap-2 rounded-full glass-dark px-4 py-2.5 text-cream hover:bg-cream/10 transition-colors"
+        className="absolute bottom-6 left-5 sm:bottom-10 sm:left-6 z-20 flex items-center gap-2 rounded-full glass-dark px-4 py-2.5 text-cream-fg hover:bg-cream/10 transition-colors"
       >
         <Phone className="size-4 text-gold-light" />
         <span className="text-xs">+91 {SCHOOL.phones[0]}</span>

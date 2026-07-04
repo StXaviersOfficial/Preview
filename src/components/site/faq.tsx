@@ -85,8 +85,8 @@ export function FAQ() {
           <div className="flex flex-wrap justify-center gap-2 mb-6">
             <button
               onClick={() => setFilter("all")}
-              className={`rounded-full px-3.5 py-1.5 text-xs font-medium transition-colors ${
-                filter === "all" ? "bg-xavier-gradient text-cream" : "bg-card border border-xavier/10 text-foreground/70 hover:text-xavier-dark"
+              className={`rounded-full px-3.5 py-2.5 sm:py-1.5 text-xs font-medium transition-colors ${
+                filter === "all" ? "bg-xavier-gradient text-cream-fg" : "bg-card border border-xavier/10 text-foreground/70 hover:text-xavier-dark"
               }`}
             >
               All
@@ -95,8 +95,8 @@ export function FAQ() {
               <button
                 key={c}
                 onClick={() => setFilter(c)}
-                className={`rounded-full px-3.5 py-1.5 text-xs font-medium transition-colors ${
-                  filter === c ? "bg-xavier-gradient text-cream" : "bg-card border border-xavier/10 text-foreground/70 hover:text-xavier-dark"
+                className={`rounded-full px-3.5 py-2.5 sm:py-1.5 text-xs font-medium transition-colors ${
+                  filter === c ? "bg-xavier-gradient text-cream-fg" : "bg-card border border-xavier/10 text-foreground/70 hover:text-xavier-dark"
                 }`}
               >
                 {CATEGORY_LABELS[c] || c}
@@ -121,7 +121,7 @@ export function FAQ() {
         ) : error ? (
           <div className="rounded-2xl border border-destructive/20 bg-destructive/5 p-8 text-center">
             <p className="text-sm text-destructive mb-3">Couldn't load FAQs.</p>
-            <button onClick={loadFaqs} className="inline-flex items-center gap-2 rounded-full bg-xavier-gradient px-4 py-2 text-xs font-semibold text-cream">
+            <button onClick={loadFaqs} className="inline-flex items-center gap-2 rounded-full bg-xavier-gradient px-4 py-2 text-xs font-semibold text-cream-fg">
               <RefreshCw className="size-3.5" /> Tap to retry
             </button>
           </div>
@@ -143,6 +143,8 @@ export function FAQ() {
               >
                 <button
                   onClick={() => setOpen(open === faq.id ? null : faq.id)}
+                  aria-expanded={open === faq.id}
+                  aria-controls={`faq-answer-${faq.id}`}
                   className="w-full px-5 py-4 flex items-center justify-between gap-3 text-left"
                 >
                   <div className="flex items-center gap-3 min-w-0">
@@ -162,6 +164,9 @@ export function FAQ() {
                 <AnimatePresence initial={false}>
                   {open === faq.id && (
                     <motion.div
+                      id={`faq-answer-${faq.id}`}
+                      role="region"
+                      aria-label={`Answer: ${faq.question}`}
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: "auto", opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}
@@ -182,10 +187,10 @@ export function FAQ() {
         {/* Contact CTA */}
         <Reveal
           variant="scale"
-          className="mt-8 rounded-2xl bg-xavier-gradient p-5 sm:p-7 text-cream text-center"
+          className="mt-8 rounded-2xl bg-xavier-gradient p-5 sm:p-7 text-cream-fg text-center"
         >
           <p className="font-serif text-base sm:text-lg font-bold mb-1">Still have a question?</p>
-          <p className="text-xs sm:text-sm text-cream/70 mb-3">Our office is happy to help with anything not covered above.</p>
+          <p className="text-xs sm:text-sm text-cream-fg/70 mb-3">Our office is happy to help with anything not covered above.</p>
           <a
             href="#contact"
             className="inline-flex items-center gap-2 rounded-full bg-gold-gradient px-5 py-2.5 text-xs sm:text-sm font-bold text-xavier-dark hover:opacity-90 transition-opacity"

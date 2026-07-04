@@ -71,8 +71,8 @@ export function Timetable() {
             <div className="flex flex-wrap gap-2">
               <button
                 onClick={() => setSelectedClass(null)}
-                className={`rounded-full px-3.5 py-1.5 text-xs font-medium transition-colors ${
-                  !selectedClass ? "bg-xavier-gradient text-cream" : "bg-card border border-xavier/10 text-foreground/70 hover:text-xavier-dark"
+                className={`rounded-full px-3.5 py-2.5 sm:py-1.5 text-xs font-medium transition-colors ${
+                  !selectedClass ? "bg-xavier-gradient text-cream-fg" : "bg-card border border-xavier/10 text-foreground/70 hover:text-xavier-dark"
                 }`}
               >
                 All
@@ -81,8 +81,8 @@ export function Timetable() {
                 <button
                   key={c}
                   onClick={() => setSelectedClass(c)}
-                  className={`rounded-full px-3.5 py-1.5 text-xs font-medium transition-colors ${
-                    selectedClass === c ? "bg-xavier-gradient text-cream" : "bg-card border border-xavier/10 text-foreground/70 hover:text-xavier-dark"
+                  className={`rounded-full px-3.5 py-2.5 sm:py-1.5 text-xs font-medium transition-colors ${
+                    selectedClass === c ? "bg-xavier-gradient text-cream-fg" : "bg-card border border-xavier/10 text-foreground/70 hover:text-xavier-dark"
                   }`}
                 >
                   {c}
@@ -115,7 +115,7 @@ export function Timetable() {
         ) : error ? (
           <div className="rounded-2xl border border-destructive/20 bg-destructive/5 p-8 text-center">
             <p className="text-sm text-destructive mb-3">Couldn't load the timetable.</p>
-            <button onClick={loadTimetable} className="inline-flex items-center gap-2 rounded-full bg-xavier-gradient px-4 py-2 text-xs font-semibold text-cream">
+            <button onClick={loadTimetable} className="inline-flex items-center gap-2 rounded-full bg-xavier-gradient px-4 py-2 text-xs font-semibold text-cream-fg">
               <RefreshCw className="size-3.5" /> Tap to retry
             </button>
           </div>
@@ -133,9 +133,9 @@ export function Timetable() {
                 delay={dayIdx * 0.05}
                 className="rounded-2xl border border-xavier/10 bg-card overflow-hidden"
               >
-                <div className="bg-xavier-gradient px-4 py-3 text-cream flex items-center justify-between">
+                <div className="bg-xavier-gradient px-4 py-3 text-cream-fg flex items-center justify-between">
                   <span className="font-serif font-bold text-sm">{day}</span>
-                  <span className="text-[10px] uppercase tracking-widest text-cream/60">{periods.length} periods</span>
+                  <span className="text-[10px] uppercase tracking-widest text-cream-fg/60">{periods.length} periods</span>
                 </div>
                 <div className="divide-y divide-xavier/5">
                   {periods.length === 0 ? (

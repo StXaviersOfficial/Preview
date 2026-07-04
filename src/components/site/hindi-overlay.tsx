@@ -7,31 +7,45 @@ import { useLanguage } from "@/components/site/language-provider";
  * HindiOverlay — applies Hindi translations to the entire DOM via text-node walking.
  *
  * ─────────────────────────────────────────────────────────────────────────────
- * ARCHITECTURE (v2 — rewritten to fix cascading corruption & missed translations)
+ * ARCHITECTURE (v3 — rewritten to fix incomplete EN-revert bug)
  * ─────────────────────────────────────────────────────────────────────────────
  *
- * 1. **Original-text tracking**: every translated element stores its original
- *    English text in `data-en-original`. On every re-translation pass, the
- *    engine reads from the original — never from a partially-translated state.
- *    This eliminates the cascading-corruption bug where short dictionary keys
- *    ("To", "We", "IT", "No", "Day", "Free") would re-match inside Devanagari
- *    text and corrupt it.
+ * 1. **Dual-layer original-text tracking**: every translated element stores
+ *    its original English text in BOTH:
+ *      a) `data-en-original` attribute on the parent ELEMENT (durable across
+ *         React re-renders — React preserves element identity even when it
+ *         recreates inner Text nodes)
+ *      b) WeakMap<Text, string> keyed by Text node (fast lookup + handles
+ *         mixed-content parents with multiple text children)
+ *    On every re-translation pass, the engine reads from these saved
+ *    originals — never from a partially-translated state. This eliminates
+ *    cascading corruption.
  *
- * 2. **Case-insensitive matching**: ALL-CAPS badges like "WHY FAMILIES CHOOSE
- *    ST. XAVIER'S" now match title-case dictionary keys.
+ * 2. **NO `restoredSet`**: The old code tracked "restored" text nodes in a
+ *    WeakSet that was never cleared. This caused the SECOND EN→HI→EN cycle
+ *    to fail — text nodes marked "restored" were skipped on subsequent
+ *    restores, leaving them stuck in Hindi. restoreAll() is now IDEMPOTENT:
+ *    no deletes, no tracking, safe to call any number of times.
  *
- * 3. **Unicode-aware word boundaries**: uses `\p{L}` and `\p{N}` instead of
+ * 3. **Case-insensitive matching**: ALL-CAPS badges like "WHY FAMILIES CHOOSE
+ *    ST. XAVIER'S" match title-case dictionary keys.
+ *
+ * 4. **Unicode-aware word boundaries**: uses `\p{L}` and `\p{N}` instead of
  *    `\w` so word boundaries work correctly at Latin/Devanagari junctions.
  *
- * 4. **No reload on switch back to English**: restores from `data-en-original`
- *    attribute, no `window.location.reload()` needed.
+ * 5. **No reload on switch back to English**: restores from saved originals,
+ *    no `window.location.reload()` needed.
  *
- * 5. **MutationObserver** catches React re-renders and dynamic content (FAQ,
- *    Fees, Timetable, Notices fetched from API).
+ * 6. **MutationObserver** catches React re-renders and dynamic content (FAQ,
+ *    Fees, Timetable, Notices fetched from API). Now observes BOTH childList
+ *    AND characterData — the latter catches React's text-content updates
+ *    (when React puts English back during a re-render, we re-translate).
  *
- * 6. Translates placeholder, aria-label, title, alt attributes too.
+ * 7. Translates placeholder, aria-label, title, alt attributes too.
  *
- * 7. Elements marked `data-no-translate` are skipped entirely.
+ * 8. Elements marked `data-no-translate` are skipped entirely.
+ *
+ * 9. Observer pauses when document is hidden (battery/CPU savings on mobile).
  */
 
 // ═══════════════════════════════════════════════════════════════
@@ -1621,18 +1635,72 @@ function hasLatin(str: string): boolean {
 // Tags whose text content should NEVER be translated
 const SKIP_TAGS = new Set(['script', 'style', 'input', 'textarea', 'noscript', 'code', 'pre', 'kbd', 'samp']);
 
-// WeakMap stores the ORIGINAL English text for each Text node we've processed.
-// This survives React's re-renders (as long as React reuses the same Text node),
-// and avoids the bug where a parent element with multiple text children would
-// have its data-en-original attribute overwritten by each child.
+// ─────────────────────────────────────────────────────────────
+// ORIGINAL-TEXT STORAGE — DUAL-LAYER FOR ROBUSTNESS
+// ─────────────────────────────────────────────────────────────
+//
+// Layer 1: `data-en-original` attribute on the parent ELEMENT.
+//   Used when the parent has exactly ONE text child (the common case:
+//   <h1>, <p>, <span>, <button>, <a> with only text content).
+//   This is DURABLE across React re-renders because React preserves
+//   element identity even when it recreates inner Text nodes.
+//
+// Layer 2: WeakMap<Text, string> keyed by Text node identity.
+//   Used as a fast lookup cache AND as the storage for multi-text-child
+//   parents (mixed content like <p>Hello <strong>world</strong>!</p>).
+//   Less durable (Text node identity can be lost on re-render) but
+//   the MutationObserver catches new text nodes and re-saves originals.
+//
+// CRITICAL FIX (v3): The old `restoredSet` WeakSet was NEVER cleared,
+// so once a text node was restored (EN), it could never be restored
+// again on a subsequent EN switch — causing the "stuck in Hindi" bug
+// on the SECOND toggle. We removed restoredSet entirely and made
+// restoreAll() idempotent (no deletes, no tracking).
 const textNodeOriginals: WeakMap<Text, string> = new WeakMap();
 
-// Track which text nodes we've already RESTORED on switch back to English,
-// so we don't double-process.
-const restoredSet: WeakSet<Text> = new WeakSet();
+// Check if an element is a "leaf text container" — exactly one child,
+// and that child is a Text node. For these, we use data-en-original
+// on the element for durability across React re-renders.
+function isLeafTextContainer(el: Element): boolean {
+  // Must have exactly one child
+  if (el.childNodes.length !== 1) return false;
+  const child = el.firstChild;
+  return child !== null && child.nodeType === Node.TEXT_NODE;
+}
+
+// Save original text for a text node — writes to BOTH layers when possible.
+function saveOriginal(textNode: Text, original: string): void {
+  textNodeOriginals.set(textNode, original);
+  const parent = textNode.parentElement;
+  if (parent && isLeafTextContainer(parent)) {
+    // Only write the attribute if this text node IS the single child
+    // (guaranteed by isLeafTextContainer). This avoids overwriting
+    // when multiple text children exist.
+    parent.setAttribute('data-en-original', original);
+  }
+}
+
+// Get the saved original for a text node — checks WeakMap first, then
+// parent's data-en-original attribute (fallback for when React recreated
+// the Text node and the WeakMap entry was lost).
+function getOriginal(textNode: Text): string | undefined {
+  const fromWeak = textNodeOriginals.get(textNode);
+  if (fromWeak !== undefined) return fromWeak;
+
+  const parent = textNode.parentElement;
+  if (parent && isLeafTextContainer(parent)) {
+    const attr = parent.getAttribute('data-en-original');
+    if (attr !== null) {
+      // Cache it back into WeakMap for faster subsequent lookups
+      textNodeOriginals.set(textNode, attr);
+      return attr;
+    }
+  }
+  return undefined;
+}
 
 // Translate all text nodes under a root element.
-// CRITICAL: this reads from textNodeOriginals WeakMap (the saved English text) —
+// CRITICAL: this reads from getOriginal() (WeakMap or data-en-original attribute) —
 // never from the current textContent (which may already be Hindi). This prevents
 // cascading corruption when the MutationObserver fires on already-translated content.
 function translateTextNodes(root: Node) {
@@ -1658,10 +1726,8 @@ function translateTextNodes(root: Node) {
   while (node = walker.nextNode()) nodes.push(node as Text);
 
   nodes.forEach(textNode => {
-    // Get the original English text from WeakMap, or save current content as original.
-    // This correctly handles parents with multiple text children — each text node
-    // has its own entry in the WeakMap.
-    let original = textNodeOriginals.get(textNode);
+    // Get the original English text (from WeakMap or data-en-original attribute).
+    let original = getOriginal(textNode);
     if (original === undefined) {
       // First time seeing this text node.
       // The current textContent should be English (just rendered by React).
@@ -1677,9 +1743,9 @@ function translateTextNodes(root: Node) {
       if (hasDevanagari(current) && hasLatin(current)) {
         return;
       }
-      // Pure Latin (or no letters at all) — save as original
+      // Pure Latin (or no letters at all) — save as original to BOTH layers
       original = current;
-      textNodeOriginals.set(textNode, original);
+      saveOriginal(textNode, original);
     }
 
     // Skip if original has no Latin chars (numbers, symbols only)
@@ -1766,10 +1832,13 @@ function translateAll() {
 }
 
 // Restore all text nodes & attributes to English (from saved originals).
-// Uses the WeakMap to find each text node's original — no DOM reload needed.
+// IDEMPOTENT: safe to call multiple times. Does NOT delete from WeakMap,
+// does NOT track "restored" nodes — those were the bugs that caused the
+// second-toggle "stuck in Hindi" failure.
 function restoreAll() {
-  // Restore text nodes via TreeWalker — for each text node, if it has an
-  // entry in the WeakMap, restore its content from there.
+  // Restore text nodes via TreeWalker — for each text node, if it has a
+  // saved original (WeakMap OR parent's data-en-original attribute),
+  // restore its content from there.
   const walker = document.createTreeWalker(
     document.body,
     NodeFilter.SHOW_TEXT,
@@ -1789,16 +1858,16 @@ function restoreAll() {
   while (n = walker.nextNode()) nodes.push(n as Text);
 
   nodes.forEach(textNode => {
-    if (restoredSet.has(textNode)) return;
-    const original = textNodeOriginals.get(textNode);
+    const original = getOriginal(textNode);
     if (original !== undefined) {
-      textNode.textContent = original;
-      textNodeOriginals.delete(textNode);
-      restoredSet.add(textNode);
+      // Only write if different (avoids needless DOM mutations)
+      if (textNode.textContent !== original) {
+        textNode.textContent = original;
+      }
     }
   });
 
-  // Restore attributes
+  // Restore attributes (placeholder, aria-label, title, alt)
   const allElements = document.querySelectorAll('*');
   allElements.forEach(el => {
     const htmlEl = el as HTMLElement;
@@ -1836,7 +1905,13 @@ export function HindiOverlay({ children }: { children: ReactNode }) {
 
     // MutationObserver — catch React re-renders and dynamic content.
     // The translateAll function is now safe to call repeatedly because it
-    // always reads from data-en-original (saved on first pass).
+    // always reads from saved originals (WeakMap + data-en-original attribute).
+    //
+    // We observe BOTH childList (new nodes added) AND characterData (text
+    // content changes). The latter is critical: when React re-renders a
+    // component, it may UPDATE an existing Text node's content (putting
+    // English back). Without characterData observation, the text would
+    // stay English in Hindi mode until something else triggered translateAll.
     const observer = new MutationObserver((mutations) => {
       let needsTranslate = false;
       for (const mutation of mutations) {
@@ -1844,22 +1919,48 @@ export function HindiOverlay({ children }: { children: ReactNode }) {
           needsTranslate = true;
           break;
         }
+        if (mutation.type === 'characterData') {
+          // Only re-translate if the new text contains Latin chars (English).
+          // If it's pure Hindi, it's already translated — skip.
+          const newVal = mutation.target.textContent || '';
+          if (/[a-zA-Z]/.test(newVal)) {
+            needsTranslate = true;
+            break;
+          }
+        }
       }
       if (needsTranslate) {
-        // Debounce — batch multiple mutations
+        // Debounce — 250ms (was 100ms). Higher debounce = less CPU on
+        // mid-range Android during scroll/animation bursts.
         clearTimeout((translateAll as any)._debounce);
-        (translateAll as any)._debounce = setTimeout(translateAll, 100);
+        (translateAll as any)._debounce = setTimeout(translateAll, 250);
       }
     });
 
     observer.observe(document.body, {
       childList: true,
       subtree: true,
+      characterData: true,
     });
+
+    // Pause observer when document is hidden (saves CPU/battery on mobile)
+    const onVisibility = () => {
+      if (document.hidden) {
+        observer.disconnect();
+      } else {
+        observer.observe(document.body, {
+          childList: true,
+          subtree: true,
+          characterData: true,
+        });
+      }
+    };
+    document.addEventListener('visibilitychange', onVisibility);
 
     return () => {
       clearTimeout(timeoutId);
       observer.disconnect();
+      document.removeEventListener('visibilitychange', onVisibility);
       clearTimeout((translateAll as any)._debounce);
     };
   }, [lang, ready]);

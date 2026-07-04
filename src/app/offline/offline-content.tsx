@@ -22,7 +22,7 @@ export default function OfflineContent() {
         </div>
         <button
           onClick={() => window.location.reload()}
-          className="mt-6 inline-flex items-center gap-2 rounded-full bg-xavier-gradient px-6 py-3 text-sm font-semibold text-cream shadow-glow-xavier"
+          className="mt-6 inline-flex items-center gap-2 rounded-full bg-xavier-gradient px-6 py-3 text-sm font-semibold text-cream-fg shadow-glow-xavier"
         >
           Try Again
         </button>

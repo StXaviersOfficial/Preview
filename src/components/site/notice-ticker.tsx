@@ -29,10 +29,35 @@ export function NoticeTicker() {
 
   useEffect(() => {
     if (notices.length <= 1) return;
-    const interval = setInterval(() => {
-      setCurrent((c) => (c + 1) % notices.length);
-    }, 5000);
-    return () => clearInterval(interval);
+    let interval: ReturnType<typeof setInterval> | null = null;
+
+    const start = () => {
+      if (interval) return;
+      interval = setInterval(() => {
+        setCurrent((c) => (c + 1) % notices.length);
+      }, 5000);
+    };
+    const stop = () => {
+      if (interval) {
+        clearInterval(interval);
+        interval = null;
+      }
+    };
+
+    // Start initially
+    start();
+
+    // Pause when document is hidden (saves CPU/battery on mobile)
+    const onVisibility = () => {
+      if (document.hidden) stop();
+      else start();
+    };
+    document.addEventListener("visibilitychange", onVisibility);
+
+    return () => {
+      stop();
+      document.removeEventListener("visibilitychange", onVisibility);
+    };
   }, [notices.length]);
 
   if (dismissed || notices.length === 0) return null;
@@ -45,7 +70,7 @@ export function NoticeTicker() {
       animate={{ y: 0, opacity: 1 }}
       exit={{ y: -50, opacity: 0 }}
       transition={{ type: "spring", stiffness: 200, damping: 20 }}
-      className="relative z-40 bg-xavier-gradient text-cream overflow-hidden"
+      className="relative z-40 bg-xavier-gradient text-cream-fg overflow-hidden"
       role="region"
       aria-label="School notices"
     >
@@ -105,7 +130,7 @@ export function NoticeTicker() {
         )}
         <button
           onClick={() => setDismissed(true)}
-          className="shrink-0 size-5 rounded-full hover:bg-cream/20 flex items-center justify-center transition-colors"
+          className="shrink-0 size-11 -mr-2 rounded-full hover:bg-cream/20 flex items-center justify-center transition-colors"
           aria-label="Dismiss notice"
         >
           <X className="size-3" />

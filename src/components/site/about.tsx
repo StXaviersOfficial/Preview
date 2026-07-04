@@ -79,13 +79,13 @@ export function About() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: 0.4 }}
-                    className="absolute bottom-6 left-6 right-6 rounded-2xl glass-dark p-5 text-cream"
+                    className="absolute bottom-6 left-6 right-6 rounded-2xl glass-dark p-5 text-cream-fg"
                   >
                     <Quote className="size-6 text-gold-light mb-2" />
                     <p className="font-serif italic text-sm leading-relaxed line-clamp-4">
                       &ldquo;{SCHOOL.principalMessage}&rdquo;
                     </p>
-                    <p className="mt-2 text-[10px] uppercase tracking-widest text-cream/60">
+                    <p className="mt-2 text-[10px] uppercase tracking-widest text-cream-fg/60">
                       — {SCHOOL.principalName}, Principal
                     </p>
                   </motion.div>

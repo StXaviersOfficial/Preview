@@ -38,7 +38,7 @@ export function StickyApplyBar() {
               {/* Call */}
               <a
                 href={`tel:+91${SCHOOL.phones[0]}`}
-                className="flex size-10 shrink-0 items-center justify-center rounded-full bg-cream/10 text-cream"
+                className="flex size-10 shrink-0 items-center justify-center rounded-full bg-cream/10 text-cream-fg"
                 aria-label="Call school"
                 onClick={() => trackOutbound("phone", "sticky_bar")}
               >

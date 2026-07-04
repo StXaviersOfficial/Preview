@@ -5,6 +5,7 @@ import { GraduationCap, BookOpen, FlaskConical, Calculator, Palette, Globe2, Awa
 export const metadata = {
   title: "Faculty Directory",
   description: "Meet the dedicated teachers of St. Xavier's Jr./Sr. School, Muzaffarpur — department-wise listing of our 71+ skilled educators.",
+  alternates: { canonical: "https://xavierpreview.vercel.app/faculty" },
 };
 
 const DEPARTMENTS = [

@@ -1,11 +1,11 @@
 'use client'
 
 import { motion } from "framer-motion";
-import { Crown, Briefcase, Users, GraduationCap, Quote } from "lucide-react";
+import { Crown, Briefcase, Users, GraduationCap, Quote, type LucideIcon } from "lucide-react";
 import { SCHOOL } from "@/lib/site/data";
 import { Reveal } from "@/components/site/reveal";
 
-const ROLE_ICONS: Record<string, React.ElementType> = {
+const ROLE_ICONS: Record<string, LucideIcon> = {
   "Chairman": Crown,
   "Managing Director": Briefcase,
   "Joint Director": Users,
@@ -14,7 +14,7 @@ const ROLE_ICONS: Record<string, React.ElementType> = {
 
 export function Leadership() {
   return (
-    <section id="leadership" className="relative overflow-hidden py-16 sm:py-24 bg-xavier-dark text-cream">
+    <section id="leadership" className="relative overflow-hidden py-16 sm:py-24 bg-xavier-dark text-cream-fg">
       <div className="container mx-auto max-w-7xl px-5 sm:px-6">
         {/* Header */}
         <Reveal variant="up" className="text-center max-w-3xl mx-auto mb-10 sm:mb-14">
@@ -25,12 +25,12 @@ export function Leadership() {
             OUR LEADERSHIP TEAM
           </div>
           <h2
-            className="font-serif text-3xl sm:text-5xl font-bold text-cream leading-tight text-balance"
+            className="font-serif text-3xl sm:text-5xl font-bold text-cream-fg leading-tight text-balance"
           >
             Meet the people <span className="text-gradient-gold">behind Xavier&apos;s</span>.
           </h2>
           <p
-            className="mt-4 text-sm sm:text-lg text-cream/70"
+            className="mt-4 text-sm sm:text-lg text-cream-fg/70"
           >
             A dedicated team whose passion, expertise and commitment form the foundation of everything we do — since {SCHOOL.established}.
           </p>
@@ -63,8 +63,8 @@ export function Leadership() {
                 </div>
 
                 <div className="p-3 sm:p-5">
-                  <p className="font-serif text-sm sm:text-xl font-bold text-cream">{leader.name}</p>
-                  <p className="text-[10px] sm:text-sm text-cream/60 mt-0.5">{leader.role}</p>
+                  <p className="font-serif text-sm sm:text-xl font-bold text-cream-fg">{leader.name}</p>
+                  <p className="text-[10px] sm:text-sm text-cream-fg/60 mt-0.5">{leader.role}</p>
                 </div>
               </Reveal>
             );
@@ -84,10 +84,10 @@ export function Leadership() {
           <div className="flex-1">
             <p className="text-[10px] uppercase tracking-[0.3em] text-gold-light font-semibold mb-2">Principal&apos;s Message</p>
             <Quote className="size-6 text-gold/60 mb-3" />
-            <p className="font-serif italic text-sm sm:text-lg text-cream/85 leading-relaxed">
+            <p className="font-serif italic text-sm sm:text-lg text-cream-fg/85 leading-relaxed">
               &ldquo;{SCHOOL.principalMessage}&rdquo;
             </p>
-            <p className="mt-4 text-xs sm:text-sm text-cream/60">
+            <p className="mt-4 text-xs sm:text-sm text-cream-fg/60">
               — <span className="font-semibold text-gold-light">{SCHOOL.principalName}</span>, Principal, St. Xavier&apos;s Jr./Sr. School
             </p>
           </div>

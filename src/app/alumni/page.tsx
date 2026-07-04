@@ -5,6 +5,7 @@ import { Quote, GraduationCap, Briefcase, Heart } from "lucide-react";
 export const metadata = {
   title: "Alumni Network",
   description: "St. Xavier's Jr./Sr. School, Muzaffarpur — our alumni across the world. Stories, achievements, and where they are now.",
+  alternates: { canonical: "https://xavierpreview.vercel.app/alumni" },
 };
 
 const ALUMNI = [
@@ -153,10 +154,10 @@ export default function AlumniPage() {
       <section className="py-12 sm:py-16">
         <div className="container mx-auto max-w-4xl px-5 sm:px-6">
           <Reveal variant="scale">
-            <div className="rounded-3xl bg-xavier-gradient p-6 sm:p-10 text-cream text-center">
+            <div className="rounded-3xl bg-xavier-gradient p-6 sm:p-10 text-cream-fg text-center">
               <Heart className="size-8 mx-auto mb-3 text-gold-light" />
               <h3 className="font-serif text-xl sm:text-2xl font-bold mb-2">Are you a Xavierite?</h3>
-              <p className="text-sm text-cream/80 max-w-md mx-auto mb-5">
+              <p className="text-sm text-cream-fg/80 max-w-md mx-auto mb-5">
                 We'd love to hear from you. Share your story, reconnect with classmates, and mentor current students.
               </p>
               <a

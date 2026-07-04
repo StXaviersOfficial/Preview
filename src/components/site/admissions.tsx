@@ -95,12 +95,12 @@ export function Admissions() {
         {/* Contact CTA — full width, no fee card */}
         <Reveal
           variant="scale"
-          className="rounded-3xl bg-xavier-gradient p-6 sm:p-9 text-cream relative overflow-hidden shadow-glow-xavier"
+          className="rounded-3xl bg-xavier-gradient p-6 sm:p-9 text-cream-fg relative overflow-hidden shadow-glow-xavier"
         >
           <div className="relative grid md:grid-cols-2 gap-6 items-center">
             <div>
               <h3 className="font-serif text-2xl sm:text-3xl font-bold mb-2">Have a question about admissions or fees?</h3>
-              <p className="text-sm sm:text-base text-cream/80">
+              <p className="text-sm sm:text-base text-cream-fg/80">
                 Speak directly with our Admissions Office for the latest fee structure, important dates, and any queries. We&apos;re happy to help.
               </p>
             </div>
@@ -113,7 +113,7 @@ export function Admissions() {
                 >
                   <Phone className="size-4 text-gold-light" />
                   <span>+91 {p}</span>
-                  <ArrowRight className="ml-auto size-4 text-cream/60" />
+                  <ArrowRight className="ml-auto size-4 text-cream-fg/60" />
                 </a>
               ))}
               <a

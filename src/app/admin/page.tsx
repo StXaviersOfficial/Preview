@@ -7,6 +7,7 @@ import {
   Trash2, Plus, Edit2, X, Check, AlertCircle, Search, Phone,
   Mail as MailIcon, Calendar, RefreshCw, ChevronDown, User, Reply,
   Megaphone, HelpCircle, ArrowLeft, Home,
+  type LucideIcon,
 } from "lucide-react";
 
 type Submission = {
@@ -74,6 +75,15 @@ const DAYS = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"
 const FREQUENCIES = ["One Time", "Yearly", "Quarterly", "Monthly"];
 const CATEGORIES = ["general", "lab", "transport", "exam"];
 
+const TABS: { id: Tab; label: string; icon: LucideIcon }[] = [
+  { id: "dashboard", label: "Dashboard", icon: LayoutDashboard },
+  { id: "enquiries", label: "Enquiries", icon: Mail },
+  { id: "timetable", label: "Timetable", icon: Clock },
+  { id: "fees", label: "Fees", icon: Receipt },
+  { id: "notices", label: "Notices", icon: Megaphone },
+  { id: "faqs", label: "FAQs", icon: HelpCircle },
+];
+
 export default function AdminPage() {
   const [authed, setAuthed] = useState(false);
   const [bootChecked, setBootChecked] = useState(false);
@@ -92,7 +102,7 @@ export default function AdminPage() {
 
   if (!bootChecked) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-xavier-dark text-cream">
+      <div className="min-h-screen flex items-center justify-center bg-xavier-dark text-cream-fg">
         <RefreshCw className="size-6 animate-spin text-gold-light" />
       </div>
     );
@@ -105,7 +115,7 @@ export default function AdminPage() {
   return (
     <div className="relative min-h-screen bg-cream-gradient text-foreground">
       {/* Top bar */}
-      <header className="sticky top-0 z-40 bg-xavier-dark text-cream shadow-lg">
+      <header className="sticky top-0 z-40 bg-xavier-dark text-cream-fg shadow-lg">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 h-14 sm:h-16 flex items-center justify-between gap-2">
           {/* Left: logo + back button */}
           <div className="flex items-center gap-2 sm:gap-3 min-w-0">
@@ -122,7 +132,7 @@ export default function AdminPage() {
             </div>
             <div className="min-w-0">
               <p className="font-serif font-bold text-sm sm:text-base leading-tight truncate">St. Xavier&apos;s Admin</p>
-              <p className="text-[9px] sm:text-[10px] uppercase tracking-widest text-cream/60 truncate">Muzaffarpur • Internal</p>
+              <p className="text-[9px] sm:text-[10px] uppercase tracking-widest text-cream-fg/60 truncate">Muzaffarpur • Internal</p>
             </div>
           </div>
           {/* Right: home + logout */}
@@ -152,20 +162,13 @@ export default function AdminPage() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-8">
         {/* Tabs */}
         <div className="flex flex-wrap gap-2 mb-6 sm:mb-8">
-          {([
-            { id: "dashboard", label: "Dashboard", icon: LayoutDashboard },
-            { id: "enquiries", label: "Enquiries", icon: Mail },
-            { id: "timetable", label: "Timetable", icon: Clock },
-            { id: "fees", label: "Fees", icon: Receipt },
-            { id: "notices", label: "Notices", icon: Megaphone },
-            { id: "faqs", label: "FAQs", icon: HelpCircle },
-          ] as { id: Tab; label: string; icon: React.ElementType }[]).map((t) => (
+          {TABS.map((t) => (
             <button
               key={t.id}
               onClick={() => setTab(t.id)}
               className={`inline-flex items-center gap-2 rounded-full px-4 py-2 text-xs sm:text-sm font-medium transition-all ${
                 tab === t.id
-                  ? "bg-xavier-gradient text-cream shadow-glow-xavier"
+                  ? "bg-xavier-gradient text-cream-fg shadow-glow-xavier"
                   : "bg-card border border-xavier/10 text-foreground/70 hover:text-xavier-dark"
               }`}
             >
@@ -237,18 +240,18 @@ function LoginScreen({ onLogin }: { onLogin: () => void }) {
         transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
         className="relative w-full max-w-md"
       >
-        <div className="rounded-3xl glass-dark p-6 sm:p-10 text-cream">
+        <div className="rounded-3xl glass-dark p-6 sm:p-10 text-cream-fg">
           <div className="flex flex-col items-center text-center mb-6">
             <div className="size-16 sm:size-20 rounded-full bg-gold-gradient flex items-center justify-center mb-4 shadow-glow-gold">
               <Lock className="size-8 sm:size-10 text-xavier-dark" />
             </div>
             <h1 className="font-serif text-2xl sm:text-3xl font-bold">Admin Access</h1>
-            <p className="text-xs sm:text-sm text-cream/60 mt-1.5">St. Xavier&apos;s Jr./Sr. School • Muzaffarpur</p>
+            <p className="text-xs sm:text-sm text-cream-fg/60 mt-1.5">St. Xavier&apos;s Jr./Sr. School • Muzaffarpur</p>
           </div>
 
           <form onSubmit={submit} className="space-y-4">
             <div>
-              <label htmlFor="code" className="block text-[10px] sm:text-xs uppercase tracking-widest text-cream/60 font-semibold mb-1.5">
+              <label htmlFor="code" className="block text-[10px] sm:text-xs uppercase tracking-widest text-cream-fg/60 font-semibold mb-1.5">
                 Admin Code
               </label>
               <input
@@ -261,7 +264,7 @@ function LoginScreen({ onLogin }: { onLogin: () => void }) {
                 maxLength={100}
                 autoComplete="off"
                 placeholder="Enter the admin code"
-                className="w-full rounded-xl bg-cream/10 border border-cream/15 px-4 py-3 text-sm text-cream placeholder:text-cream/40 focus:outline-none focus:ring-2 focus:ring-gold/40 focus:border-gold/40 transition-all"
+                className="w-full rounded-xl bg-cream/10 border border-cream/15 px-4 py-3 text-sm text-cream-fg placeholder:text-cream-fg/40 focus:outline-none focus:ring-2 focus:ring-gold/40 focus:border-gold/40 transition-all"
               />
             </div>
             {error && (
@@ -285,12 +288,12 @@ function LoginScreen({ onLogin }: { onLogin: () => void }) {
             </button>
           </form>
         </div>
-        <p className="mt-4 text-center text-[10px] sm:text-xs text-cream/40">
+        <p className="mt-4 text-center text-[10px] sm:text-xs text-cream-fg/40">
           Authorized personnel only. All access is logged.
         </p>
         <a
           href="/"
-          className="mt-3 inline-flex items-center gap-1.5 text-xs text-cream/60 hover:text-gold-light transition-colors"
+          className="mt-3 inline-flex items-center gap-1.5 text-xs text-cream-fg/60 hover:text-gold-light transition-colors"
         >
           <ArrowLeft className="size-3" /> Back to website
         </a>
@@ -474,7 +477,7 @@ function EnquiriesManager() {
               key={s}
               onClick={() => setFilter(s)}
               className={`rounded-full px-3 py-1 text-xs font-medium transition-colors capitalize ${
-                filter === s ? "bg-xavier-gradient text-cream" : "bg-card border border-xavier/10 text-foreground/70 hover:text-xavier-dark"
+                filter === s ? "bg-xavier-gradient text-cream-fg" : "bg-card border border-xavier/10 text-foreground/70 hover:text-xavier-dark"
               }`}
             >
               {s}
@@ -619,7 +622,7 @@ function StatusBadge({ status }: { status: string }) {
   );
 }
 
-function InfoChip({ icon: Icon, label, value }: { icon: React.ElementType; label: string; value: string }) {
+function InfoChip({ icon: Icon, label, value }: { icon: LucideIcon; label: string; value: string }) {
   return (
     <div className="rounded-xl bg-cream/50 p-3 flex items-start gap-2.5">
       <Icon className="size-4 text-gold mt-0.5 shrink-0" />
@@ -699,7 +702,7 @@ function ReplyBox({ submission, onReplied }: { submission: Submission; onReplied
         <button
           onClick={send}
           disabled={sending || !subject.trim() || !body.trim()}
-          className="inline-flex items-center gap-2 rounded-full bg-xavier-gradient px-5 py-2.5 text-sm font-semibold text-cream shadow-glow-xavier disabled:opacity-60 disabled:cursor-not-allowed"
+          className="inline-flex items-center gap-2 rounded-full bg-xavier-gradient px-5 py-2.5 text-sm font-semibold text-cream-fg shadow-glow-xavier disabled:opacity-60 disabled:cursor-not-allowed"
         >
           {sending ? (
             <><RefreshCw className="size-4 animate-spin" /> Sending…</>
@@ -786,7 +789,7 @@ function TimetableManager() {
           </button>
           <button
             onClick={() => { setEditing(null); setShowForm(true); }}
-            className="inline-flex items-center gap-1.5 rounded-full bg-xavier-gradient px-4 py-2 text-xs sm:text-sm font-semibold text-cream shadow-glow-xavier"
+            className="inline-flex items-center gap-1.5 rounded-full bg-xavier-gradient px-4 py-2 text-xs sm:text-sm font-semibold text-cream-fg shadow-glow-xavier"
           >
             <Plus className="size-4" /> Add Entry
           </button>
@@ -814,9 +817,9 @@ function TimetableManager() {
         <div className="grid gap-3 sm:gap-4 lg:grid-cols-2 xl:grid-cols-3">
           {grouped.map(({ day, periods }) => (
             <div key={day} className="rounded-2xl border border-xavier/10 bg-card overflow-hidden">
-              <div className="bg-xavier-gradient px-4 py-2.5 text-cream flex items-center justify-between">
+              <div className="bg-xavier-gradient px-4 py-2.5 text-cream-fg flex items-center justify-between">
                 <span className="font-serif font-bold text-sm">{day}</span>
-                <span className="text-[10px] uppercase tracking-widest text-cream/60">{periods.length} periods</span>
+                <span className="text-[10px] uppercase tracking-widest text-cream-fg/60">{periods.length} periods</span>
               </div>
               <div className="divide-y divide-xavier/5">
                 {periods.length === 0 ? (
@@ -920,7 +923,7 @@ function TimetableForm({ initial, onSave, onCancel }: {
         <button
           onClick={() => onSave(form)}
           disabled={!form.subject.trim()}
-          className="inline-flex items-center gap-1.5 rounded-full bg-xavier-gradient px-4 py-2 text-sm font-semibold text-cream disabled:opacity-60"
+          className="inline-flex items-center gap-1.5 rounded-full bg-xavier-gradient px-4 py-2 text-sm font-semibold text-cream-fg disabled:opacity-60"
         >
           <Check className="size-4" /> {initial ? "Update" : "Create"}
         </button>
@@ -986,7 +989,7 @@ function FeesManager() {
           </button>
           <button
             onClick={() => { setEditing(null); setShowForm(true); }}
-            className="inline-flex items-center gap-1.5 rounded-full bg-xavier-gradient px-4 py-2 text-xs sm:text-sm font-semibold text-cream shadow-glow-xavier"
+            className="inline-flex items-center gap-1.5 rounded-full bg-xavier-gradient px-4 py-2 text-xs sm:text-sm font-semibold text-cream-fg shadow-glow-xavier"
           >
             <Plus className="size-4" /> Add Fee Row
           </button>
@@ -1098,7 +1101,7 @@ function FeeForm({ initial, onSave, onCancel }: {
         <button
           onClick={() => onSave(form)}
           disabled={!form.label.trim()}
-          className="inline-flex items-center gap-1.5 rounded-full bg-xavier-gradient px-4 py-2 text-sm font-semibold text-cream disabled:opacity-60"
+          className="inline-flex items-center gap-1.5 rounded-full bg-xavier-gradient px-4 py-2 text-sm font-semibold text-cream-fg disabled:opacity-60"
         >
           <Check className="size-4" /> {initial ? "Update" : "Create"}
         </button>
@@ -1179,7 +1182,7 @@ function NoticesManager() {
           <button onClick={load} className="size-9 rounded-full bg-card border border-xavier/10 flex items-center justify-center text-xavier-dark hover:bg-xavier/5" aria-label="Refresh">
             <RefreshCw className="size-4" />
           </button>
-          <button onClick={() => { setEditing(null); setShowForm(true); }} className="inline-flex items-center gap-1.5 rounded-full bg-xavier-gradient px-4 py-2 text-xs sm:text-sm font-semibold text-cream shadow-glow-xavier">
+          <button onClick={() => { setEditing(null); setShowForm(true); }} className="inline-flex items-center gap-1.5 rounded-full bg-xavier-gradient px-4 py-2 text-xs sm:text-sm font-semibold text-cream-fg shadow-glow-xavier">
             <Plus className="size-4" /> Add Notice
           </button>
         </div>
@@ -1258,7 +1261,7 @@ function NoticeForm({ initial, onSave, onCancel }: { initial: Notice | null; onS
       </label>
       <div className="mt-4 flex gap-2 justify-end">
         <button onClick={onCancel} className="rounded-full px-4 py-2 text-sm font-medium text-foreground/70 hover:text-xavier-dark">Cancel</button>
-        <button onClick={() => onSave(form)} disabled={!form.text.trim()} className="inline-flex items-center gap-1.5 rounded-full bg-xavier-gradient px-4 py-2 text-sm font-semibold text-cream disabled:opacity-60">
+        <button onClick={() => onSave(form)} disabled={!form.text.trim()} className="inline-flex items-center gap-1.5 rounded-full bg-xavier-gradient px-4 py-2 text-sm font-semibold text-cream-fg disabled:opacity-60">
           <Check className="size-4" /> {initial ? "Update" : "Create"}
         </button>
       </div>
@@ -1321,7 +1324,7 @@ function FaqsManager() {
           <button onClick={load} className="size-9 rounded-full bg-card border border-xavier/10 flex items-center justify-center text-xavier-dark hover:bg-xavier/5" aria-label="Refresh">
             <RefreshCw className="size-4" />
           </button>
-          <button onClick={() => { setEditing(null); setShowForm(true); }} className="inline-flex items-center gap-1.5 rounded-full bg-xavier-gradient px-4 py-2 text-xs sm:text-sm font-semibold text-cream shadow-glow-xavier">
+          <button onClick={() => { setEditing(null); setShowForm(true); }} className="inline-flex items-center gap-1.5 rounded-full bg-xavier-gradient px-4 py-2 text-xs sm:text-sm font-semibold text-cream-fg shadow-glow-xavier">
             <Plus className="size-4" /> Add FAQ
           </button>
         </div>
@@ -1412,7 +1415,7 @@ function FaqForm({ initial, onSave, onCancel }: { initial: FaqItem | null; onSav
       </div>
       <div className="mt-4 flex gap-2 justify-end">
         <button onClick={onCancel} className="rounded-full px-4 py-2 text-sm font-medium text-foreground/70 hover:text-xavier-dark">Cancel</button>
-        <button onClick={() => onSave(form)} disabled={!form.question.trim() || !form.answer.trim()} className="inline-flex items-center gap-1.5 rounded-full bg-xavier-gradient px-4 py-2 text-sm font-semibold text-cream disabled:opacity-60">
+        <button onClick={() => onSave(form)} disabled={!form.question.trim() || !form.answer.trim()} className="inline-flex items-center gap-1.5 rounded-full bg-xavier-gradient px-4 py-2 text-sm font-semibold text-cream-fg disabled:opacity-60">
           <Check className="size-4" /> {initial ? "Update" : "Create"}
         </button>
       </div>

@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { useState } from "react";
-import { MapPin, Phone, Mail, Instagram, Facebook, Send, CheckCircle2, MessageCircle } from "lucide-react";
+import { MapPin, Phone, Mail, Instagram, Facebook, Send, CheckCircle2, MessageCircle, type LucideIcon } from "lucide-react";
 import { SCHOOL } from "@/lib/site/data";
 import { trackEnquiry, trackOutbound } from "@/lib/site/analytics";
 import { Reveal } from "@/components/site/reveal";
@@ -118,7 +118,7 @@ export function Contact() {
           {/* Contact info card */}
           <Reveal
             variant="left"
-            className="lg:col-span-5 rounded-2xl bg-xavier-gradient p-6 sm:p-9 text-cream shadow-glow-xavier"
+            className="lg:col-span-5 rounded-2xl bg-xavier-gradient p-6 sm:p-9 text-cream-fg shadow-glow-xavier"
           >
             <h3 className="font-serif text-xl sm:text-2xl font-bold mb-5 sm:mb-7">Visit / Reach Us</h3>
 
@@ -133,7 +133,7 @@ export function Contact() {
             </div>
 
             <div className="mt-6 sm:mt-8 pt-5 sm:pt-6 border-t border-cream/15">
-              <p className="text-xs uppercase tracking-widest text-cream/60 mb-3">Follow us</p>
+              <p className="text-xs uppercase tracking-widest text-cream-fg/60 mb-3">Follow us</p>
               <div className="flex gap-3">
                 <a
                   href={SCHOOL.instagram}
@@ -177,7 +177,7 @@ export function Contact() {
                   Thank you for reaching out to St. Xavier&apos;s. We&apos;ve received your enquiry and will get back to you shortly. For urgent queries, please call us directly.
                 </p>
                 <div className="mt-5 flex flex-wrap gap-2 justify-center">
-                  <a href={`tel:+91${SCHOOL.phones[0]}`} onClick={() => trackOutbound("phone", "contact_success")} className="inline-flex items-center gap-1.5 rounded-full bg-xavier-gradient px-4 py-2 text-xs font-semibold text-cream">
+                  <a href={`tel:+91${SCHOOL.phones[0]}`} onClick={() => trackOutbound("phone", "contact_success")} className="inline-flex items-center gap-1.5 rounded-full bg-xavier-gradient px-4 py-2 text-xs font-semibold text-cream-fg">
                     <Phone className="size-3.5" /> Call Now
                   </a>
                   <a href={`https://wa.me/91${SCHOOL.phones[0]}`} target="_blank" rel="noopener noreferrer" onClick={() => trackOutbound("whatsapp", "contact_success")} className="inline-flex items-center gap-1.5 rounded-full border border-xavier/20 px-4 py-2 text-xs font-semibold text-xavier-dark">
@@ -248,7 +248,7 @@ export function Contact() {
                 <button
                   type="submit"
                   disabled={submitting}
-                  className="group w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-full bg-xavier-gradient px-7 py-3.5 text-sm font-semibold text-cream shadow-glow-xavier disabled:opacity-60 disabled:cursor-not-allowed"
+                  className="group w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-full bg-xavier-gradient px-7 py-3.5 text-sm font-semibold text-cream-fg shadow-glow-xavier disabled:opacity-60 disabled:cursor-not-allowed"
                 >
                   {submitting ? (
                     <>
@@ -285,16 +285,16 @@ export function Contact() {
   );
 }
 
-function ContactRow({ icon: Icon, label, lines }: { icon: React.ElementType; label: string; lines: string[] }) {
+function ContactRow({ icon: Icon, label, lines }: { icon: LucideIcon; label: string; lines: string[] }) {
   return (
     <div className="flex gap-3">
       <div className="size-9 sm:size-10 rounded-xl glass flex items-center justify-center shrink-0">
         <Icon className="size-4 text-gold-light" />
       </div>
       <div className="min-w-0">
-        <p className="text-[10px] uppercase tracking-widest text-cream/60 mb-0.5">{label}</p>
+        <p className="text-[10px] uppercase tracking-widest text-cream-fg/60 mb-0.5">{label}</p>
         {lines.map((l, i) => (
-          <p key={i} className="text-xs sm:text-sm text-cream/90 leading-relaxed break-words">{l}</p>
+          <p key={i} className="text-xs sm:text-sm text-cream-fg/90 leading-relaxed break-words">{l}</p>
         ))}
       </div>
     </div>

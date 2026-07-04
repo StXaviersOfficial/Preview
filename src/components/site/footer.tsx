@@ -17,7 +17,7 @@ const QUICK_LINKS = [
 
 export function Footer() {
   return (
-    <footer className="relative bg-xavier-dark text-cream mt-auto">
+    <footer className="relative bg-xavier-dark text-cream-fg mt-auto">
       <div className="container mx-auto max-w-7xl px-5 sm:px-6 pt-12 sm:pt-16 pb-8">
         {/* Top CTA strip */}
         <Reveal
@@ -25,10 +25,10 @@ export function Footer() {
           className="rounded-2xl glass-dark p-5 sm:p-10 mb-10 sm:mb-14 flex flex-col lg:flex-row items-center justify-between gap-5 text-center lg:text-left"
         >
           <div>
-            <h3 className="font-serif text-xl sm:text-3xl font-bold text-cream">
+            <h3 className="font-serif text-xl sm:text-3xl font-bold text-cream-fg">
               Ready to give your child the Xavier&apos;s edge?
             </h3>
-            <p className="mt-2 text-sm sm:text-base text-cream/70 max-w-xl">
+            <p className="mt-2 text-sm sm:text-base text-cream-fg/70 max-w-xl">
               Admissions open for Nursery — Class 12. Limited seats — apply early to avoid disappointment.
             </p>
           </div>
@@ -51,10 +51,10 @@ export function Footer() {
               </div>
               <div>
                 <p className="font-serif text-lg sm:text-xl font-bold">St. Xavier&apos;s</p>
-                <p className="text-[10px] sm:text-[10px] uppercase tracking-[0.18em] text-cream/60">Jr./Sr. School • Muzaffarpur</p>
+                <p className="text-[10px] sm:text-[10px] uppercase tracking-[0.18em] text-cream-fg/60">Jr./Sr. School • Muzaffarpur</p>
               </div>
             </div>
-            <p className="text-sm text-cream/70 leading-relaxed mb-5 max-w-sm">
+            <p className="text-sm text-cream-fg/70 leading-relaxed mb-5 max-w-sm">
               A premier CBSE co-educational institution since {SCHOOL.established}, where discipline meets opportunity on Goshala Road, Muzaffarpur.
             </p>
             <div className="flex gap-3">
@@ -92,7 +92,7 @@ export function Footer() {
             <ul className="grid grid-cols-2 sm:grid-cols-1 gap-2 sm:gap-2.5">
               {QUICK_LINKS.map((l) => (
                 <li key={l.href}>
-                  <a href={l.href} className="text-sm text-cream/70 hover:text-gold-light transition-colors">
+                  <a href={l.href} className="text-sm text-cream-fg/70 hover:text-gold-light transition-colors">
                     {l.label}
                   </a>
                 </li>
@@ -106,7 +106,7 @@ export function Footer() {
             <ul className="grid grid-cols-1 gap-2 sm:gap-2.5">
               {PAGE_LINKS.map((l) => (
                 <li key={l.href}>
-                  <a href={l.href} className="text-sm text-cream/70 hover:text-gold-light transition-colors">
+                  <a href={l.href} className="text-sm text-cream-fg/70 hover:text-gold-light transition-colors">
                     {l.label}
                   </a>
                 </li>
@@ -117,7 +117,7 @@ export function Footer() {
           {/* Contact */}
           <Reveal variant="up" delay={0.1} className="lg:col-span-3">
             <FooterHeading>Reach Us</FooterHeading>
-            <ul className="space-y-3 text-sm text-cream/70">
+            <ul className="space-y-3 text-sm text-cream-fg/70">
               <li className="flex gap-2.5">
                 <MapPin className="size-4 text-gold-light mt-0.5 shrink-0" />
                 <span>{SCHOOL.addressLine}</span>
@@ -144,13 +144,13 @@ export function Footer() {
 
         {/* Divider with motto */}
         <div className="py-5 sm:py-6 border-y border-cream/10 text-center">
-          <p className="font-serif italic text-cream/80 text-sm sm:text-base">
+          <p className="font-serif italic text-cream-fg/80 text-sm sm:text-base">
             &ldquo;{SCHOOL.tagline}&rdquo;
           </p>
         </div>
 
         {/* Bottom row */}
-        <div className="pt-5 sm:pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-cream/50">
+        <div className="pt-5 sm:pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-cream-fg/50">
           <p className="text-center sm:text-left">© {new Date().getFullYear()} St. Xavier&apos;s Jr./Sr. School, Muzaffarpur. All rights reserved.</p>
           <p className="flex items-center gap-1.5">
             Crafted with <Heart className="size-3 text-gold fill-gold" /> for the St. Xavier&apos;s community

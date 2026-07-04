@@ -9,6 +9,7 @@ import { SCHOOL } from "@/lib/site/data";
 export const metadata = {
   title: "Terms of Use",
   description: "Terms and conditions for using the St. Xavier's Jr./Sr. School, Muzaffarpur website.",
+  alternates: { canonical: "https://xavierpreview.vercel.app/terms" },
 };
 
 export default function TermsPage() {

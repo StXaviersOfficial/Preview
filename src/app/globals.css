@@ -48,6 +48,7 @@
   --color-gold: var(--gold);
   --color-gold-light: var(--gold-light);
   --color-cream: var(--cream);
+  --color-cream-fg: var(--cream-fg);
   --color-ink: var(--ink);
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
@@ -66,6 +67,9 @@
   --gold-light: oklch(0.88 0.10 80);
   --cream: oklch(0.97 0.012 75);
   --ink: oklch(0.18 0.015 30);
+  /* Cream-as-foreground: same as --cream in light theme (both light).
+     In dark theme this stays light while --cream becomes dark. */
+  --cream-fg: oklch(0.97 0.012 75);
 
   --background: oklch(0.985 0.005 75);
   --foreground: oklch(0.18 0.015 30);
@@ -108,6 +112,13 @@
   --gold-light: oklch(0.90 0.10 80);
   --cream: oklch(0.20 0.015 30);
   --ink: oklch(0.95 0.005 75);
+  /* Cream-as-foreground: stays light in dark theme so text-cream on dark
+     backgrounds (hero, footer, leadership, facilities, etc.) remains
+     readable. The --cream variable above is dark in dark mode because it's
+     used as a background (bg-cream/40 fills on dark cards). But when used
+     as TEXT on a dark background, it needs to be light. This variable
+     solves the dual-use problem. */
+  --cream-fg: oklch(0.96 0.005 75);
 
   --background: oklch(0.16 0.02 25);
   --foreground: oklch(0.96 0.005 75);
@@ -571,4 +582,26 @@ body[data-hi-active="true"] .text-balance {
   z-index: 9999;
   clip: auto;
   white-space: nowrap;
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   SHIMMER — for ChunkSkeleton loading state
+   ═══════════════════════════════════════════════════════════════ */
+@keyframes shimmer-sweep {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   3D NAME — fallback glow animation
+   ═══════════════════════════════════════════════════════════════ */
+@keyframes name-glow {
+  from {
+    text-shadow: 0 0 20px rgba(201,169,97,0.4), 0 0 40px rgba(201,169,97,0.2);
+  }
+  to {
+    text-shadow: 0 0 40px rgba(201,169,97,0.7), 0 0 80px rgba(201,169,97,0.4), 0 0 120px rgba(201,169,97,0.2);
+  }
 }

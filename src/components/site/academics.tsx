@@ -88,9 +88,9 @@ export function Academics() {
             <button
               key={stage.id}
               onClick={() => setActive(i)}
-              className={`relative rounded-full px-4 py-2 text-xs sm:text-sm font-medium transition-colors ${
+              className={`relative rounded-full px-4 py-3 sm:py-2.5 text-xs sm:text-sm font-medium transition-colors ${
                 active === i
-                  ? "text-cream bg-xavier-gradient"
+                  ? "text-cream-fg bg-xavier-gradient"
                   : "text-foreground/70 hover:text-xavier-dark bg-card border border-xavier/10"
               }`}
             >

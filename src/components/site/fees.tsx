@@ -94,8 +94,8 @@ export function Fees() {
           <div className="flex flex-wrap gap-2 mb-5">
             <button
               onClick={() => setFilter("all")}
-              className={`rounded-full px-3.5 py-1.5 text-xs font-medium transition-colors ${
-                filter === "all" ? "bg-xavier-gradient text-cream" : "bg-card border border-xavier/10 text-foreground/70 hover:text-xavier-dark"
+              className={`rounded-full px-3.5 py-2.5 sm:py-1.5 text-xs font-medium transition-colors ${
+                filter === "all" ? "bg-xavier-gradient text-cream-fg" : "bg-card border border-xavier/10 text-foreground/70 hover:text-xavier-dark"
               }`}
             >
               All Categories
@@ -104,8 +104,8 @@ export function Fees() {
               <button
                 key={c}
                 onClick={() => setFilter(c)}
-                className={`rounded-full px-3.5 py-1.5 text-xs font-medium transition-colors ${
-                  filter === c ? "bg-xavier-gradient text-cream" : "bg-card border border-xavier/10 text-foreground/70 hover:text-xavier-dark"
+                className={`rounded-full px-3.5 py-2.5 sm:py-1.5 text-xs font-medium transition-colors ${
+                  filter === c ? "bg-xavier-gradient text-cream-fg" : "bg-card border border-xavier/10 text-foreground/70 hover:text-xavier-dark"
                 }`}
               >
                 {CATEGORY_LABELS[c] || c}
@@ -135,7 +135,7 @@ export function Fees() {
         ) : error ? (
           <div className="rounded-2xl border border-destructive/20 bg-destructive/5 p-8 text-center">
             <p className="text-sm text-destructive mb-3">Couldn't load the fee structure.</p>
-            <button onClick={loadFees} className="inline-flex items-center gap-2 rounded-full bg-xavier-gradient px-4 py-2 text-xs font-semibold text-cream">
+            <button onClick={loadFees} className="inline-flex items-center gap-2 rounded-full bg-xavier-gradient px-4 py-2 text-xs font-semibold text-cream-fg">
               <RefreshCw className="size-3.5" /> Tap to retry
             </button>
           </div>
@@ -182,10 +182,10 @@ export function Fees() {
             </div>
             {/* Total */}
             {totalYearly > 0 && (
-              <div className="px-5 py-4 bg-xavier-gradient text-cream flex items-center justify-between">
+              <div className="px-5 py-4 bg-xavier-gradient text-cream-fg flex items-center justify-between">
                 <div>
-                  <p className="text-[10px] uppercase tracking-widest text-cream/60">Approx. Yearly Total</p>
-                  <p className="text-[10px] text-cream/50">(excluding one-time fees)</p>
+                  <p className="text-[10px] uppercase tracking-widest text-cream-fg/60">Approx. Yearly Total</p>
+                  <p className="text-[10px] text-cream-fg/50">(excluding one-time fees)</p>
                 </div>
                 <p className="font-serif text-2xl sm:text-3xl font-bold text-gradient-gold tabular-nums">
                   ₹ {totalYearly.toLocaleString('en-IN')}
@@ -206,7 +206,7 @@ export function Fees() {
           </div>
           <div className="flex flex-wrap gap-2">
             {SCHOOL.phones.slice(0, 2).map((p) => (
-              <a key={p} href={`tel:+91${p}`} className="inline-flex items-center gap-1.5 rounded-full bg-xavier-gradient px-4 py-2.5 text-xs font-semibold text-cream">
+              <a key={p} href={`tel:+91${p}`} className="inline-flex items-center gap-1.5 rounded-full bg-xavier-gradient px-4 py-2.5 text-xs font-semibold text-cream-fg">
                 <Phone className="size-3.5" /> +91 {p}
               </a>
             ))}

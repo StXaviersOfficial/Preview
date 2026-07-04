@@ -18,7 +18,7 @@ const FACILITIES = [
 
 export function Facilities() {
   return (
-    <section id="campus" className="relative py-16 sm:py-24 bg-xavier-dark text-cream overflow-hidden">
+    <section id="campus" className="relative py-16 sm:py-24 bg-xavier-dark text-cream-fg overflow-hidden">
       {/* Flowing aurora background */}
       <div className="sx-aurora-flow opacity-40" />
 
@@ -32,12 +32,12 @@ export function Facilities() {
             CAMPUS &amp; FACILITIES
           </div>
           <h2
-            className="font-serif text-3xl sm:text-5xl font-bold text-cream leading-tight text-balance"
+            className="font-serif text-3xl sm:text-5xl font-bold text-cream-fg leading-tight text-balance"
           >
             Spaces designed for <span className="text-gradient-gold">discovery</span>.
           </h2>
           <p
-            className="mt-4 text-sm sm:text-lg text-cream/70"
+            className="mt-4 text-sm sm:text-lg text-cream-fg/70"
           >
             {SCHOOL.campusArea} of thoughtfully designed learning environments on Goshala Road — where every corner invites curiosity.
           </p>
@@ -79,8 +79,8 @@ export function Facilities() {
               </div>
 
               <div className="absolute bottom-0 left-0 right-0 p-4">
-                <h3 className="font-serif text-sm sm:text-base font-bold text-cream">{f.name}</h3>
-                <p className="text-[11px] sm:text-xs text-cream/70 mt-1 max-h-0 group-hover:max-h-16 overflow-hidden transition-all duration-500">
+                <h3 className="font-serif text-sm sm:text-base font-bold text-cream-fg">{f.name}</h3>
+                <p className="text-[11px] sm:text-xs text-cream-fg/70 mt-1 max-h-0 group-hover:max-h-16 overflow-hidden transition-all duration-500">
                   {f.desc}
                 </p>
               </div>
@@ -123,7 +123,7 @@ export function Facilities() {
               className="text-center relative"
             >
               <p className="font-serif text-lg sm:text-2xl font-bold text-gradient-gold">{s.value}</p>
-              <p className="mt-1 text-[10px] sm:text-xs uppercase tracking-widest text-cream/60">{s.label}</p>
+              <p className="mt-1 text-[10px] sm:text-xs uppercase tracking-widest text-cream-fg/60">{s.label}</p>
             </motion.div>
           ))}
         </Reveal>

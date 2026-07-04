@@ -52,7 +52,7 @@ export function Navbar() {
       {/* Top contact bar — desktop only */}
       <div
         className={cn(
-          "hidden md:block text-xs text-cream/90 transition-all duration-300 overflow-hidden",
+          "hidden md:block text-xs text-cream-fg/90 transition-all duration-300 overflow-hidden",
           scrolled ? "h-0 opacity-0" : "h-9 opacity-100"
         )}
         style={{ background: "linear-gradient(90deg, oklch(0.30 0.16 16), oklch(0.42 0.18 18))" }}
@@ -62,7 +62,7 @@ export function Navbar() {
             <span className="flex items-center gap-1.5">
               <Phone className="size-3" /> +91 {SCHOOL.phones[0]}
             </span>
-            <span className="text-cream/60">|</span>
+            <span className="text-cream-fg/60">|</span>
             <span>{SCHOOL.email}</span>
           </div>
           <div className="flex items-center gap-4">
@@ -88,7 +88,7 @@ export function Navbar() {
               {/* Hamburger — LEFT side, all sizes (so users can access menu everywhere) */}
               <button
                 onClick={() => setMobileOpen(true)}
-                className="inline-flex size-10 items-center justify-center rounded-full bg-xavier/10 text-xavier-dark hover:bg-xavier/15 transition-colors"
+                className="inline-flex size-11 shrink-0 items-center justify-center rounded-full bg-xavier/10 text-xavier-dark hover:bg-xavier/15 transition-colors"
                 aria-label="Open menu"
               >
                 <Menu className="size-5" />
@@ -144,7 +144,7 @@ export function Navbar() {
               <a
                 href="#admissions"
                 onClick={() => trackApplyNow("nav")}
-                className="hidden sm:inline-flex items-center justify-center rounded-full bg-xavier-gradient px-4 sm:px-5 py-2 sm:py-2.5 text-xs sm:text-sm font-semibold text-cream shadow-glow-xavier"
+                className="hidden sm:inline-flex items-center justify-center rounded-full bg-xavier-gradient px-4 sm:px-5 py-2 sm:py-2.5 text-xs sm:text-sm font-semibold text-cream-fg shadow-glow-xavier"
               >
                 Apply Now
               </a>
@@ -233,7 +233,7 @@ export function Navbar() {
                 <a
                   href="#admissions"
                   onClick={() => setMobileOpen(false)}
-                  className="block w-full text-center rounded-full bg-xavier-gradient px-5 py-3.5 font-semibold text-cream shadow-glow-xavier"
+                  className="block w-full text-center rounded-full bg-xavier-gradient px-5 py-3.5 font-semibold text-cream-fg shadow-glow-xavier"
                 >
                   Apply for Admission
                 </a>

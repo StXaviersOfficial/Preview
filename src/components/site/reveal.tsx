@@ -6,18 +6,18 @@ type Variant = "up" | "left" | "right" | "scale" | "stagger" | "flip" | "blur" |
 
 // INITIAL states — what the element looks like BEFORE animating in
 const INITIAL: Record<Variant, { opacity: number; transform: string; filter?: string }> = {
-  up:       { opacity: 0, transform: "translateY(80px) scale(0.92)" },
+  up:       { opacity: 0, transform: "translateY(40px) scale(0.96)" },
   left:     { opacity: 0, transform: "translateX(-60px) perspective(1000px) rotateY(15deg)" },
   right:    { opacity: 0, transform: "translateX(60px) perspective(1000px) rotateY(-15deg)" },
   scale:    { opacity: 0, transform: "scale(0.5) perspective(1000px) rotateX(20deg)" },
-  stagger:  { opacity: 0, transform: "translateY(60px) scale(0.85) perspective(1000px) rotateX(10deg)" },
+  stagger:  { opacity: 0, transform: "translateY(30px) scale(0.9) perspective(1000px) rotateX(10deg)" },
   flip:     { opacity: 0, transform: "perspective(1200px) rotateY(90deg) scale(0.8)" },
-  blur:     { opacity: 0, transform: "translateY(50px) scale(0.95)", filter: "blur(20px)" },
-  rotate3d: { opacity: 0, transform: "perspective(1200px) rotateX(50deg) rotateY(30deg) translateY(80px) scale(0.85)" },
+  blur:     { opacity: 0, transform: "translateY(30px) scale(0.97)", filter: "blur(12px)" },
+  rotate3d: { opacity: 0, transform: "perspective(1200px) rotateX(50deg) rotateY(30deg) translateY(40px) scale(0.9)" },
   elastic:  { opacity: 0, transform: "scale(0.3) perspective(1000px) rotateZ(-15deg)" },
   glitch:   { opacity: 0, transform: "translateX(0) skewX(0deg)", filter: "blur(0px) hue-rotate(0deg)" },
   explode:  { opacity: 0, transform: "scale(1.5) perspective(1000px) rotateZ(10deg)", filter: "blur(10px)" },
-  wave:     { opacity: 0, transform: "translateY(40px) rotate(-3deg) scale(0.9)" },
+  wave:     { opacity: 0, transform: "translateY(25px) rotate(-2deg) scale(0.95)" },
 };
 
 // FINAL states — what the element looks like AFTER animating
@@ -130,7 +130,7 @@ export function Reveal({
 
       const start = INITIAL[variant];
       const end = FINAL[variant];
-      const duration = variant === "elastic" ? 800 : variant === "glitch" ? 700 : 600;
+      const duration = variant === "elastic" ? 1000 : variant === "glitch" ? 850 : 800;
       const startTime = performance.now() + delay * 1000;
 
       const animate = (now: number) => {
@@ -179,6 +179,10 @@ export function Reveal({
 
         if (progress < 1) {
           animFrame.current = requestAnimationFrame(animate);
+        } else {
+          // Animation complete — clear willChange to free GPU memory
+          el.style.willChange = "auto";
+          el.setAttribute("data-reveal", "done");
         }
       };
       animFrame.current = requestAnimationFrame(animate);
@@ -201,7 +205,7 @@ export function Reveal({
           }
         });
       },
-      { threshold: 0, rootMargin: "100px 0px 100px 0px" }
+      { threshold: 0.05, rootMargin: "150px 0px 150px 0px" }
     );
 
     obs.observe(el);
@@ -213,8 +217,17 @@ export function Reveal({
   }, [variant, delay, once]);
 
   const init = INITIAL[variant];
+  // Cast As to a permissive component type to avoid TypeScript's strict
+  // polymorphic component typing (which infers children/style as `never`).
+  const Tag = As as React.ComponentType<{
+    ref?: React.Ref<HTMLElement>;
+    className?: string;
+    style?: React.CSSProperties;
+    children?: React.ReactNode;
+    [key: string]: unknown;
+  }>;
   return (
-    <As
+    <Tag
       ref={ref as React.Ref<HTMLElement>}
       data-reveal=""
       className={className}
@@ -229,7 +242,7 @@ export function Reveal({
       {...rest}
     >
       {children}
-    </As>
+    </Tag>
   );
 }
 

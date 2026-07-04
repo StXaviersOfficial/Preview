@@ -5,6 +5,7 @@ import { Megaphone, Calendar, FileText, AlertCircle, Bell } from "lucide-react";
 export const metadata = {
   title: "Notice Board",
   description: "School circulars, holiday notices, exam dates, and important announcements from St. Xavier's Jr./Sr. School, Muzaffarpur.",
+  alternates: { canonical: "https://xavierpreview.vercel.app/notices" },
 };
 
 type Notice = {
@@ -187,12 +188,12 @@ export default function NoticesPage() {
 
           {/* Info note */}
           <Reveal variant="blur" className="mt-8">
-            <div className="rounded-2xl bg-xavier-gradient p-5 text-cream text-center">
+            <div className="rounded-2xl bg-xavier-gradient p-5 text-cream-fg text-center">
               <Bell className="size-6 mx-auto mb-2 text-gold-light" />
               <p className="text-sm">
                 For older notices or specific circulars, please contact the school office.
                 <br />
-                <span className="text-xs text-cream/70">Notices are updated regularly — bookmark this page.</span>
+                <span className="text-xs text-cream-fg/70">Notices are updated regularly — bookmark this page.</span>
               </p>
             </div>
           </Reveal>

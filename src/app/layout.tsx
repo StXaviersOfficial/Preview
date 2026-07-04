@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Playfair_Display, Cormorant_Garamond, Noto_Sans_Devanagari, Noto_Serif_Devanagari } from "next/font/google";
 import "./globals.css";
-import { CustomCursor, ScrollProgressRing } from "@/components/site/animations";
+import { CustomCursor, ScrollProgressRing, PageCurtain } from "@/components/site/animations";
 import { ThemeProvider } from "@/components/theme-provider";
 import { LanguageProvider } from "@/components/site/language-provider";
 import { analyticsScript, gaId } from "@/lib/site/analytics";
@@ -191,6 +191,7 @@ export default function RootLayout({
       >
         <ThemeProvider defaultTheme="system" storageKey="xavier-theme">
           <LanguageProvider defaultLang="en">
+            <PageCurtain />
             <CustomCursor />
             <ScrollProgressRing />
             {children}

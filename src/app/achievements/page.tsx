@@ -5,6 +5,7 @@ import { Trophy, Medal, Star, Award, BookOpen, Flame } from "lucide-react";
 export const metadata = {
   title: "Achievements",
   description: "Year-wise AISSCE toppers, sports achievements, Olympiad results, and competition wins at St. Xavier's Jr./Sr. School, Muzaffarpur.",
+  alternates: { canonical: "https://xavierpreview.vercel.app/achievements" },
 };
 
 const TOPPERS = [
@@ -142,10 +143,10 @@ export default function AchievementsPage() {
       </section>
 
       {/* Other Achievements */}
-      <section className="py-16 sm:py-20 bg-xavier-dark text-cream">
+      <section className="py-16 sm:py-20 bg-xavier-dark text-cream-fg">
         <div className="container mx-auto max-w-7xl px-5 sm:px-6">
           <Reveal variant="up" className="text-center mb-10">
-            <h2 className="font-serif text-2xl sm:text-3xl font-bold text-cream">More to Celebrate</h2>
+            <h2 className="font-serif text-2xl sm:text-3xl font-bold text-cream-fg">More to Celebrate</h2>
           </Reveal>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {OTHER_ACHIEVEMENTS.map((a, i) => (
@@ -154,8 +155,8 @@ export default function AchievementsPage() {
                   <div className="mx-auto mb-3 size-12 rounded-xl bg-gold-gradient flex items-center justify-center">
                     <a.icon className="size-5 text-xavier-dark" />
                   </div>
-                  <h3 className="font-serif font-bold text-cream text-sm mb-1">{a.title}</h3>
-                  <p className="text-xs text-cream/70">{a.desc}</p>
+                  <h3 className="font-serif font-bold text-cream-fg text-sm mb-1">{a.title}</h3>
+                  <p className="text-xs text-cream-fg/70">{a.desc}</p>
                 </div>
               </Reveal>
             ))}

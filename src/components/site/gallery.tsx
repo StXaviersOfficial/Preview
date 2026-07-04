@@ -70,7 +70,7 @@ export function Gallery() {
                 onClick={() => setFilter(cat)}
                 className={`relative rounded-full px-3.5 sm:px-4 py-1.5 sm:py-2 text-xs font-medium transition-all ${
                   filter === cat
-                    ? "text-cream bg-xavier-gradient shadow-glow-xavier"
+                    ? "text-cream-fg bg-xavier-gradient shadow-glow-xavier"
                     : "text-foreground/70 hover:text-xavier-dark bg-card border border-xavier/10"
                 }`}
               >
@@ -108,7 +108,7 @@ export function Gallery() {
               <div className="absolute inset-0 bg-gradient-to-t from-xavier-dark/85 via-xavier-dark/10 to-transparent opacity-80 group-hover:opacity-95 transition-opacity" />
               <div className="absolute bottom-0 left-0 right-0 p-3 sm:p-4 text-left translate-y-2 group-hover:translate-y-0 transition-transform">
                 <p className="text-[10px] sm:text-[10px] uppercase tracking-widest text-gold-light/80 mb-0.5">{item.category}</p>
-                <p className="font-serif text-xs sm:text-sm font-semibold text-cream leading-tight">{item.title}</p>
+                <p className="font-serif text-xs sm:text-sm font-semibold text-cream-fg leading-tight">{item.title}</p>
               </div>
               <div className="absolute top-2 right-2 sm:top-3 sm:right-3 size-7 sm:size-8 rounded-full glass-dark flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
                 <ZoomIn className="size-3.5 sm:size-4 text-gold-light" />
@@ -140,21 +140,21 @@ export function Gallery() {
           >
             <button
               onClick={close}
-              className="absolute top-5 right-5 sm:top-6 sm:right-6 size-10 sm:size-11 rounded-full glass flex items-center justify-center text-cream hover:bg-cream/15 transition-colors z-10"
+              className="absolute top-5 right-5 sm:top-6 sm:right-6 size-10 sm:size-11 rounded-full glass flex items-center justify-center text-cream-fg hover:bg-cream/15 transition-colors z-10"
               aria-label="Close"
             >
               <X className="size-5" />
             </button>
             <button
               onClick={(e) => { e.stopPropagation(); prev(); }}
-              className="absolute left-3 sm:left-8 size-11 sm:size-12 rounded-full glass flex items-center justify-center text-cream hover:bg-cream/15 transition-colors z-10"
+              className="absolute left-3 sm:left-8 size-11 sm:size-12 rounded-full glass flex items-center justify-center text-cream-fg hover:bg-cream/15 transition-colors z-10"
               aria-label="Previous"
             >
               <ChevronLeft className="size-6" />
             </button>
             <button
               onClick={(e) => { e.stopPropagation(); next(); }}
-              className="absolute right-3 sm:right-8 size-11 sm:size-12 rounded-full glass flex items-center justify-center text-cream hover:bg-cream/15 transition-colors z-10"
+              className="absolute right-3 sm:right-8 size-11 sm:size-12 rounded-full glass flex items-center justify-center text-cream-fg hover:bg-cream/15 transition-colors z-10"
               aria-label="Next"
             >
               <ChevronRight className="size-6" />
@@ -177,8 +177,8 @@ export function Gallery() {
               />
               <figcaption className="mt-3 sm:mt-4 text-center">
                 <p className="text-[10px] uppercase tracking-widest text-gold-light/80">{filtered[lightbox].category}</p>
-                <p className="font-serif text-base sm:text-lg font-semibold text-cream mt-1">{filtered[lightbox].title}</p>
-                <p className="text-xs text-cream/50 mt-1">St. Xavier&apos;s Jr./Sr. School, Muzaffarpur</p>
+                <p className="font-serif text-base sm:text-lg font-semibold text-cream-fg mt-1">{filtered[lightbox].title}</p>
+                <p className="text-xs text-cream-fg/50 mt-1">St. Xavier&apos;s Jr./Sr. School, Muzaffarpur</p>
               </figcaption>
             </motion.figure>
           </motion.div>
