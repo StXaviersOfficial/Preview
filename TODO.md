@@ -138,3 +138,24 @@
 - [x] **P3.14.** Verified: 0 console errors, 2 canvases rendering, 57 reveal animations completed.
 - [x] **P3.15.** Created /proof folder with before/after screenshots + NOTES.md.
 - [x] **P3.16.** Created SUMMARY-PASS3.md.
+
+## Pass 4 — Remove Code-Splitting + Fix 3D Name — DONE
+
+- [x] **P4.1.** Replaced all 15 dynamic() imports with plain static imports in page.tsx.
+- [x] **P4.2.** Removed all Suspense + ChunkSkeleton wrappers from page.tsx.
+- [x] **P4.3.** Deleted ChunkSkeleton function from page.tsx.
+- [x] **P4.4.** Deleted src/components/site/lazy-chunk.tsx (confirmed no imports).
+- [x] **P4.5.** Removed shimmer-sweep keyframe from globals.css (confirmed unused).
+- [x] **P4.6.** Left Reveal scroll-animation system completely untouched.
+- [x] **P4.7.** Fixed ghost text: removed CSS fallback from Name3D (no double text possible).
+- [x] **P4.8.** Self-hosted helvetiker_bold.typeface.json in public/fonts/ (was CDN).
+- [x] **P4.9.** Fixed h1 sizing: changed to h2 with text-xl/sm:text-3xl/lg:text-4xl for "Jr./Sr. School".
+- [x] **P4.10.** Made Name3D container height responsive (80px mobile, 130px desktop).
+- [x] **P4.11.** Made camera Z position responsive (4.0 mobile, 5.0 desktop).
+- [x] **P4.12.** Upgraded 3D material to meshPhysicalMaterial with clearcoat + reflectivity.
+- [x] **P4.13.** Added gold Sparkles particles around 3D text.
+- [x] **P4.14.** Added orbiting gold point light for dynamic highlights.
+- [x] **P4.15.** Verified: 0 ghost text, 0 console errors, 0 skeleton spinners, all sections present.
+- [x] **P4.16.** Created /proof folder with screenshots + NOTES.md.
+- [x] **P4.17.** Created SUMMARY-PASS4.md.
+- [x] **P4.18.** Created BACKUP.zip (pre-pass-4 state) for rollback.

@@ -84,13 +84,11 @@ export function Hero() {
             </div>
           </Reveal>
 
-          {/* HUGE Headline — EXPLODE (starts big + blurry, shrinks to normal) */}
+          {/* Subtitle — "Jr./Sr. School" sits directly under the 3D name */}
           <Reveal variant="explode" delay={0.4}>
-            <h1 className="font-serif text-cream-fg font-bold tracking-tight text-balance leading-[0.92] text-[clamp(2.75rem,11vw,8rem)]">
-              <span className="inline-block text-[0.45em] sm:text-[0.45em] text-cream-fg/85 font-medium tracking-wide">
-                Jr./Sr. School
-              </span>
-            </h1>
+            <h2 className="font-serif text-cream-fg/85 font-medium tracking-wide text-xl sm:text-3xl lg:text-4xl leading-tight -mt-1 sm:-mt-2">
+              Jr./Sr. School
+            </h2>
           </Reveal>
 
           {/* Sub-tagline — BLUR fade */}
