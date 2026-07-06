@@ -68,7 +68,7 @@ const ALUMNI = [
   {
     name: "Neha Kumari",
     batch: "2014",
-    now: " Advocate, Patna High Court",
+    now: "Advocate, Patna High Court",
     stream: "Arts",
     quote: "The debating culture at Xavier's — youth parliament, elocution competitions — gave me the confidence to pursue law. I still use those skills every day in court.",
     initials: "NK",
