@@ -11,7 +11,7 @@ export function Contact() {
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [form, setForm] = useState({ name: "", email: "", phone: "", grade: "", message: "" });
+  const [form, setForm] = useState({ name: "", email: "", phone: "", grade: "", message: "", website: "" });
   const [touched, setTouched] = useState<Record<string, boolean>>({});
   const [validationErrors, setValidationErrors] = useState<Record<string, string>>({});
 
@@ -75,7 +75,7 @@ export function Contact() {
       }
       setSubmitted(true);
       trackEnquiry();
-      setForm({ name: "", email: "", phone: "", grade: "", message: "" });
+      setForm({ name: "", email: "", phone: "", grade: "", message: "", website: "" });
       setTimeout(() => setSubmitted(false), 6000);
     } catch (err) {
       setError(err instanceof Error ? err.message : "Something went wrong.");
@@ -245,6 +245,19 @@ export function Contact() {
                     {error}
                   </div>
                 )}
+                {/* Honeypot field — hidden from humans, bots fill it in */}
+                <div className="absolute -left-[9999px] top-auto w-px h-px overflow-hidden" aria-hidden="true">
+                  <label htmlFor="website">Website (leave blank)</label>
+                  <input
+                    id="website"
+                    type="text"
+                    tabIndex={-1}
+                    autoComplete="off"
+                    value={form.website}
+                    onChange={(e) => setForm({ ...form, website: e.target.value })}
+                    className="w-full rounded-xl border border-xavier/15 bg-cream/40 px-4 py-3 text-sm"
+                  />
+                </div>
                 <button
                   type="submit"
                   disabled={submitting}

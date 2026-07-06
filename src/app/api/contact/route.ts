@@ -21,6 +21,14 @@ export async function POST(req: NextRequest) {
     }
 
     const body = await req.json();
+    
+    // Honeypot: if 'website' field is filled, it's a bot (hidden field humans won't see)
+    const honeypot = (body?.website || "").toString().trim();
+    if (honeypot) {
+      // Pretend success to not tip off the bot
+      return NextResponse.json({ ok: true, id: "spam-filtered", remaining: 99 });
+    }
+
     const name = (body?.name || "").toString().trim();
     const email = (body?.email || "").toString().trim().toLowerCase();
     const phone = (body?.phone || "").toString().trim();
