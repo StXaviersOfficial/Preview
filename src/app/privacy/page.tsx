@@ -1,9 +1,4 @@
-import { Navbar } from "@/components/site/navbar";
-import { Footer } from "@/components/site/footer";
-import { WhatsAppButton } from "@/components/site/whatsapp-button";
-import { BackToTop } from "@/components/site/back-to-top";
-import { StickyApplyBar } from "@/components/site/sticky-apply-bar";
-import { HindiOverlay } from "@/components/site/hindi-overlay";
+import { PageLayout } from "@/components/site/page-layout";
 import { SCHOOL } from "@/lib/site/data";
 
 export const metadata = {
@@ -14,19 +9,21 @@ export const metadata = {
 
 export default function PrivacyPage() {
   return (
-    <HindiOverlay>
-      <div className="relative min-h-screen flex flex-col bg-background">
-        <Navbar />
-        <main className="flex-1 container mx-auto max-w-4xl px-5 sm:px-6 py-12 sm:py-20">
-          <h1 className="font-serif text-3xl sm:text-5xl font-bold text-ink mb-2">Privacy Policy</h1>
-          <p className="text-sm text-muted-foreground mb-10">Last updated: {new Date().getFullYear()}</p>
+    <PageLayout
+      badge="Privacy Policy"
+      title={<>Privacy <span className="text-gradient-xavier">Policy</span></>}
+      subtitle="How we collect, use, and protect your personal information."
+    >
+      <section className="py-12 sm:py-16">
+        <div className="container mx-auto max-w-4xl px-5 sm:px-6">
+          <p className="text-sm text-muted-foreground mb-8">Last updated: {new Date().getFullYear()}</p>
 
           <div className="prose prose-sm sm:prose-base max-w-none space-y-6 text-foreground/80 leading-relaxed">
             <section>
               <h2 className="font-serif text-xl sm:text-2xl font-bold text-xavier-dark mb-3">1. Information We Collect</h2>
               <p className="mb-3">When you use our website or contact us, we may collect:</p>
               <ul className="list-disc pl-6 space-y-1.5 text-sm">
-                <li><strong>Enquiry Form Data:</strong> Your name, email address, phone number, child's interested grade, and message — only when you voluntarily submit the contact form.</li>
+                <li><strong>Enquiry Form Data:</strong> Your name, email address, phone number, child&apos;s interested grade, and message — only when you voluntarily submit the contact form.</li>
                 <li><strong>Usage Data:</strong> Anonymous analytics data such as pages visited, time spent, and approximate location (city/region only, not precise).</li>
                 <li><strong>Admin Logs:</strong> When admin staff log in, we record the IP address and action taken for security audit purposes.</li>
               </ul>
@@ -44,8 +41,8 @@ export default function PrivacyPage() {
             </section>
 
             <section>
-              <h2 className="font-serif text-xl sm:text-2xl font-bold text-xavier-dark mb-3">3. Data Storage & Security</h2>
-              <p className="text-sm">Your enquiry data is stored securely on our hosting provider's servers. Access is restricted to authorized school staff only. Admin sessions are protected with signed cookies and rate-limited login. All communications are encrypted via HTTPS.</p>
+              <h2 className="font-serif text-xl sm:text-2xl font-bold text-xavier-dark mb-3">3. Data Storage &amp; Security</h2>
+              <p className="text-sm">Your enquiry data is stored securely on our hosting provider&apos;s servers. Access is restricted to authorized school staff only. Admin sessions are protected with signed cookies and rate-limited login. All communications are encrypted via HTTPS.</p>
             </section>
 
             <section>
@@ -71,7 +68,7 @@ export default function PrivacyPage() {
             </section>
 
             <section>
-              <h2 className="font-serif text-xl sm:text-2xl font-bold text-xavier-dark mb-3">7. Children's Privacy</h2>
+              <h2 className="font-serif text-xl sm:text-2xl font-bold text-xavier-dark mb-3">7. Children&apos;s Privacy</h2>
               <p className="text-sm">Our website is designed for parents and guardians making admission enquiries. We do not knowingly collect personal information directly from children under 13. All enquiries are submitted by adults.</p>
             </section>
 
@@ -79,19 +76,15 @@ export default function PrivacyPage() {
               <h2 className="font-serif text-xl sm:text-2xl font-bold text-xavier-dark mb-3">8. Contact Us</h2>
               <p className="text-sm">For any privacy-related questions or requests, please contact:</p>
               <div className="mt-3 rounded-xl border border-xavier/10 bg-card p-4 text-sm">
-                <p className="font-semibold text-xavier-dark">St. Xavier's Jr./Sr. School</p>
+                <p className="font-semibold text-xavier-dark">St. Xavier&apos;s Jr./Sr. School</p>
                 <p>{SCHOOL.addressLine}</p>
                 <p>Phone: +91 {SCHOOL.phones[0]}</p>
                 <p>Email: <a href={`mailto:${SCHOOL.email}`} className="text-xavier-dark underline">{SCHOOL.email}</a></p>
               </div>
             </section>
           </div>
-        </main>
-        <Footer />
-        <WhatsAppButton />
-        <BackToTop />
-        <StickyApplyBar />
-      </div>
-    </HindiOverlay>
+        </div>
+      </section>
+    </PageLayout>
   );
 }

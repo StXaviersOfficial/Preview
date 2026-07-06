@@ -1,9 +1,4 @@
-import { Navbar } from "@/components/site/navbar";
-import { Footer } from "@/components/site/footer";
-import { WhatsAppButton } from "@/components/site/whatsapp-button";
-import { BackToTop } from "@/components/site/back-to-top";
-import { StickyApplyBar } from "@/components/site/sticky-apply-bar";
-import { HindiOverlay } from "@/components/site/hindi-overlay";
+import { PageLayout } from "@/components/site/page-layout";
 import { SCHOOL } from "@/lib/site/data";
 
 export const metadata = {
@@ -14,12 +9,14 @@ export const metadata = {
 
 export default function TermsPage() {
   return (
-    <HindiOverlay>
-      <div className="relative min-h-screen flex flex-col bg-background">
-        <Navbar />
-        <main className="flex-1 container mx-auto max-w-4xl px-5 sm:px-6 py-12 sm:py-20">
-          <h1 className="font-serif text-3xl sm:text-5xl font-bold text-ink mb-2">Terms of Use</h1>
-          <p className="text-sm text-muted-foreground mb-10">Last updated: {new Date().getFullYear()}</p>
+    <PageLayout
+      badge="Terms of Use"
+      title={<>Terms of <span className="text-gradient-xavier">Use</span></>}
+      subtitle="Terms and conditions for using this website."
+    >
+      <section className="py-12 sm:py-16">
+        <div className="container mx-auto max-w-4xl px-5 sm:px-6">
+          <p className="text-sm text-muted-foreground mb-8">Last updated: {new Date().getFullYear()}</p>
 
           <div className="prose prose-sm sm:prose-base max-w-none space-y-6 text-foreground/80 leading-relaxed">
             <section>
@@ -40,7 +37,7 @@ export default function TermsPage() {
 
             <section>
               <h2 className="font-serif text-xl sm:text-2xl font-bold text-xavier-dark mb-3">3. Intellectual Property</h2>
-              <p className="text-sm">All content on this website — including text, images, logos, graphics, and design — is the property of St. Xavier's Jr./Sr. School, Muzaffarpur, unless otherwise stated. You may not reproduce, distribute, or create derivative works without prior written consent.</p>
+              <p className="text-sm">All content on this website — including text, images, logos, graphics, and design — is the property of St. Xavier&apos;s Jr./Sr. School, Muzaffarpur, unless otherwise stated. You may not reproduce, distribute, or create derivative works without prior written consent.</p>
               <p className="text-sm mt-2">The school name, logo, and brand identity are protected trademarks.</p>
             </section>
 
@@ -51,7 +48,7 @@ export default function TermsPage() {
 
             <section>
               <h2 className="font-serif text-xl sm:text-2xl font-bold text-xavier-dark mb-3">5. Fee Structure</h2>
-              <p className="text-sm">The fee structure displayed on this website is indicative and may change without notice. For the most current and class-specific fee details, please contact the school office directly. Payment of fees is governed by the school's separate fee policy, available at the school office.</p>
+              <p className="text-sm">The fee structure displayed on this website is indicative and may change without notice. For the most current and class-specific fee details, please contact the school office directly. Payment of fees is governed by the school&apos;s separate fee policy, available at the school office.</p>
             </section>
 
             <section>
@@ -66,7 +63,7 @@ export default function TermsPage() {
 
             <section>
               <h2 className="font-serif text-xl sm:text-2xl font-bold text-xavier-dark mb-3">8. Limitation of Liability</h2>
-              <p className="text-sm">St. Xavier's Jr./Sr. School shall not be liable for any direct, indirect, or consequential damages arising from the use of this website or reliance on any information contained herein.</p>
+              <p className="text-sm">St. Xavier&apos;s Jr./Sr. School shall not be liable for any direct, indirect, or consequential damages arising from the use of this website or reliance on any information contained herein.</p>
             </section>
 
             <section>
@@ -82,19 +79,15 @@ export default function TermsPage() {
             <section>
               <h2 className="font-serif text-xl sm:text-2xl font-bold text-xavier-dark mb-3">11. Contact</h2>
               <div className="rounded-xl border border-xavier/10 bg-card p-4 text-sm">
-                <p className="font-semibold text-xavier-dark">St. Xavier's Jr./Sr. School</p>
+                <p className="font-semibold text-xavier-dark">St. Xavier&apos;s Jr./Sr. School</p>
                 <p>{SCHOOL.addressLine}</p>
                 <p>Phone: +91 {SCHOOL.phones[0]}</p>
                 <p>Email: <a href={`mailto:${SCHOOL.email}`} className="text-xavier-dark underline">{SCHOOL.email}</a></p>
               </div>
             </section>
           </div>
-        </main>
-        <Footer />
-        <WhatsAppButton />
-        <BackToTop />
-        <StickyApplyBar />
-      </div>
-    </HindiOverlay>
+        </div>
+      </section>
+    </PageLayout>
   );
 }
