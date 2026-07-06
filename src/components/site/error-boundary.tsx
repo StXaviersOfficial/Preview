@@ -5,7 +5,7 @@ import { Component, type ReactNode, type ErrorInfo } from "react";
 /**
  * ErrorBoundary — catches errors from child components and renders a fallback.
  *
- * Used to wrap each LazyChunk so that a failure in one section (e.g., 3D
+ * Used to wrap each section so that a failure in one section (e.g., 3D
  * rendering, API error) doesn't crash the entire page.
  */
 

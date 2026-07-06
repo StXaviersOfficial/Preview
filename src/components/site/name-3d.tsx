@@ -2,7 +2,7 @@
 
 import { Canvas, useFrame } from '@react-three/fiber';
 import { Float, Environment, ContactShadows, Text3D, Center } from '@react-three/drei';
-import { Suspense, useRef, useState } from 'react';
+import { Suspense, useRef, useState, useEffect } from 'react';
 import * as THREE from 'three';
 
 /**
@@ -83,6 +83,32 @@ function Name3DFallback() {
 }
 
 export function Name3D({ className = '' }: { className?: string }) {
+  const [reducedMotion, setReducedMotion] = useState(false);
+
+  useEffect(() => {
+    const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+    setReducedMotion(mq.matches);
+    const handler = (e: MediaQueryListEvent) => setReducedMotion(e.matches);
+    mq.addEventListener('change', handler);
+    return () => mq.removeEventListener('change', handler);
+  }, []);
+
+  // If reduced motion, render a static CSS text instead of 3D canvas
+  if (reducedMotion) {
+    return (
+      <div className={`relative flex items-center justify-center ${className}`} style={{ height: '100px' }}>
+        <div
+          className="font-serif text-5xl sm:text-7xl font-bold tracking-tight"
+          style={{
+            color: '#c9a961',
+            textShadow: '0 0 30px rgba(201,169,97,0.5), 0 0 60px rgba(201,169,97,0.3)',
+          }}
+        >
+          St. Xavier's
+        </div>
+      </div>
+    );
+  }
   return (
     <div className={`relative ${className}`} style={{ height: '140px', width: '100%' }}>
       {/* CSS fallback always visible behind canvas */}
