@@ -40,6 +40,20 @@ const DOCS = [
   "Caste / income certificate (if applicable)",
 ];
 
+const AGE_CRITERIA = [
+  { grade: "Nursery", minAge: "3 years", cutoff: "as on 31 March" },
+  { grade: "LKG", minAge: "4 years", cutoff: "as on 31 March" },
+  { grade: "UKG", minAge: "5 years", cutoff: "as on 31 March" },
+  { grade: "Class 1", minAge: "6 years", cutoff: "as on 31 March" },
+];
+
+const KEY_DATES = [
+  { event: "Registration Opens", date: "Started", status: "active" },
+  { event: "Last Day to Register", date: "Rolling admissions", status: "info" },
+  { event: "Interaction / Assessment", date: "By appointment", status: "info" },
+  { event: "Session Begins", date: "April 2026", status: "future" },
+];
+
 export function Admissions() {
   return (
     <section id="admissions" className="relative overflow-hidden py-20 sm:py-28 bg-gradient-to-b from-cream to-background">
@@ -144,6 +158,59 @@ export function Admissions() {
               </Reveal>
             ))}
           </div>
+        </div>
+
+        {/* Age criteria + Key dates — two columns */}
+        <div className="mt-6 grid lg:grid-cols-2 gap-6">
+          {/* Age criteria */}
+          <Reveal variant="left" className="rounded-3xl border border-xavier/10 bg-card p-6 sm:p-9">
+            <h3 className="font-serif text-xl sm:text-2xl font-bold text-xavier-dark mb-1">Age criteria (Pre-Primary)</h3>
+            <p className="text-sm text-muted-foreground mb-5">Minimum age for admission to each grade.</p>
+            <div className="space-y-2.5">
+              {AGE_CRITERIA.map((row) => (
+                <div
+                  key={row.grade}
+                  className="flex items-center justify-between gap-3 rounded-xl bg-cream/60 px-4 py-3 border border-xavier/5"
+                >
+                  <span className="font-serif text-sm font-bold text-xavier-dark">{row.grade}</span>
+                  <span className="text-sm text-foreground/80">{row.minAge} {row.cutoff}</span>
+                </div>
+              ))}
+              <p className="text-[11px] text-muted-foreground mt-3">
+                For Class 2 onwards, admission is based on assessment and previous school records.
+              </p>
+            </div>
+          </Reveal>
+
+          {/* Key dates */}
+          <Reveal variant="right" className="rounded-3xl border border-xavier/10 bg-card p-6 sm:p-9">
+            <h3 className="font-serif text-xl sm:text-2xl font-bold text-xavier-dark mb-1">Key dates • Session 2026–27</h3>
+            <p className="text-sm text-muted-foreground mb-5">Important milestones in the admission cycle.</p>
+            <div className="space-y-2.5">
+              {KEY_DATES.map((row) => (
+                <div
+                  key={row.event}
+                  className="flex items-center justify-between gap-3 rounded-xl bg-cream/60 px-4 py-3 border border-xavier/5"
+                >
+                  <span className="text-sm font-medium text-foreground/80">{row.event}</span>
+                  <span
+                    className={`text-xs font-semibold px-2.5 py-1 rounded-full ${
+                      row.status === "active"
+                        ? "bg-green-100 text-green-700"
+                        : row.status === "future"
+                        ? "bg-xavier/10 text-xavier-dark"
+                        : "bg-muted text-muted-foreground"
+                    }`}
+                  >
+                    {row.date}
+                  </span>
+                </div>
+              ))}
+              <p className="text-[11px] text-muted-foreground mt-3">
+                Admissions are rolling — apply early to secure a seat.
+              </p>
+            </div>
+          </Reveal>
         </div>
       </div>
     </section>
