@@ -605,3 +605,73 @@ body[data-hi-active="true"] .text-balance {
     text-shadow: 0 0 40px rgba(201,169,97,0.7), 0 0 80px rgba(201,169,97,0.4), 0 0 120px rgba(201,169,97,0.2);
   }
 }
+
+
+/* ═══════════════════════════════════════════════════════════════
+   KEN BURNS — slow zoom on hero background image
+   ═══════════════════════════════════════════════════════════════ */
+@keyframes ken-burns {
+  0% {
+    transform: scale(1) translate(0, 0);
+  }
+  50% {
+    transform: scale(1.08) translate(-1%, -1%);
+  }
+  100% {
+    transform: scale(1) translate(0, 0);
+  }
+}
+
+.animate-ken-burns {
+  animation: ken-burns 30s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-ken-burns {
+    animation: none;
+  }
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   FOCUS VISIBLE — accessibility improvement for keyboard nav
+   ═══════════════════════════════════════════════════════════════ */
+:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Remove default outline only when not keyboard-focused */
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   SCROLL MARGIN — for anchor navigation offset
+   ═══════════════════════════════════════════════════════════════ */
+section[id] {
+  scroll-margin-top: 80px;
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   PRINT STYLES
+   ═══════════════════════════════════════════════════════════════ */
+@media print {
+  .animate-ken-burns,
+  .marquee,
+  .sticky-apply-bar,
+  .whatsapp-button,
+  .back-to-top,
+  .custom-cursor,
+  .scroll-progress-ring {
+    display: none !important;
+    animation: none !important;
+  }
+  body {
+    background: white !important;
+    color: black !important;
+  }
+}

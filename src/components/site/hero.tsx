@@ -23,14 +23,14 @@ export function Hero() {
       className="relative min-h-[92svh] sm:min-h-[100svh] w-full overflow-hidden bg-xavier-dark"
     >
       {/* Background image — static */}
-      <div className="absolute inset-0 z-0">
+      <div className="absolute inset-0 z-0 overflow-hidden">
         <SmartImage
           src="/school/home.jpg"
           alt="St. Xavier's Jr./Sr. School, Goshala Road, Muzaffarpur"
           fill
           priority
           sizes="100vw"
-          className="object-cover"
+          className="object-cover animate-ken-burns"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-xavier-dark/55 via-xavier-dark/80 to-xavier-dark" />
         <div className="absolute inset-0 bg-gradient-to-r from-xavier-dark/90 via-xavier-dark/55 to-xavier-dark/30" />
