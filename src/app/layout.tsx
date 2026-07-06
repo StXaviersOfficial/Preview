@@ -5,6 +5,7 @@ import { CustomCursor, ScrollProgressRing, PageCurtain } from "@/components/site
 import { ThemeProvider } from "@/components/theme-provider";
 import { LanguageProvider } from "@/components/site/language-provider";
 import { AnalyticsTracker } from "@/components/site/analytics-tracker";
+import { CookieConsent } from "@/components/site/cookie-consent";
 import { analyticsScript, gaId } from "@/lib/site/analytics";
 
 const geistSans = Geist({
@@ -217,6 +218,7 @@ export default function RootLayout({
             <CustomCursor />
             <ScrollProgressRing />
             <AnalyticsTracker />
+            <CookieConsent />
             {children}
           </LanguageProvider>
         </ThemeProvider>
