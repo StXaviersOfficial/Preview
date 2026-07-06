@@ -2,7 +2,8 @@
 
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { STATS } from "@/lib/site/data";
+import { Sparkles } from "lucide-react";
+import { STATS, SCHOOL } from "@/lib/site/data";
 import { AnimatedCounter, TiltCard, Halo, BorderShimmer } from "@/components/site/animations";
 import { Reveal } from "@/components/site/reveal";
 
@@ -11,9 +12,28 @@ export function Stats() {
   const inView = useInView(ref, { once: true, amount: 0.3 });
 
   return (
-    <section className="relative -mt-16 sm:-mt-20 z-30 px-4 sm:px-6">
-      <div className="container mx-auto max-w-7xl">
-        <div ref={ref} className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-5">
+    <>
+      {/* Achievement banner — 100% AISSCE Result */}
+      <section className="relative z-30 px-4 sm:px-6 pt-2 pb-1">
+        <div className="container mx-auto max-w-7xl">
+          <Reveal variant="elastic" delay={0}>
+            <div className="rounded-2xl bg-gradient-to-r from-xavier-dark via-xavier to-xavier-dark text-cream-fg p-3 sm:p-4 flex items-center justify-center gap-3 sm:gap-4 shadow-elegant">
+              <Sparkles className="size-5 sm:size-6 text-gold-light shrink-0 animate-glow-pulse" />
+              <p className="text-xs sm:text-sm font-medium text-center">
+                <span className="font-serif italic text-gold-light">100% AISSCE 2026 Result</span>
+                {" — "}
+                Topper <span className="font-bold">{SCHOOL.topScorer.name}</span> scored{" "}
+                <span className="font-bold text-gold-light">{SCHOOL.topScorer.score}</span>
+                <span className="hidden sm:inline"> in {SCHOOL.topScorer.exam}</span>
+              </p>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      <section className="relative -mt-4 sm:-mt-6 z-30 px-4 sm:px-6">
+        <div className="container mx-auto max-w-7xl">
+          <div ref={ref} className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-5">
           {STATS.map((stat, i) => (
             <Reveal
               key={stat.label}
@@ -60,5 +80,6 @@ export function Stats() {
         </div>
       </div>
     </section>
+    </>
   );
 }
