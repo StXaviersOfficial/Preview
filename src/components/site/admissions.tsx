@@ -1,6 +1,6 @@
 'use client'
 
-import { ClipboardCheck, FileText, CalendarCheck, HandCoins, ArrowRight, CheckCircle2, Phone } from "lucide-react";
+import { ClipboardCheck, FileText, CalendarCheck, HandCoins, ArrowRight, CheckCircle2, Phone, Download } from "lucide-react";
 import { SCHOOL } from "@/lib/site/data";
 import { Reveal } from "@/components/site/reveal";
 
@@ -136,6 +136,13 @@ export function Admissions() {
               >
                 Send an Enquiry
                 <ArrowRight className="size-4" />
+              </a>
+              <a
+                href="tel:+919835061341"
+                className="flex items-center justify-center gap-2 w-full rounded-full border border-cream/30 px-5 py-3 text-sm font-semibold text-cream-fg hover:bg-cream/10 transition-colors"
+              >
+                <Download className="size-4" />
+                Request Prospectus
               </a>
             </div>
           </div>
