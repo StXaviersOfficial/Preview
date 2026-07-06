@@ -144,6 +144,7 @@ export function PageCurtain() {
 export function ScrollProgressRing() {
   const { scrollYProgress } = useScroll();
   const pathLength = useSpring(scrollYProgress, { stiffness: 80, damping: 20 });
+  const scaleX = useSpring(scrollYProgress, { stiffness: 120, damping: 30 });
   const [docHidden, setDocHidden] = useState(false);
 
   useEffect(() => {
@@ -159,30 +160,44 @@ export function ScrollProgressRing() {
   // The visual effect is negligible (ring stays at last position).
 
   return (
-    <div className="sx-scroll-ring" style={{ opacity: docHidden ? 0 : 1, transition: "opacity 0.3s" }}>
-      <svg width="56" height="56" viewBox="0 0 56 56">
-        <circle
-          cx="28" cy="28" r="24"
-          fill="none"
-          stroke="rgba(139,26,43,0.12)"
-          strokeWidth="3"
-        />
-        <motion.circle
-          cx="28" cy="28" r="24"
-          fill="none"
-          stroke="url(#ring-gradient)"
-          strokeWidth="3"
-          strokeLinecap="round"
-          style={{ pathLength, rotate: -90, transformOrigin: "center" }}
-        />
-        <defs>
-          <linearGradient id="ring-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="oklch(0.42 0.18 18)" />
-            <stop offset="100%" stopColor="oklch(0.78 0.14 75)" />
-          </linearGradient>
-        </defs>
-      </svg>
-    </div>
+    <>
+      {/* Linear progress bar at top of page */}
+      <motion.div
+        className="fixed top-0 left-0 right-0 h-1 z-[60] origin-left pointer-events-none"
+        style={{
+          scaleX,
+          background: "linear-gradient(90deg, oklch(0.42 0.18 18), oklch(0.78 0.14 75))",
+          opacity: docHidden ? 0 : 1,
+          transition: "opacity 0.3s",
+        }}
+        aria-hidden
+      />
+      {/* Circular progress ring (top-right) */}
+      <div className="sx-scroll-ring" style={{ opacity: docHidden ? 0 : 1, transition: "opacity 0.3s" }}>
+        <svg width="56" height="56" viewBox="0 0 56 56">
+          <circle
+            cx="28" cy="28" r="24"
+            fill="none"
+            stroke="rgba(139,26,43,0.12)"
+            strokeWidth="3"
+          />
+          <motion.circle
+            cx="28" cy="28" r="24"
+            fill="none"
+            stroke="url(#ring-gradient)"
+            strokeWidth="3"
+            strokeLinecap="round"
+            style={{ pathLength, rotate: -90, transformOrigin: "center" }}
+          />
+          <defs>
+            <linearGradient id="ring-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="oklch(0.42 0.18 18)" />
+              <stop offset="100%" stopColor="oklch(0.78 0.14 75)" />
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
+    </>
   );
 }
 
