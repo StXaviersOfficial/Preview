@@ -1,6 +1,6 @@
 'use client'
 
-import { MapPin, Phone, Mail, Instagram, Facebook, ArrowRight, Globe, Heart } from "lucide-react";
+import { MapPin, Phone, Mail, Instagram, Facebook, ArrowRight, Globe, Heart, MessageCircle, ArrowUp } from "lucide-react";
 import { SCHOOL, PAGE_LINKS } from "@/lib/site/data";
 import { Reveal } from "@/components/site/reveal";
 
@@ -62,7 +62,7 @@ export function Footer() {
                 href={SCHOOL.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="size-10 rounded-full glass-dark flex items-center justify-center hover:bg-cream/10 transition-colors"
+                className="size-10 rounded-full glass-dark flex items-center justify-center hover:bg-cream/10 hover:scale-110 transition-all"
                 aria-label="Instagram"
               >
                 <Instagram className="size-4" />
@@ -71,17 +71,33 @@ export function Footer() {
                 href={SCHOOL.facebook}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="size-10 rounded-full glass-dark flex items-center justify-center hover:bg-cream/10 transition-colors"
+                className="size-10 rounded-full glass-dark flex items-center justify-center hover:bg-cream/10 hover:scale-110 transition-all"
                 aria-label="Facebook"
               >
                 <Facebook className="size-4" />
               </a>
               <a
+                href={`https://wa.me/91${SCHOOL.phones[0]}?text=${encodeURIComponent("Hello! I'm interested in admission at St. Xavier's School. Please share details.")}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="size-10 rounded-full glass-dark flex items-center justify-center hover:bg-cream/10 hover:scale-110 transition-all"
+                aria-label="Chat on WhatsApp"
+              >
+                <MessageCircle className="size-4" />
+              </a>
+              <a
                 href={`mailto:${SCHOOL.email}`}
-                className="size-10 rounded-full glass-dark flex items-center justify-center hover:bg-cream/10 transition-colors"
+                className="size-10 rounded-full glass-dark flex items-center justify-center hover:bg-cream/10 hover:scale-110 transition-all"
                 aria-label="Email"
               >
                 <Mail className="size-4" />
+              </a>
+              <a
+                href={`tel:+91${SCHOOL.phones[0]}`}
+                className="size-10 rounded-full glass-dark flex items-center justify-center hover:bg-cream/10 hover:scale-110 transition-all"
+                aria-label="Call us"
+              >
+                <Phone className="size-4" />
               </a>
             </div>
           </Reveal>
@@ -156,9 +172,19 @@ export function Footer() {
               <a href="/privacy" className="hover:text-gold-light transition-colors">Privacy Policy</a>
               {" • "}
               <a href="/terms" className="hover:text-gold-light transition-colors">Terms of Use</a></p>
-          <p className="flex items-center gap-1.5">
-            Crafted with <Heart className="size-3 text-gold fill-gold" /> for the St. Xavier&apos;s community
-          </p>
+          <div className="flex items-center gap-4">
+            <a
+              href="#home"
+              className="inline-flex items-center gap-1.5 hover:text-gold-light transition-colors"
+              aria-label="Back to top"
+            >
+              <ArrowUp className="size-3" />
+              Back to top
+            </a>
+            <p className="flex items-center gap-1.5">
+              Crafted with <Heart className="size-3 text-gold fill-gold" /> for the St. Xavier&apos;s community
+            </p>
+          </div>
         </div>
       </div>
 
