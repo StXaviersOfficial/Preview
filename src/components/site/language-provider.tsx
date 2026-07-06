@@ -17,7 +17,14 @@ const LanguageContext = createContext<LanguageContextType>({
 });
 
 export function LanguageProvider({ children, defaultLang = 'en' }: { children: ReactNode; defaultLang?: Lang }) {
-  const [lang, setLangState] = useState<Lang>(defaultLang);
+  const [lang, setLangState] = useState<Lang>(() => {
+    if (typeof window === 'undefined') return defaultLang;
+    try {
+      const stored = localStorage.getItem('xavier-lang') as Lang;
+      if (stored === 'en' || stored === 'hi') return stored;
+    } catch {}
+    return defaultLang;
+  });
   // Track whether we've read from localStorage yet — prevents the write
   // effect from overwriting the stored value with the default 'en' on
   // the very first mount.

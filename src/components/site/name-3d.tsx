@@ -121,7 +121,7 @@ export function Name3D({ className = '' }: { className?: string }) {
         camera={{ position: [0, 0, 5], fov: 50 }}
         dpr={[1, 2]}
         gl={{ antialias: true, alpha: true, powerPreference: 'high-performance' }}
-        style={{ background: 'transparent', position: 'relative', zIndex: 10 }}
+        style={{ background: 'transparent', position: 'relative', zIndex: 10, pointerEvents: 'none' }}
       >
         <Suspense fallback={null}>
           <ambientLight intensity={0.4} />

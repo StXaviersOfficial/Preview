@@ -102,6 +102,7 @@ export function Navbar() {
                       src="/school/logo-white.png"
                       alt="St. Xavier's logo"
                       className="h-full w-full object-contain scale-110"
+                      loading="eager"
                     />
                   </div>
                   <span className="absolute -top-0.5 -right-0.5 size-2 sm:size-3 rounded-full bg-gold" />

@@ -143,6 +143,7 @@ export function FAQ() {
               >
                 <button
                   onClick={() => setOpen(open === faq.id ? null : faq.id)}
+                  onKeyDown={(e) => { if (e.key === "Escape") setOpen(null); }}
                   aria-expanded={open === faq.id}
                   aria-controls={`faq-answer-${faq.id}`}
                   className="w-full px-5 py-4 flex items-center justify-between gap-3 text-left"

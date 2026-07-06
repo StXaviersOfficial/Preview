@@ -259,7 +259,7 @@ export function TiltCard({
   const sRx = useSpring(rx, { stiffness: 200, damping: 15 });
   const sRy = useSpring(ry, { stiffness: 200, damping: 15 });
 
-  const onMove = (e: React.MouseEvent) => {
+  const onMove = (e: React.PointerEvent) => {
     const el = ref.current;
     if (!el) return;
     const rect = el.getBoundingClientRect();
@@ -276,8 +276,8 @@ export function TiltCard({
   return (
     <motion.div
       ref={ref}
-      onMouseMove={onMove}
-      onMouseLeave={onLeave}
+      onPointerMove={onMove}
+      onPointerLeave={onLeave}
       style={{ rotateX: sRx, rotateY: sRy, transformStyle: "preserve-3d" }}
       className={`sx-tilt ${className}`}
     >
@@ -291,7 +291,7 @@ export function TiltCard({
    ============================================================ */
 export function Spotlight({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   const ref = useRef<HTMLDivElement>(null);
-  const onMove = (e: React.MouseEvent) => {
+  const onMove = (e: React.PointerEvent) => {
     const el = ref.current;
     if (!el) return;
     const rect = el.getBoundingClientRect();
@@ -299,7 +299,7 @@ export function Spotlight({ children, className = "" }: { children: React.ReactN
     el.style.setProperty("--my", `${e.clientY - rect.top}px`);
   };
   return (
-    <div ref={ref} onMouseMove={onMove} className={`sx-spotlight ${className}`}>
+    <div ref={ref} onPointerMove={onMove} className={`sx-spotlight ${className}`}>
       {children}
     </div>
   );
@@ -312,7 +312,7 @@ export function Spotlight({ children, className = "" }: { children: React.ReactN
 export function Magnetic({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   const ref = useRef<HTMLDivElement>(null);
 
-  const onMove = (e: React.MouseEvent) => {
+  const onMove = (e: React.PointerEvent) => {
     const el = ref.current;
     if (!el) return;
     const rect = el.getBoundingClientRect();
@@ -328,8 +328,8 @@ export function Magnetic({ children, className = "" }: { children: React.ReactNo
   return (
     <div
       ref={ref}
-      onMouseMove={onMove}
-      onMouseLeave={onLeave}
+      onPointerMove={onMove}
+      onPointerLeave={onLeave}
       className={`sx-magnetic ${className}`}
       style={{ transition: "transform 0.3s cubic-bezier(0.22,1,0.36,1)" }}
     >
@@ -1023,8 +1023,8 @@ export function FlipCard({
   return (
     <div
       className={`group relative h-full [perspective:1200px] cursor-pointer ${className}`}
-      onMouseEnter={() => setFlipped(true)}
-      onMouseLeave={() => setFlipped(false)}
+      onPointerEnter={() => setFlipped(true)}
+      onPointerLeave={() => setFlipped(false)}
       onClick={() => setFlipped((f) => !f)}
     >
       <motion.div

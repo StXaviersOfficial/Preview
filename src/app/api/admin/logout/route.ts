@@ -1,13 +1,15 @@
 import { NextResponse } from "next/server";
-import { clearAdminSession, isAdmin } from "@/lib/site/admin-session";
-import { db } from "@/lib/db";
+import { isAdmin } from "@/lib/site/admin-session";
+import { clearAdminSession } from "@/lib/site/admin-session";
 
 export const runtime = "nodejs";
 
 export async function POST() {
-  if (await isAdmin()) {
-    await db.adminLog.create({ data: { action: "logout", detail: "Admin logged out" } }).catch(() => null);
+  try {
+    await clearAdminSession();
+    return NextResponse.json({ ok: true });
+  } catch (err) {
+    console.error("[/api/admin/logout] Error:", err);
+    return NextResponse.json({ ok: false, error: "Logout failed." }, { status: 500 });
   }
-  await clearAdminSession();
-  return NextResponse.json({ ok: true });
 }

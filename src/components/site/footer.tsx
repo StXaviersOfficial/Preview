@@ -151,7 +151,11 @@ export function Footer() {
 
         {/* Bottom row */}
         <div className="pt-5 sm:pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-cream-fg/50">
-          <p className="text-center sm:text-left">© {new Date().getFullYear()} St. Xavier&apos;s Jr./Sr. School, Muzaffarpur. All rights reserved.</p>
+          <p className="text-center sm:text-left">© {new Date().getFullYear()} St. Xavier&apos;s Jr./Sr. School, Muzaffarpur. All rights reserved.
+              <br />
+              <a href="/privacy" className="hover:text-gold-light transition-colors">Privacy Policy</a>
+              {" • "}
+              <a href="/terms" className="hover:text-gold-light transition-colors">Terms of Use</a></p>
           <p className="flex items-center gap-1.5">
             Crafted with <Heart className="size-3 text-gold fill-gold" /> for the St. Xavier&apos;s community
           </p>
