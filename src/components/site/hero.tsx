@@ -1,24 +1,16 @@
 'use client'
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { ArrowRight, ChevronDown, Sparkles, Award, BookOpen, Users, Phone } from "lucide-react";
 import { SCHOOL, IMAGES } from "@/lib/site/data";
 import { Magnetic, ConfettiBurst } from "@/components/site/animations";
 import { trackApplyNow, trackOutbound } from "@/lib/site/analytics";
 import { Reveal } from "@/components/site/reveal";
 import { Name3D } from "@/components/site/name-3d";
+import { SmartImage } from "@/components/site/smart-image";
 
 export function Hero() {
   const [confetti, setConfetti] = useState<{ x: number; y: number; active: boolean }>({ x: 0, y: 0, active: false });
-  const [reducedMotion, setReducedMotion] = useState(false);
-
-  useEffect(() => {
-    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
-    setReducedMotion(mq.matches);
-    const handler = (e: MediaQueryListEvent) => setReducedMotion(e.matches);
-    mq.addEventListener("change", handler);
-    return () => mq.removeEventListener("change", handler);
-  }, []);
 
   const triggerConfetti = (e: React.MouseEvent) => {
     setConfetti({ x: e.clientX, y: e.clientY, active: true });
@@ -30,27 +22,18 @@ export function Hero() {
       id="home"
       className="relative min-h-[92svh] sm:min-h-[100svh] w-full overflow-hidden bg-xavier-dark"
     >
-      {/* Background video — ambient, muted, looping.
-          Layer order: video → dark overlay → 3D canvas → content/CTAs.
-          Poster image provides instant first paint (LCP).
-          preload="metadata" prevents eager buffering.
-          prefers-reduced-motion: video doesn't autoplay, poster stays. */}
+      {/* Background image — static */}
       <div className="absolute inset-0 z-0">
-        <video
-          autoPlay={!reducedMotion}
-          muted
-          loop
-          playsInline
-          preload="metadata"
-          poster="/video/stxaviersbg-poster.jpg"
-          className="absolute inset-0 h-full w-full object-cover"
-          aria-hidden="true"
-        >
-          <source src="/video/stxaviersbg.mp4" type="video/mp4" />
-        </video>
-        {/* Semi-transparent dark overlay — keeps video ambient, not loud */}
-        <div className="absolute inset-0 bg-gradient-to-b from-xavier-dark/45 via-xavier-dark/65 to-xavier-dark/85" />
-        <div className="absolute inset-0 bg-gradient-to-r from-xavier-dark/80 via-xavier-dark/45 to-xavier-dark/20" />
+        <SmartImage
+          src="/school/home.jpg"
+          alt="St. Xavier's Jr./Sr. School, Goshala Road, Muzaffarpur"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-xavier-dark/55 via-xavier-dark/80 to-xavier-dark" />
+        <div className="absolute inset-0 bg-gradient-to-r from-xavier-dark/90 via-xavier-dark/55 to-xavier-dark/30" />
       </div>
 
       {/* Static decorative glows */}
@@ -101,11 +84,13 @@ export function Hero() {
             </div>
           </Reveal>
 
-          {/* Subtitle — "Jr./Sr. School" sits directly under the 3D name */}
+          {/* HUGE Headline — EXPLODE (starts big + blurry, shrinks to normal) */}
           <Reveal variant="explode" delay={0.4}>
-            <h2 className="font-serif text-cream-fg/85 font-medium tracking-wide text-xl sm:text-3xl lg:text-4xl leading-tight -mt-1 sm:-mt-2">
-              Jr./Sr. School
-            </h2>
+            <h1 className="font-serif text-cream-fg font-bold tracking-tight text-balance leading-[0.92] text-[clamp(2.75rem,11vw,8rem)]">
+              <span className="inline-block text-[0.45em] sm:text-[0.45em] text-cream-fg/85 font-medium tracking-wide">
+                Jr./Sr. School
+              </span>
+            </h1>
           </Reveal>
 
           {/* Sub-tagline — BLUR fade */}

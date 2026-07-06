@@ -586,6 +586,15 @@ body[data-hi-active="true"] .text-balance {
 
 
 /* ═══════════════════════════════════════════════════════════════
+   SHIMMER — for ChunkSkeleton loading state
+   ═══════════════════════════════════════════════════════════════ */
+@keyframes shimmer-sweep {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
    3D NAME — fallback glow animation
    ═══════════════════════════════════════════════════════════════ */
 @keyframes name-glow {
