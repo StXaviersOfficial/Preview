@@ -4,6 +4,7 @@ import "./globals.css";
 import { CustomCursor, ScrollProgressRing, PageCurtain } from "@/components/site/animations";
 import { ThemeProvider } from "@/components/theme-provider";
 import { LanguageProvider } from "@/components/site/language-provider";
+import { AnalyticsTracker } from "@/components/site/analytics-tracker";
 import { analyticsScript, gaId } from "@/lib/site/analytics";
 
 const geistSans = Geist({
@@ -215,6 +216,7 @@ export default function RootLayout({
             <PageCurtain />
             <CustomCursor />
             <ScrollProgressRing />
+            <AnalyticsTracker />
             {children}
           </LanguageProvider>
         </ThemeProvider>
