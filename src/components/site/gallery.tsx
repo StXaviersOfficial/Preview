@@ -2,7 +2,7 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useCallback, useEffect } from "react";
-import { X, ChevronLeft, ChevronRight, ZoomIn, Camera } from "lucide-react";
+import { X, ChevronLeft, ChevronRight, ZoomIn, Camera, Share2 } from "lucide-react";
 import { IMAGES } from "@/lib/site/data";
 import { Reveal } from "@/components/site/reveal";
 import { SmartImage } from "@/components/site/smart-image";
@@ -146,6 +146,33 @@ export function Gallery() {
               aria-label="Close"
             >
               <X className="size-5" />
+            </button>
+            <button
+              onClick={async (e) => {
+                e.stopPropagation();
+                const item = filtered[lightbox];
+                if (!item) return;
+                if (navigator.share) {
+                  try {
+                    await navigator.share({
+                      title: item.title,
+                      text: `${item.title} — St. Xavier's Jr./Sr. School, Muzaffarpur`,
+                      url: window.location.href,
+                    });
+                  } catch {}
+                } else {
+                  // Fallback: copy URL to clipboard
+                  try {
+                    await navigator.clipboard.writeText(window.location.href);
+                    alert("Link copied to clipboard!");
+                  } catch {}
+                }
+              }}
+              className="absolute top-5 left-5 sm:top-6 sm:left-6 size-10 sm:size-11 rounded-full glass flex items-center justify-center text-cream-fg hover:bg-cream/15 transition-colors z-10"
+              aria-label="Share"
+              title="Share this photo"
+            >
+              <Share2 className="size-5" />
             </button>
             <button
               onClick={(e) => { e.stopPropagation(); prev(); }}
