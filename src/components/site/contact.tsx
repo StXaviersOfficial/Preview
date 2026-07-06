@@ -231,9 +231,28 @@ export function Contact() {
                   ))}
                 </div>
                 <div>
-                  <label htmlFor="message" className="block text-xs font-semibold text-foreground/70 mb-1.5 uppercase tracking-wide">
-                    Message <span className="text-muted-foreground normal-case">(optional)</span>
-                  </label>
+                  <div className="flex items-center justify-between mb-1.5">
+                    <label htmlFor="message" className="block text-xs font-semibold text-foreground/70 uppercase tracking-wide">
+                      Message <span className="text-muted-foreground normal-case">(optional)</span>
+                    </label>
+                    <div className="flex gap-1">
+                      <button
+                        type="button"
+                        onClick={() => setForm({ ...form, message: "I would like to know about the admission process for my child. Please share the fee structure and required documents." })}
+                        className="text-[10px] text-xavier-dark hover:underline font-medium"
+                      >
+                        Admission enquiry
+                      </button>
+                      <span className="text-muted-foreground/40">·</span>
+                      <button
+                        type="button"
+                        onClick={() => setForm({ ...form, message: "I would like to schedule a campus visit. Please let me know the available dates and times." })}
+                        className="text-[10px] text-xavier-dark hover:underline font-medium"
+                      >
+                        Campus visit
+                      </button>
+                    </div>
+                  </div>
                   <textarea
                     id="message"
                     rows={4}
