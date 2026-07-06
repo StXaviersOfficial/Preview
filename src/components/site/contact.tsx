@@ -270,7 +270,7 @@ export function Contact() {
         {/* Map */}
         <Reveal
           variant="blur"
-          className="mt-4 sm:mt-6 rounded-2xl overflow-hidden border border-xavier/10 shadow-elegant"
+          className="mt-4 sm:mt-6 rounded-2xl overflow-hidden border border-xavier/10 shadow-elegant relative"
         >
           <iframe
             title="St. Xavier's School location"
@@ -279,6 +279,17 @@ export function Contact() {
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
           />
+          {/* Floating "Get Directions" button */}
+          <a
+            href={`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(SCHOOL.mapQuery)}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => trackOutbound("maps", "contact_directions")}
+            className="absolute bottom-4 right-4 inline-flex items-center gap-2 rounded-full bg-xavier-gradient px-4 py-2.5 text-xs font-semibold text-cream-fg shadow-glow-xavier hover:scale-105 transition-transform"
+          >
+            <MapPin className="size-3.5" />
+            Get Directions
+          </a>
         </Reveal>
       </div>
     </section>
