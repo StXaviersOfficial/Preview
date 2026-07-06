@@ -161,7 +161,7 @@ export default function AlumniPage() {
                 We'd love to hear from you. Share your story, reconnect with classmates, and mentor current students.
               </p>
               <a
-                href="#contact"
+                href="/#contact"
                 className="inline-flex items-center gap-2 rounded-full bg-gold-gradient px-6 py-3 text-sm font-bold text-xavier-dark shadow-glow-gold"
               >
                 Get in Touch
