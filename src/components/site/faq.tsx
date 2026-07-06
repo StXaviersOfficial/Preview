@@ -1,8 +1,8 @@
 'use client'
 
 import { motion, AnimatePresence } from "framer-motion";
-import { useEffect, useState } from "react";
-import { HelpCircle, ChevronDown, RefreshCw } from "lucide-react";
+import { useEffect, useMemo, useState } from "react";
+import { HelpCircle, ChevronDown, RefreshCw, Search, X } from "lucide-react";
 import { Reveal } from "@/components/site/reveal";
 
 type Faq = {
@@ -24,6 +24,7 @@ export function FAQ() {
   const [loading, setLoading] = useState(true);
   const [open, setOpen] = useState<string | null>(null);
   const [filter, setFilter] = useState<string>("all");
+  const [search, setSearch] = useState("");
 
   const [error, setError] = useState(false);
 
@@ -51,7 +52,17 @@ export function FAQ() {
   useEffect(() => { loadFaqs(); }, []);
 
   const categories = Array.from(new Set(faqs.map((f) => f.category)));
-  const filtered = filter === "all" ? faqs : faqs.filter((f) => f.category === filter);
+  const filtered = useMemo(() => {
+    let result = filter === "all" ? faqs : faqs.filter((f) => f.category === filter);
+    if (search.trim()) {
+      const q = search.toLowerCase();
+      result = result.filter((f) =>
+        f.question.toLowerCase().includes(q) ||
+        f.answer.toLowerCase().includes(q)
+      );
+    }
+    return result;
+  }, [faqs, filter, search]);
 
   return (
     <section id="faq" className="relative py-16 sm:py-24 bg-cream-gradient overflow-hidden">
@@ -79,6 +90,30 @@ export function FAQ() {
             Everything parents ask us — about admissions, facilities, academics and life at Xavier&apos;s.
           </p>
         </Reveal>
+
+        {/* Search box */}
+        {!loading && !error && faqs.length > 0 && (
+          <div className="relative max-w-xl mx-auto mb-6">
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 size-4 text-muted-foreground pointer-events-none" />
+            <input
+              type="search"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              placeholder="Search questions…"
+              aria-label="Search FAQs"
+              className="w-full rounded-full border border-xavier/15 bg-card pl-11 pr-10 py-2.5 text-sm text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:ring-2 focus:ring-xavier/30 focus:border-xavier/40 transition-colors"
+            />
+            {search && (
+              <button
+                onClick={() => setSearch("")}
+                className="absolute right-3 top-1/2 -translate-y-1/2 size-6 rounded-full bg-xavier/10 hover:bg-xavier/20 flex items-center justify-center text-xavier-dark transition-colors"
+                aria-label="Clear search"
+              >
+                <X className="size-3.5" />
+              </button>
+            )}
+          </div>
+        )}
 
         {/* Category filter */}
         {categories.length > 1 && (
@@ -128,7 +163,20 @@ export function FAQ() {
         ) : filtered.length === 0 ? (
           <div className="rounded-2xl border border-xavier/10 bg-card p-8 text-center text-muted-foreground">
             <HelpCircle className="size-10 mx-auto mb-3 text-gold/40" />
-            No FAQs available right now. Please contact the school office for any questions.
+            {search ? (
+              <>
+                <p className="text-sm">No questions match &ldquo;{search}&rdquo;.</p>
+                <p className="text-xs mt-1">Try a different search term or browse all FAQs.</p>
+                <button
+                  onClick={() => setSearch("")}
+                  className="mt-3 inline-flex items-center gap-1.5 rounded-full bg-xavier-gradient px-4 py-2 text-xs font-semibold text-cream-fg"
+                >
+                  Clear search
+                </button>
+              </>
+            ) : (
+              <p>No FAQs available right now. Please contact the school office for any questions.</p>
+            )}
           </div>
         ) : (
           <div className="space-y-2.5">
