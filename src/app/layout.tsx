@@ -129,6 +129,7 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@type": "School",
   name: "St. Xavier's Jr./Sr. School",
+  alternateName: "St. Xavier's School Muzaffarpur",
   description: "A premier CBSE co-educational institution since 1976, located on Goshala Road, Muzaffarpur, Bihar. Day school offering Nursery to Class 12 education with smart classes, modern labs, swimming pool, sports academy, and holistic development.",
   url: SITE_URL,
   logo: `${SITE_URL}/school/logo.png`,
@@ -160,6 +161,26 @@ const jsonLd = {
   ],
   areaServed: "Muzaffarpur, Bihar",
   gradeRange: "Nursery to Class 12",
+  openingHoursSpecification: [
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+      opens: "08:00",
+      closes: "14:00",
+    },
+  ],
+  contactPoint: [
+    {
+      "@type": "ContactPoint",
+      telephone: "+91-9835061341",
+      contactType: "admissions",
+      email: "helpdesk@stxaviers.org",
+      areaServed: "IN",
+      availableLanguage: ["English", "Hindi"],
+    },
+  ],
+  numberOfStudents: "1222",
+  numberOfEmployees: "71",
 };
 
 export default function RootLayout({
