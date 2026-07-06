@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { Reveal } from "@/components/site/reveal";
-import { Calendar, AlertCircle, Bell, Search, X } from "lucide-react";
+import { Calendar, AlertCircle, Bell, Search, X, Printer } from "lucide-react";
 
 type Notice = {
   id: string;
@@ -49,26 +49,37 @@ export function NoticesList({ notices }: { notices: Notice[] }) {
 
   return (
     <>
-      {/* Search box */}
-      <div className="relative max-w-xl mb-4">
-        <Search className="absolute left-4 top-1/2 -translate-y-1/2 size-4 text-muted-foreground pointer-events-none" />
-        <input
-          type="search"
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-          placeholder="Search notices…"
-          aria-label="Search notices"
-          className="w-full rounded-full border border-xavier/15 bg-card pl-11 pr-10 py-2.5 text-sm text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:ring-2 focus:ring-xavier/30 focus:border-xavier/40 transition-colors"
-        />
-        {search && (
-          <button
-            onClick={() => setSearch("")}
-            className="absolute right-3 top-1/2 -translate-y-1/2 size-6 rounded-full bg-xavier/10 hover:bg-xavier/20 flex items-center justify-center text-xavier-dark transition-colors"
-            aria-label="Clear search"
-          >
-            <X className="size-3.5" />
-          </button>
-        )}
+      {/* Search box + Print button */}
+      <div className="flex gap-3 mb-4">
+        <div className="relative flex-1 max-w-xl">
+          <Search className="absolute left-4 top-1/2 -translate-y-1/2 size-4 text-muted-foreground pointer-events-none" />
+          <input
+            type="search"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            placeholder="Search notices…"
+            aria-label="Search notices"
+            className="w-full rounded-full border border-xavier/15 bg-card pl-11 pr-10 py-2.5 text-sm text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:ring-2 focus:ring-xavier/30 focus:border-xavier/40 transition-colors"
+          />
+          {search && (
+            <button
+              onClick={() => setSearch("")}
+              className="absolute right-3 top-1/2 -translate-y-1/2 size-6 rounded-full bg-xavier/10 hover:bg-xavier/20 flex items-center justify-center text-xavier-dark transition-colors"
+              aria-label="Clear search"
+            >
+              <X className="size-3.5" />
+            </button>
+          )}
+        </div>
+        <button
+          onClick={() => window.print()}
+          className="shrink-0 inline-flex items-center gap-2 rounded-full border border-xavier/20 px-4 py-2.5 text-xs font-semibold text-xavier-dark hover:bg-xavier/5 transition-colors"
+          aria-label="Print notices"
+          title="Print or save as PDF"
+        >
+          <Printer className="size-4" />
+          <span className="hidden sm:inline">Print</span>
+        </button>
       </div>
 
       {/* Category filter — functional */}
