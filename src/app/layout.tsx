@@ -4,6 +4,7 @@ import "./globals.css";
 import { CustomCursor, ScrollProgressRing, PageCurtain } from "@/components/site/animations";
 import { ThemeProvider } from "@/components/theme-provider";
 import { LanguageProvider } from "@/components/site/language-provider";
+import { SmoothScroll } from "@/components/site/smooth-scroll";
 import { analyticsScript, gaId } from "@/lib/site/analytics";
 
 const geistSans = Geist({
@@ -191,10 +192,12 @@ export default function RootLayout({
       >
         <ThemeProvider defaultTheme="system" storageKey="xavier-theme">
           <LanguageProvider defaultLang="en">
-            <PageCurtain />
-            <CustomCursor />
-            <ScrollProgressRing />
-            {children}
+            <SmoothScroll>
+              <PageCurtain />
+              <CustomCursor />
+              <ScrollProgressRing />
+              {children}
+            </SmoothScroll>
           </LanguageProvider>
         </ThemeProvider>
       </body>
