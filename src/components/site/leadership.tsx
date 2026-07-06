@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { Crown, Briefcase, Users, GraduationCap, Quote, type LucideIcon } from "lucide-react";
 import { SCHOOL } from "@/lib/site/data";
 import { Reveal } from "@/components/site/reveal";
+import { SmartImage } from "@/components/site/smart-image";
 
 const ROLE_ICONS: Record<string, LucideIcon> = {
   "Chairman": Crown,
@@ -48,10 +49,11 @@ export function Leadership() {
                 className="group relative rounded-2xl overflow-hidden border border-cream/10 bg-cream/5"
               >
                 <div className="relative aspect-[4/5] overflow-hidden">
-                  <img
+                  <SmartImage
                     src={leader.image}
                     alt={`${leader.name}, ${leader.role}, St. Xavier's Jr./Sr. School`}
-                    loading="lazy"
+                    fill
+                    sizes="(max-width: 1024px) 50vw, 25vw"
                     className="absolute inset-0 h-full w-full object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-xavier-dark via-xavier-dark/30 to-transparent" />

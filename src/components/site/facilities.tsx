@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { IMAGES, SCHOOL } from "@/lib/site/data";
 import { Waves, FlaskConical, Dumbbell, BookOpen, Music, Building2, Users, Home } from "lucide-react";
 import { Reveal } from "@/components/site/reveal";
+import { SmartImage } from "@/components/site/smart-image";
 
 const FACILITIES = [
   { name: "Group Photo — Annual Event", icon: Users, image: IMAGES.galleryGroupPhoto, desc: "Our school family at annual celebrations.", span: "sm:col-span-2 sm:row-span-2" },
@@ -52,10 +53,11 @@ export function Facilities() {
               delay={i * 0.05}
               className={`group relative overflow-hidden rounded-2xl border border-cream/10 ${f.span}`}
             >
-              <img
+              <SmartImage
                 src={f.image}
                 alt={`${f.name} — St. Xavier's Jr./Sr. School, Muzaffarpur`}
-                loading="lazy"
+                fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
                 className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-xavier-dark via-xavier-dark/40 to-transparent" />
