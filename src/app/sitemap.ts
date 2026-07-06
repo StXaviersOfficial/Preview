@@ -47,12 +47,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "yearly",
       priority: 0.3,
     },
-    // Admin page — low priority, not for search engines
-    {
-      url: `${base}/admin`,
-      lastModified,
-      changeFrequency: "yearly",
-      priority: 0.1,
-    },
+    // Admin page excluded — disallowed in robots.txt and has noindex meta
   ];
 }
