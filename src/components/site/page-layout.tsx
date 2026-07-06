@@ -6,6 +6,7 @@ import { BackToTop } from "@/components/site/back-to-top";
 import { StickyApplyBar } from "@/components/site/sticky-apply-bar";
 import { HindiOverlay } from "@/components/site/hindi-overlay";
 import { Reveal } from "@/components/site/reveal";
+import { Home, ChevronRight } from "lucide-react";
 import type { ReactNode } from "react";
 
 export function PageLayout({
@@ -30,6 +31,26 @@ export function PageLayout({
             <div className="absolute top-10 right-10 size-72 rounded-full bg-gold/8 blur-3xl pointer-events-none" />
             <div className="absolute bottom-0 left-0 size-72 rounded-full bg-xavier/8 blur-3xl pointer-events-none" />
             <div className="container mx-auto max-w-4xl px-5 sm:px-6 relative">
+              {/* Breadcrumb */}
+              <nav aria-label="Breadcrumb" className="mb-4">
+                <ol className="flex items-center gap-1.5 text-xs text-muted-foreground">
+                  <li>
+                    <a href="/" className="inline-flex items-center gap-1 hover:text-xavier-dark transition-colors">
+                      <Home className="size-3" />
+                      <span>Home</span>
+                    </a>
+                  </li>
+                  <li>
+                    <ChevronRight className="size-3" />
+                  </li>
+                  <li>
+                    <span aria-current="page" className="text-xavier-dark font-medium">
+                      {typeof title === "string" ? title : badge || "Page"}
+                    </span>
+                  </li>
+                </ol>
+              </nav>
+
               <Reveal variant="up">
                 {badge && (
                   <div className="inline-flex items-center gap-2 rounded-full border border-xavier/15 bg-xavier/5 px-4 py-1.5 text-xs font-medium text-xavier-dark mb-4">
