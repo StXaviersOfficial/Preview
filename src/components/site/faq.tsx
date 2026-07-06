@@ -1,7 +1,7 @@
 'use client'
 
 import { motion, AnimatePresence } from "framer-motion";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { HelpCircle, ChevronDown, RefreshCw, Search, X } from "lucide-react";
 import { Reveal } from "@/components/site/reveal";
 
@@ -27,6 +27,19 @@ export function FAQ() {
   const [search, setSearch] = useState("");
 
   const [error, setError] = useState(false);
+  const searchRef = useRef<HTMLInputElement>(null);
+
+  // Keyboard shortcut: press / to focus search
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "/" && document.activeElement?.tagName !== "INPUT" && document.activeElement?.tagName !== "TEXTAREA") {
+        e.preventDefault();
+        searchRef.current?.focus();
+      }
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, []);
 
   const loadFaqs = () => {
     setLoading(true);
@@ -96,10 +109,12 @@ export function FAQ() {
           <div className="relative max-w-xl mx-auto mb-6">
             <Search className="absolute left-4 top-1/2 -translate-y-1/2 size-4 text-muted-foreground pointer-events-none" />
             <input
+              ref={searchRef}
               type="search"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              placeholder="Search questions…"
+              onKeyDown={(e) => { if (e.key === "Escape") setSearch(""); }}
+              placeholder="Search questions… (press / to focus)"
               aria-label="Search FAQs"
               className="w-full rounded-full border border-xavier/15 bg-card pl-11 pr-10 py-2.5 text-sm text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:ring-2 focus:ring-xavier/30 focus:border-xavier/40 transition-colors"
             />
