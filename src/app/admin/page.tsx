@@ -305,6 +305,7 @@ function LoginScreen({ onLogin }: { onLogin: () => void }) {
 /* =================== DASHBOARD =================== */
 function Dashboard({ onNavigate }: { onNavigate: (t: Tab) => void }) {
   const [stats, setStats] = useState({ enquiries: 0, newEnquiries: 0, replied: 0, timetable: 0, fees: 0, notices: 0, faqs: 0 });
+  const [recentEnquiries, setRecentEnquiries] = useState<Submission[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -323,6 +324,8 @@ function Dashboard({ onNavigate }: { onNavigate: (t: Tab) => void }) {
           newEnquiries: submissions.filter((x: Submission) => x.status === "new").length,
           replied: submissions.filter((x: Submission) => x.status === "replied").length,
         }));
+        // Show 5 most recent enquiries
+        setRecentEnquiries(submissions.slice(0, 5));
       }
       if (tt.ok) setStats((s) => ({ ...s, timetable: (tt.entries || []).length }));
       if (fees.ok) setStats((s) => ({ ...s, fees: (fees.rows || []).length }));
@@ -395,6 +398,45 @@ function Dashboard({ onNavigate }: { onNavigate: (t: Tab) => void }) {
           </button>
         </div>
       </div>
+
+      {/* Recent enquiries preview */}
+      {recentEnquiries.length > 0 && (
+        <div className="mt-6 sm:mt-8">
+          <div className="flex items-center justify-between mb-3">
+            <h3 className="font-serif text-base sm:text-lg font-bold text-xavier-dark">Recent Enquiries</h3>
+            <button
+              onClick={() => onNavigate("enquiries")}
+              className="text-xs font-medium text-xavier-dark hover:underline"
+            >
+              View all →
+            </button>
+          </div>
+          <div className="rounded-2xl border border-xavier/10 bg-card overflow-hidden">
+            {recentEnquiries.map((e, i) => (
+              <div
+                key={e.id}
+                className={`px-4 py-3 flex items-center gap-3 ${i > 0 ? "border-t border-xavier/5" : ""}`}
+              >
+                <div className="size-9 rounded-full bg-xavier/10 flex items-center justify-center text-xs font-bold text-xavier-dark shrink-0">
+                  {e.name.charAt(0).toUpperCase()}
+                </div>
+                <div className="flex-1 min-w-0">
+                  <p className="text-sm font-semibold text-xavier-dark truncate">{e.name}</p>
+                  <p className="text-xs text-muted-foreground truncate">{e.email}{e.phone ? ` • ${e.phone}` : ""}</p>
+                </div>
+                <span className={`text-[10px] font-bold uppercase tracking-widest px-2 py-1 rounded-full shrink-0 ${
+                  e.status === "new" ? "bg-gold/15 text-gold"
+                  : e.status === "replied" ? "bg-emerald-100 text-emerald-700"
+                  : e.status === "read" ? "bg-blue-100 text-blue-700"
+                  : "bg-muted text-muted-foreground"
+                }`}>
+                  {e.status}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   );
 }
