@@ -179,6 +179,7 @@ export function Gallery() {
                 <p className="text-[10px] uppercase tracking-widest text-gold-light/80">{filtered[lightbox].category}</p>
                 <p className="font-serif text-base sm:text-lg font-semibold text-cream-fg mt-1">{filtered[lightbox].title}</p>
                 <p className="text-xs text-cream-fg/50 mt-1">St. Xavier&apos;s Jr./Sr. School, Muzaffarpur</p>
+                <p className="text-[10px] text-cream-fg/40 mt-2">{lightbox + 1} / {filtered.length} • Use ← → to navigate, Esc to close</p>
               </figcaption>
             </motion.figure>
           </motion.div>

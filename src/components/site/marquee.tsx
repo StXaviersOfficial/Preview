@@ -14,14 +14,18 @@ const items = [
   "Modern Labs",
   "Sports Academy",
   "Cultural Excellence",
+  "Swimming Pool",
+  "Library 6,500+ Books",
+  "Auditorium",
+  "Music & Dance Rooms",
 ];
 
 export function Marquee() {
   const ref = useRef<HTMLElement>(null);
   const [inView, setInView] = useState(true);
+  const [hovered, setHovered] = useState(false);
 
   // Pause CSS animation when offscreen (saves CPU/battery on mobile).
-  // We toggle animation-play-state via inline style on the animated divs.
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
@@ -35,13 +39,19 @@ export function Marquee() {
     return () => observer.disconnect();
   }, []);
 
-  const playState = inView ? "running" : "paused";
+  const playState = hovered ? "paused" : (inView ? "running" : "paused");
 
   return (
-    <section ref={ref} className="relative py-4 bg-xavier-gradient overflow-hidden">
+    <section
+      ref={ref}
+      className="relative py-3 sm:py-4 bg-xavier-gradient overflow-hidden group"
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      aria-label="School highlights"
+    >
       <div className="relative flex overflow-hidden mask-fade-r">
         <div
-          className="flex shrink-0 animate-marquee gap-8 pr-8"
+          className="flex shrink-0 animate-marquee gap-6 sm:gap-8 pr-6 sm:pr-8"
           style={{ animationPlayState: playState }}
         >
           {[...items, ...items].map((item, i) => (
@@ -55,7 +65,7 @@ export function Marquee() {
           ))}
         </div>
         <div
-          className="flex shrink-0 animate-marquee gap-8 pr-8"
+          className="flex shrink-0 animate-marquee gap-6 sm:gap-8 pr-6 sm:pr-8"
           style={{ animationPlayState: playState }}
           aria-hidden
         >
