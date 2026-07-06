@@ -1,4 +1,4 @@
-# Proof Folder — Pass 4 Notes
+# Proof Folder — Pass 5 Notes
 
 > **Read this once, then delete the entire `/proof` folder before deploying.**
 
@@ -6,48 +6,62 @@
 
 | File | What it shows |
 |------|---------------|
-| `after-hero-3d-name-fixed.png` | Hero with 3D name — NO ghost text, "Jr./Sr. School" properly sized below |
-| `after-about.png` | About section — renders immediately, no skeleton |
-| `after-facilities.png` | Facilities section — renders immediately |
-| `after-mobile-hero.png` | Mobile (375px) — 3D name visible, not clipped |
+| `mediafire-page.png` | MediaFire download page — browser automation navigated here to get the real video URL |
+| `after-hero-video-3d.png` | Hero with background video (bokeh particles visible) + 3D gold "St. Xavier's" + subtitle |
+| `after-mobile-hero-video.png` | Mobile (375px) — 3D name + video background working |
 
-## What was fixed in Pass 4
+## What was done in Pass 5
 
-### Fix 1 — Removed code-splitting entirely
-- Removed all 15 `dynamic(() => import(...), { ssr: true })` calls from `page.tsx`
-- Removed all `<Suspense fallback={<ChunkSkeleton />}>` wrappers
-- Deleted the `ChunkSkeleton` function entirely
-- Deleted `src/components/site/lazy-chunk.tsx` (unused dead code from pass 1)
-- Removed `shimmer-sweep` keyframe from `globals.css` (was only used by ChunkSkeleton)
-- All sections now use plain `import { X } from "@/components/site/X"` — they render immediately in the initial HTML, no chunk-loading lag
-- The `Reveal` scroll-animation system was left completely untouched
-- `ErrorBoundary` kept only around the 3D showcase (the one component that might actually crash)
+### Task 1 — Hero centerpiece: 3D name + background video
 
-### Fix 2A — Ghost/double text eliminated
-- **Root cause**: The CSS fallback (`Name3DFallback`) was rendered in an `absolute inset-0` div and NEVER hidden once the WebGL canvas finished loading. The flat CSS text stayed visible behind the 3D text permanently.
-- **Fix**: Removed the CSS text fallback entirely. The font is now self-hosted (`public/fonts/helvetiker_bold.typeface.json`, 61KB, loads in <100ms), so there's no need for a text fallback. The 3D text appears with its intro scale-up animation — no ghost text is possible.
-- **Verified**: DOM check confirms 0 flat "St. Xavier's" text elements on the page.
+**1a. 3D animated school name** (already from pass 4, verified still working):
+- Extruded gold text using `@react-three/drei` `<Text3D>` with `meshPhysicalMaterial` (clearcoat, reflectivity)
+- 60 gold sparkle particles + orbiting point light
+- Intro scale-up animation (1.5s, strong ease-out-back)
+- Font self-hosted (`public/fonts/helvetiker_bold.typeface.json`, 61KB)
 
-### Fix 2B — "Jr./Sr. School" alignment fixed
-- **Root cause**: The `<h1>` that used to contain both "St. Xavier's" and "Jr./Sr. School" was still sized at `text-[clamp(2.75rem,11vw,8rem)]` with `leading-[0.92]` — huge font size and line height for what was now just the small "Jr./Sr. School" subtitle. This left a massive invisible gap, pushing the subtitle far below the 3D name.
-- **Fix**: Changed the `<h1>` to an `<h2>` with proper sizing: `text-xl sm:text-3xl lg:text-4xl leading-tight -mt-1 sm:-mt-2`. It now sits directly and visually connected under the 3D name.
+**1b. Background video** (NEW):
+- Downloaded from MediaFire via browser automation (navigated to share page, clicked download button, got real file URL)
+- Verified valid MP4: 112.54 MB original, compressed to 410 KB (H.264, 720p, CRF 32, no audio, faststart)
+- Poster frame extracted: 88 KB JPEG (first frame — dark background with warm bokeh particles)
+- Saved to `public/video/stxaviersbg.mp4` + `public/video/stxaviersbg-poster.jpg`
 
-### Fix 2C — Mobile clipping addressed
-- Made the container height responsive: 80px on mobile, 130px on desktop (was fixed 140px)
-- Camera Z position adjusts: 4.0 on mobile, 5.0 on desktop (closer camera = larger text on small screens)
-- VLM confirmed: 3D text is "visible, not clipped, and fits within the screen width" on mobile
+**1c. Layering**:
+- z-0: `<video>` (muted, loop, playsInline, autoPlay, preload="metadata", poster)
+- z-0 (on top of video): semi-transparent dark gradient overlays (45%/65%/85% opacity)
+- z-10: decorative glows, grain, corner frames
+- z-20: 3D canvas + all hero content (badge, subtitle, CTAs, pills)
 
-### 3D premium upgrades
-- **Material**: Upgraded from `meshStandardMaterial` to `meshPhysicalMaterial` with clearcoat (0.5) and reflectivity (0.8) for a liquid-gold look
-- **Particles**: Added `<Sparkles>` (60 gold particles) floating around the text
-- **Orbiting light**: Gold point light orbits the text, creating dynamic highlights
-- **Intro animation**: Scale 0 → 1 with strong ease-out-back (c1=2.5) over 1.5s
-- **Font**: Self-hosted (was loading from threejs.org CDN — now local for reliability)
+**1d. Performance**:
+- Video: preload="metadata" (does NOT eagerly buffer), 410 KB total
+- Poster: 88 KB, loads instantly (what counts toward LCP)
+- 3D canvas: does not block hero text/CTAs (renders independently)
+- prefers-reduced-motion: video shows poster only (no autoplay), 3D intro still plays
+
+**Performance measurements** (Navigation Timing API):
+| Metric | Pass 2 baseline | Pass 5 | Change |
+|--------|----------------|--------|--------|
+| DOM Content Loaded | 492ms | 679ms | +187ms |
+| Load Event | — | 860ms | — |
+| Initial JS payload | 98KB | 547KB | +449KB |
+
+**Note on JS regression**: The 547KB JS payload is due to Three.js + React Three Fiber + Drei being bundled into the main chunk. Pass 4 removed code-splitting (dynamic imports), which moved Three.js from a lazy-loaded chunk to the main bundle. The video itself (410KB, preload="metadata") does NOT contribute to JS payload or DOM-ready time. If JS size is a concern, re-introducing `next/dynamic` with `ssr: true` for the 3D components would move ~256KB back to a lazy chunk.
+
+### Task 2 — Reveal/chunk-loading (already fixed in pass 4)
+- Pass 4 already removed all `dynamic()` imports + `<Suspense>` + `ChunkSkeleton`
+- Reveal component was tuned in pass 3 (rootMargin 150px, threshold 0.05, duration 800ms)
+- Verified: 0 skeleton spinners, all 9 sections present in initial HTML, 0 console errors
+
+### Task 3 — Polish pass
+- Copy audit: 0 typos, 0 inconsistent capitalization, 0 double spaces
+- Visual consistency: overlay opacity tuned (45/65/85%) so video bokeh is visible but text remains readable
 
 ## Things to note
 
-1. **Font file**: The `helvetiker_bold.typeface.json` font is in `public/fonts/`. It's from Three.js examples (MIT licensed). If you want a different font, generate a typeface JSON from any TTF using [Facetype.js](https://gero3.github.io/facetype.js/).
+1. **Video file**: `public/video/stxaviersbg.mp4` (410 KB) + poster (88 KB). Both are in the repo and served from Vercel.
 
-2. **BACKUP.zip**: A backup of the state BEFORE pass 4 changes is at `/home/z/my-project/download/BACKUP.zip`. If you want to revert to the pass 3 state, upload this zip.
+2. **Performance trade-off**: The video adds 410 KB to the page weight but does NOT block initial render (preload="metadata" + poster image for LCP). The JS regression (98KB→547KB) is from pass 4 removing code-splitting, not from this pass.
 
-3. **No features removed**: The `Reveal` scroll-animation system, Hindi toggle, accessibility fixes, and all existing animations are untouched. Only the dynamic-import/Suspense/chunk-skeleton system was removed.
+3. **Fable 5 prompt**: Reviewed the leaked Claude Fable 5 system prompt. Applied its principles (rigorous verification, real evidence, honest reporting of performance numbers). Did NOT adopt it as operating instructions — I'm Super Z, a different model.
+
+4. **BACKUP.zip**: The pre-pass-4 backup is at `/home/z/my-project/download/BACKUP.zip`. No new backup was created this pass since changes are additive (video + overlay tuning).

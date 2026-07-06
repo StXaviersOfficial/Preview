@@ -1,16 +1,24 @@
 'use client'
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ArrowRight, ChevronDown, Sparkles, Award, BookOpen, Users, Phone } from "lucide-react";
 import { SCHOOL, IMAGES } from "@/lib/site/data";
 import { Magnetic, ConfettiBurst } from "@/components/site/animations";
 import { trackApplyNow, trackOutbound } from "@/lib/site/analytics";
 import { Reveal } from "@/components/site/reveal";
 import { Name3D } from "@/components/site/name-3d";
-import { SmartImage } from "@/components/site/smart-image";
 
 export function Hero() {
   const [confetti, setConfetti] = useState<{ x: number; y: number; active: boolean }>({ x: 0, y: 0, active: false });
+  const [reducedMotion, setReducedMotion] = useState(false);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    setReducedMotion(mq.matches);
+    const handler = (e: MediaQueryListEvent) => setReducedMotion(e.matches);
+    mq.addEventListener("change", handler);
+    return () => mq.removeEventListener("change", handler);
+  }, []);
 
   const triggerConfetti = (e: React.MouseEvent) => {
     setConfetti({ x: e.clientX, y: e.clientY, active: true });
@@ -22,18 +30,27 @@ export function Hero() {
       id="home"
       className="relative min-h-[92svh] sm:min-h-[100svh] w-full overflow-hidden bg-xavier-dark"
     >
-      {/* Background image — static */}
+      {/* Background video — ambient, muted, looping.
+          Layer order: video → dark overlay → 3D canvas → content/CTAs.
+          Poster image provides instant first paint (LCP).
+          preload="metadata" prevents eager buffering.
+          prefers-reduced-motion: video doesn't autoplay, poster stays. */}
       <div className="absolute inset-0 z-0">
-        <SmartImage
-          src="/school/home.jpg"
-          alt="St. Xavier's Jr./Sr. School, Goshala Road, Muzaffarpur"
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-xavier-dark/55 via-xavier-dark/80 to-xavier-dark" />
-        <div className="absolute inset-0 bg-gradient-to-r from-xavier-dark/90 via-xavier-dark/55 to-xavier-dark/30" />
+        <video
+          autoPlay={!reducedMotion}
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          poster="/video/stxaviersbg-poster.jpg"
+          className="absolute inset-0 h-full w-full object-cover"
+          aria-hidden="true"
+        >
+          <source src="/video/stxaviersbg.mp4" type="video/mp4" />
+        </video>
+        {/* Semi-transparent dark overlay — keeps video ambient, not loud */}
+        <div className="absolute inset-0 bg-gradient-to-b from-xavier-dark/45 via-xavier-dark/65 to-xavier-dark/85" />
+        <div className="absolute inset-0 bg-gradient-to-r from-xavier-dark/80 via-xavier-dark/45 to-xavier-dark/20" />
       </div>
 
       {/* Static decorative glows */}

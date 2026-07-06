@@ -159,3 +159,21 @@
 - [x] **P4.16.** Created /proof folder with screenshots + NOTES.md.
 - [x] **P4.17.** Created SUMMARY-PASS4.md.
 - [x] **P4.18.** Created BACKUP.zip (pre-pass-4 state) for rollback.
+
+## Pass 5 — Hero Video + 3D Name + Polish — DONE
+
+- [x] **P5.1.** Downloaded video from MediaFire via browser automation (112.54 MB, valid MP4).
+- [x] **P5.2.** Compressed video to 410 KB (H.264, 720p, CRF 32, no audio, faststart).
+- [x] **P5.3.** Extracted poster frame (88 KB JPEG).
+- [x] **P5.4.** Added background video to hero (muted, loop, playsInline, autoPlay, preload="metadata").
+- [x] **P5.5.** Layered: video → dark overlay (45/65/85%) → 3D canvas → content.
+- [x] **P5.6.** Added prefers-reduced-motion handling (video shows poster only).
+- [x] **P5.7.** Verified 3D name still renders (0 ghost text, 2 canvases).
+- [x] **P5.8.** Verified all sections present (0 spinners, 9/9 section IDs).
+- [x] **P5.9.** Verified 0 console errors.
+- [x] **P5.10.** Measured performance: DOM-ready 679ms, JS 547KB (regression from Three.js in main bundle).
+- [x] **P5.11.** Copy audit: 0 typos, 0 inconsistencies.
+- [x] **P5.12.** Visual consistency: overlay opacity tuned.
+- [x] **P5.13.** Created /proof folder with screenshots + NOTES.md.
+- [x] **P5.14.** Created SUMMARY-PASS5.md.
+- [x] **P5.15.** Reviewed Fable 5 system prompt (applied principles, did not adopt as OS).
