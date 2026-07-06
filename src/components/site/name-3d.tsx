@@ -42,7 +42,7 @@ function TextMesh() {
     <group ref={meshRef}>
       <Center>
         <Text3D
-          font="https://threejs.org/examples/fonts/helvetiker_bold.typeface.json"
+          font="/fonts/helvetiker_bold.typeface.json"
           size={0.7}
           height={0.25}
           curveSegments={12}
