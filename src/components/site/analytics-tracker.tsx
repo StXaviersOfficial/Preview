@@ -1,16 +1,16 @@
 'use client';
 
-import { useEffect } from "react";
+import { Suspense, useEffect } from "react";
 import { usePathname, useSearchParams } from "next/navigation";
 import { trackPageView } from "@/lib/site/analytics";
 
 /**
- * AnalyticsTracker — tracks page views on route changes.
+ * AnalyticsTrackerInner — tracks page views on route changes.
  *
- * Mount this once in the root layout. It listens for pathname/searchParams
- * changes and fires a GA4/Plausible pageview event.
+ * Uses useSearchParams which requires a Suspense boundary in Next.js 16
+ * during static generation (especially for the not-found page).
  */
-export function AnalyticsTracker() {
+function AnalyticsTrackerInner() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
@@ -20,4 +20,15 @@ export function AnalyticsTracker() {
   }, [pathname, searchParams]);
 
   return null;
+}
+
+/**
+ * AnalyticsTracker — wrapped in Suspense for static page compatibility.
+ */
+export function AnalyticsTracker() {
+  return (
+    <Suspense fallback={null}>
+      <AnalyticsTrackerInner />
+    </Suspense>
+  );
 }
