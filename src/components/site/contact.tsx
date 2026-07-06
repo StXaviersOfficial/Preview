@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { useState } from "react";
-import { MapPin, Phone, Mail, Instagram, Facebook, Send, CheckCircle2, MessageCircle, type LucideIcon } from "lucide-react";
+import { MapPin, Phone, Mail, Instagram, Facebook, Send, CheckCircle2, MessageCircle, Clock, type LucideIcon } from "lucide-react";
 import { SCHOOL } from "@/lib/site/data";
 import { trackEnquiry, trackOutbound } from "@/lib/site/analytics";
 import { Reveal } from "@/components/site/reveal";
@@ -130,6 +130,11 @@ export function Contact() {
                 lines={SCHOOL.phones.slice(0, 3).map((p) => `+91 ${p}`)}
               />
               <ContactRow icon={Mail} label="Email" lines={[SCHOOL.email, SCHOOL.emailAlt]} />
+              <ContactRow
+                icon={Clock}
+                label="Office Hours"
+                lines={["Mon – Sat: 8:00 AM – 2:00 PM", "Sunday: Closed"]}
+              />
             </div>
 
             <div className="mt-6 sm:mt-8 pt-5 sm:pt-6 border-t border-cream/15">
