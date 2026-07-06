@@ -691,7 +691,7 @@ const TRANSLATIONS: Record<string, string> = {
 
   // ─── ACHIEVEMENTS PAGE ───
   "Achievements": "उपलब्धियाँ",
-  "EXcellence IN ACTION": "कर्म में उत्कृष्टता",
+  "Excellence in Action": "कर्म में उत्कृष्टता",
   "Excellence in action": "कर्म में उत्कृष्टता",
   "Our Achievements": "हमारी उपलब्धियाँ",
   "Nearly five decades of academic excellence, sporting triumphs, and all-round achievement. Here's what our students have accomplished.": "लगभग पाँच दशकों की शैक्षणिक उत्कृष्टता, खेल विजय, और सर्वांगीण उपलब्धि। हमारे विद्यार्थियों ने यह हासिल किया है।",

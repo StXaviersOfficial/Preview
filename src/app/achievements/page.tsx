@@ -45,7 +45,7 @@ const OTHER_ACHIEVEMENTS = [
 export default function AchievementsPage() {
   return (
     <PageLayout
-      badge="EXcellence IN ACTION"
+      badge="Excellence in Action"
       title={<>Our <span className="text-gradient-xavier">Achievements</span></>}
       subtitle="Nearly five decades of academic excellence, sporting triumphs, and all-round achievement. Here's what our students have accomplished."
     >

@@ -1,4 +1,5 @@
 import { Navbar } from "@/components/site/navbar";
+import { NoticeTicker } from "@/components/site/notice-ticker";
 import { Footer } from "@/components/site/footer";
 import { WhatsAppButton } from "@/components/site/whatsapp-button";
 import { BackToTop } from "@/components/site/back-to-top";
@@ -21,6 +22,7 @@ export function PageLayout({
   return (
     <HindiOverlay>
       <div className="relative min-h-screen flex flex-col bg-background">
+        <NoticeTicker />
         <Navbar />
         <main className="flex-1">
           {/* Hero header */}
