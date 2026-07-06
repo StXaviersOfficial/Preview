@@ -5,6 +5,7 @@ import { useState, useCallback, useEffect } from "react";
 import { X, ChevronLeft, ChevronRight, ZoomIn, Camera } from "lucide-react";
 import { IMAGES } from "@/lib/site/data";
 import { Reveal } from "@/components/site/reveal";
+import { SmartImage } from "@/components/site/smart-image";
 
 type GalleryItem = { src: string; title: string; category: string };
 
@@ -99,10 +100,11 @@ export function Gallery() {
                 i % 7 === 0 ? "sm:col-span-2 sm:row-span-2" : ""
               }`}
             >
-              <img
+              <SmartImage
                 src={item.src}
                 alt={`${item.title} — St. Xavier's Jr./Sr. School, Muzaffarpur`}
-                loading="lazy"
+                fill
+                sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
                 className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-xavier-dark/85 via-xavier-dark/10 to-transparent opacity-80 group-hover:opacity-95 transition-opacity" />
