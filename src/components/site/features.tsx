@@ -55,7 +55,7 @@ export function Features() {
         <StaggerReveal className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-5" stagger={0.06}>
           {FEATURES.map((f, i) => (
             <StaggerItem key={f.title}>
-              <TiltCard intensity={10} className="h-full">
+              <TiltCard intensity={6} className="h-full">
                 <Spotlight className="h-full">
                   <div className="group relative rounded-2xl border border-xavier/10 bg-card p-5 sm:p-6 transition-colors hover:border-gold/50 overflow-hidden h-full">
                     {/* Number watermark */}
