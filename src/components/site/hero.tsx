@@ -64,26 +64,17 @@ export function Hero() {
             </div>
           </Reveal>
 
-          {/* 3D ANIMATED NAME — premium extruded gold text */}
+          {/* Animated school name — "St. Xavier's" directly above "Jr./Sr. School" */}
           <Reveal variant="scale" delay={0.2}>
-            <div className="mb-2 sm:mb-4">
+            <div className="mb-0 sm:mb-0">
               <Name3D />
             </div>
           </Reveal>
 
-          {/* STJVS abbreviation badge — sits right above "Jr./Sr. School" */}
-          <Reveal variant="up" delay={0.3}>
-            <div className="mb-1 sm:mb-2">
-              <span className="inline-block font-serif font-bold tracking-[0.4em] text-gold-light text-sm sm:text-base lg:text-lg uppercase">
-                STJVS
-              </span>
-            </div>
-          </Reveal>
-
-          {/* HUGE Headline — EXPLODE (starts big + blurry, shrinks to normal) */}
+          {/* HUGE Headline — "Jr./Sr. School" right below the name, with gradient shimmer */}
           <Reveal variant="explode" delay={0.4}>
-            <h1 className="font-serif text-cream-fg font-bold tracking-tight text-balance leading-[0.92] text-[clamp(2.75rem,11vw,8rem)]">
-              <span className="inline-block text-[0.45em] sm:text-[0.45em] text-cream-fg/85 font-medium tracking-wide">
+            <h1 className="font-serif text-cream-fg font-bold tracking-tight text-balance leading-[0.92] text-[clamp(1.5rem,5vw,3.5rem)] animate-text-shimmer" style={{ backgroundSize: '200% auto' }}>
+              <span className="inline-block text-[1em] sm:text-[1em] text-cream-fg/90 font-medium tracking-wide">
                 Jr./Sr. School
               </span>
             </h1>
@@ -105,7 +96,7 @@ export function Hero() {
                 <a
                   href="#admissions"
                   onClick={(e) => { triggerConfetti(e); trackApplyNow("hero"); }}
-                  className="shine-on-hover group relative inline-flex items-center justify-center gap-2 rounded-full bg-gold-gradient px-6 sm:px-8 py-3.5 sm:py-4 text-sm sm:text-base font-semibold text-xavier-dark shadow-glow-gold overflow-hidden"
+                  className="btn-shine group relative inline-flex items-center justify-center gap-2 rounded-full bg-gold-gradient px-6 sm:px-8 py-3.5 sm:py-4 text-sm sm:text-base font-semibold text-xavier-dark shadow-glow-gold overflow-hidden hover:scale-105 transition-transform"
                 >
                   <span className="relative z-10">Begin Your Journey</span>
                   <ArrowRight className="relative z-10 size-4 transition-transform group-hover:translate-x-1" />
@@ -114,10 +105,10 @@ export function Hero() {
               <Magnetic>
                 <a
                   href="#about"
-                  className="inline-flex items-center justify-center gap-2 rounded-full glass px-6 sm:px-8 py-3.5 sm:py-4 text-sm sm:text-base font-semibold text-cream-fg hover:bg-cream/10 transition-colors"
+                  className="btn-shine group inline-flex items-center justify-center gap-2 rounded-full glass px-6 sm:px-8 py-3.5 sm:py-4 text-sm sm:text-base font-semibold text-cream-fg hover:bg-cream/10 hover:scale-105 transition-all"
                 >
                   Explore Campus
-                  <ChevronDown className="size-4" />
+                  <ChevronDown className="size-4 transition-transform group-hover:translate-y-1" />
                 </a>
               </Magnetic>
             </div>
@@ -130,10 +121,11 @@ export function Hero() {
                 { icon: BookOpen, label: SCHOOL.classesRange },
                 { icon: Users, label: SCHOOL.format },
                 { icon: Award, label: `${SCHOOL.studentsEnrolled}+ Students` },
-              ].map((item) => (
+              ].map((item, idx) => (
                 <div
                   key={item.label}
-                  className="card-lift inline-flex items-center gap-1.5 sm:gap-2 rounded-full glass px-3 sm:px-4 py-1.5 sm:py-2 text-[11px] sm:text-xs font-medium text-cream-fg/90 hover:scale-105 transition-transform"
+                  className="card-lift inline-flex items-center gap-1.5 sm:gap-2 rounded-full glass px-3 sm:px-4 py-1.5 sm:py-2 text-[11px] sm:text-xs font-medium text-cream-fg/90 hover:scale-105 transition-transform cursor-default"
+                  style={{ animation: `float-soft 6s ease-in-out infinite ${idx * 0.5}s` }}
                 >
                   <item.icon className="size-3 sm:size-3.5 text-gold-light" />
                   {item.label}

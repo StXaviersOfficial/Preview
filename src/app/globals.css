@@ -715,3 +715,184 @@ section[id] {
   transform: none !important;
   filter: none !important;
 }
+
+
+/* ═══════════════════════════════════════════════════════════════
+   FULL ANIMATION SYSTEM — GPU-accelerated, no lag
+   All animations use transform/opacity/background-position only
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Hero name floating */
+@keyframes hero-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+/* Gradient shift for gold text */
+@keyframes name-gradient-shift {
+  0%, 100% { background-position: 0% center; }
+  50% { background-position: 200% center; }
+}
+
+/* Text shimmer for headlines */
+@keyframes text-shimmer {
+  0%, 100% { background-position: 200% center; }
+  50% { background-position: 0% center; }
+}
+
+.animate-text-shimmer {
+  background: linear-gradient(90deg, #fdf6ec 0%, #c9a961 25%, #fff4d4 50%, #c9a961 75%, #fdf6ec 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: text-shimmer 5s ease-in-out infinite;
+}
+
+/* Card hover lift */
+@keyframes card-lift {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-6px); }
+}
+
+.card-lift {
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s ease;
+}
+.card-lift:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 32px rgba(122, 28, 47, 0.15);
+}
+
+/* Animated gradient border */
+@keyframes gradient-border-flow {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.gradient-border-animated {
+  position: relative;
+  background: var(--card);
+  border-radius: inherit;
+}
+.gradient-border-animated::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  padding: 2px;
+  background: linear-gradient(120deg, oklch(0.42 0.18 18), oklch(0.78 0.14 75), oklch(0.42 0.18 18));
+  background-size: 200% 200%;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  animation: gradient-border-flow 4s ease-in-out infinite;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.gradient-border-animated:hover::before {
+  opacity: 1;
+}
+
+/* Button shine sweep */
+@keyframes btn-shine {
+  0% { transform: translateX(-100%) skewX(-15deg); }
+  100% { transform: translateX(200%) skewX(-15deg); }
+}
+
+.btn-shine {
+  position: relative;
+  overflow: hidden;
+}
+.btn-shine::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+  transform: translateX(-100%) skewX(-15deg);
+  pointer-events: none;
+}
+.btn-shine:hover::after {
+  animation: btn-shine 0.8s ease;
+}
+
+/* Floating animation for decorative elements */
+@keyframes float-soft {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  33% { transform: translateY(-10px) rotate(1deg); }
+  66% { transform: translateY(5px) rotate(-1deg); }
+}
+
+.animate-float-soft {
+  animation: float-soft 8s ease-in-out infinite;
+}
+
+/* Pulsing glow for badges */
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(201,169,97,0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 8px rgba(201,169,97,0);
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* Slide-in from left/right */
+@keyframes slide-in-left {
+  from { opacity: 0; transform: translateX(-30px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slide-in-right {
+  from { opacity: 0; transform: translateX(30px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.animate-slide-in-left {
+  animation: slide-in-left 0.6s ease-out forwards;
+}
+
+.animate-slide-in-right {
+  animation: slide-in-right 0.6s ease-out forwards;
+}
+
+/* Gradient text flow */
+@keyframes gradient-flow {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.animate-gradient-flow {
+  background-size: 200% 200%;
+  animation: gradient-flow 6s ease-in-out infinite;
+}
+
+/* Section divider animation */
+@keyframes divider-grow {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+.animate-divider {
+  transform-origin: center;
+  animation: divider-grow 1s ease-out forwards;
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .animate-text-shimmer,
+  .animate-float-soft,
+  .animate-pulse-glow,
+  .animate-gradient-flow,
+  .gradient-border-animated::before,
+  .btn-shine::after {
+    animation: none !important;
+  }
+}

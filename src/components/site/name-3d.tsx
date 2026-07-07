@@ -3,12 +3,11 @@
 /**
  * Name3D — animated school name for the hero.
  *
- * Previously this used a full Three.js Canvas with Text3D, Environment,
- * ContactShadows, and Float — all running useFrame 60x/second. This caused
- * significant lag on both desktop and mobile.
- *
- * Now it uses a pure CSS animated gold text effect that looks premium
- * but uses zero JavaScript CPU time. The 3D Canvas has been removed.
+ * Pure CSS animated gold text with:
+ * - Continuous floating animation (GPU-accelerated transform)
+ * - Animated gradient shimmer (background-position shift)
+ * - Glow pulse effect (text-shadow animation)
+ * - All animations respect prefers-reduced-motion
  */
 
 import { useEffect, useState } from 'react';
@@ -25,20 +24,24 @@ export function Name3D({ className = '' }: { className?: string }) {
   }, []);
 
   return (
-    <div className={`relative flex items-center justify-center ${className}`} style={{ height: 'auto', minHeight: '80px' }}>
+    <div
+      className={`relative flex items-center justify-center ${className}`}
+      style={{
+        animation: reducedMotion ? 'none' : 'hero-float 6s ease-in-out infinite',
+      }}
+    >
       <div
-        className="font-serif text-5xl sm:text-7xl lg:text-8xl font-bold tracking-tight text-center"
+        className="font-serif text-5xl sm:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-tight text-center"
         style={{
-          color: '#c9a961',
-          textShadow: reducedMotion
-            ? '0 0 30px rgba(201,169,97,0.5), 0 0 60px rgba(201,169,97,0.3)'
-            : '0 0 30px rgba(201,169,97,0.6), 0 0 60px rgba(201,169,97,0.4), 0 0 90px rgba(201,169,97,0.2)',
-          animation: reducedMotion ? 'none' : 'name-glow 2.5s ease-in-out infinite alternate',
-          background: 'linear-gradient(180deg, #f4d98a 0%, #c9a961 50%, #a8862e 100%)',
+          background: 'linear-gradient(110deg, #f4d98a 0%, #c9a961 25%, #fff4d4 50%, #c9a961 75%, #f4d98a 100%)',
+          backgroundSize: '200% auto',
           WebkitBackgroundClip: 'text',
           WebkitTextFillColor: 'transparent',
           backgroundClip: 'text',
-          filter: 'drop-shadow(0 4px 12px rgba(201,169,97,0.4))',
+          filter: 'drop-shadow(0 4px 20px rgba(201,169,97,0.5))',
+          animation: reducedMotion
+            ? 'none'
+            : 'name-gradient-shift 4s ease-in-out infinite, name-glow 2.5s ease-in-out infinite alternate',
         }}
       >
         St. Xavier&apos;s
