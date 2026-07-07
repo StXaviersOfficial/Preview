@@ -130,7 +130,7 @@ export function Reveal({
 
       const start = INITIAL[variant];
       const end = FINAL[variant];
-      const duration = variant === "elastic" ? 1000 : variant === "glitch" ? 850 : 800;
+      const duration = variant === "elastic" ? 800 : variant === "glitch" ? 650 : 600;
       const startTime = performance.now() + delay * 1000;
 
       const animate = (now: number) => {
@@ -205,7 +205,7 @@ export function Reveal({
           }
         });
       },
-      { threshold: 0.05, rootMargin: "150px 0px 150px 0px" }
+      { threshold: 0.01, rootMargin: "300px 0px 300px 0px" }
     );
 
     obs.observe(el);
