@@ -57,7 +57,7 @@ export function Features() {
             <StaggerItem key={f.title}>
               <TiltCard intensity={6} className="h-full">
                 <Spotlight className="h-full">
-                  <div className="group relative rounded-2xl border border-xavier/10 bg-card p-5 sm:p-6 transition-colors hover:border-gold/50 overflow-hidden h-full">
+                  <div className="card-lift group relative rounded-2xl border border-xavier/10 bg-card p-5 sm:p-6 transition-all hover:border-gold/50 overflow-hidden h-full">
                     {/* Number watermark */}
                     <span className="absolute top-3 right-4 font-serif text-6xl sm:text-7xl font-bold text-xavier/5 group-hover:text-gold/15 transition-colors duration-500">
                       {String(i + 1).padStart(2, '0')}

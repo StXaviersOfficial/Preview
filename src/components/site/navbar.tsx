@@ -140,11 +140,15 @@ export function Navbar() {
                     <a
                       href={link.href}
                       className={cn(
-                        "relative px-3.5 py-2 text-sm font-medium transition-colors rounded-full",
+                        "relative px-3.5 py-2 text-sm font-medium transition-colors rounded-full group",
                         isActive ? "text-xavier-dark bg-xavier/8" : "text-foreground/70 hover:text-xavier-dark hover:bg-xavier/5"
                       )}
                     >
                       {link.label}
+                      <span className={cn(
+                        "absolute bottom-0 left-1/2 -translate-x-1/2 h-0.5 bg-gradient-to-r from-xavier to-gold rounded-full transition-all duration-300",
+                        isActive ? "w-6" : "w-0 group-hover:w-4"
+                      )} />
                     </a>
                   </Reveal>
                 );

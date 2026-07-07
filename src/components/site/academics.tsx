@@ -183,7 +183,7 @@ export function Academics() {
                 key={s.name}
                 variant="glitch"
                 delay={i * 0.05}
-                className="rounded-2xl bg-card border border-xavier/10 p-4 sm:p-7"
+                className="card-lift rounded-2xl bg-card border border-xavier/10 p-4 sm:p-7 hover:border-gold/40"
               >
                 <div
                   className="size-11 sm:size-14 rounded-xl flex items-center justify-center mb-3 sm:mb-4"

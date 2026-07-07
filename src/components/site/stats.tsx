@@ -17,7 +17,7 @@ export function Stats() {
       <section className="relative z-30 px-4 sm:px-6 pt-2 pb-1">
         <div className="container mx-auto max-w-7xl">
           <Reveal variant="elastic" delay={0}>
-            <div className="rounded-2xl bg-gradient-to-r from-xavier-dark via-xavier to-xavier-dark text-cream-fg p-3 sm:p-4 flex items-center justify-center gap-3 sm:gap-4 shadow-elegant">
+            <div className="rounded-2xl bg-gradient-to-r from-xavier-dark via-xavier to-xavier-dark text-cream-fg p-3 sm:p-4 flex items-center justify-center gap-3 sm:gap-4 shadow-elegant animate-pulse-glow">
               <Sparkles className="size-5 sm:size-6 text-gold-light shrink-0 animate-glow-pulse" />
               <p className="text-xs sm:text-sm font-medium text-center">
                 <span className="font-serif italic text-gold-light">100% AISSCE 2026 Result</span>
