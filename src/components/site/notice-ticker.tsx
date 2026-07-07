@@ -74,16 +74,7 @@ export function NoticeTicker() {
       role="region"
       aria-label="School notices"
     >
-      {/* Animated shine sweep */}
-      <motion.div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background: "linear-gradient(110deg, transparent 30%, rgba(201,169,97,0.25) 50%, transparent 70%)",
-          backgroundSize: "200% 100%",
-        }}
-        animate={{ backgroundPosition: ["200% 0", "-200% 0"] }}
-        transition={{ duration: 5, repeat: Infinity, ease: "linear" }}
-      />
+      {/* Shine sweep — removed for performance (was infinite animation) */}
       <div className="container mx-auto max-w-7xl px-4 sm:px-6 py-2.5 flex items-center gap-3 relative">
         <div className="flex items-center gap-2 shrink-0">
           <motion.div
