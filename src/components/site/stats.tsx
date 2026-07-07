@@ -43,7 +43,7 @@ export function Stats() {
               <TiltCard intensity={8} className="h-full">
                 <Halo className="h-full">
                   <BorderShimmer className="h-full rounded-3xl">
-                    <div className="relative h-full rounded-3xl border border-xavier/10 bg-card/70 backdrop-blur-md p-4 sm:p-6 lg:p-8 overflow-hidden">
+                    <div className="relative h-full rounded-3xl border border-xavier/10 bg-card/90 p-4 sm:p-6 lg:p-8 overflow-hidden">
                       {/* Animated gradient backdrop on hover */}
                       <div className="absolute inset-0 bg-gradient-to-br from-xavier/8 to-gold/8 opacity-0 hover:opacity-100 transition-opacity duration-500" />
 

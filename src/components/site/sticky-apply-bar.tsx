@@ -33,7 +33,7 @@ export function StickyApplyBar() {
           transition={{ type: "spring", stiffness: 260, damping: 30 }}
           className="fixed bottom-0 left-0 right-0 z-40 sm:hidden"
         >
-          <div className="bg-xavier-dark/95 backdrop-blur-xl border-t border-gold/20 shadow-2xl">
+          <div className="bg-xavier-dark/97 border-t border-gold/20 shadow-2xl">
             <div className="flex items-center gap-2 px-3 py-2.5 safe-area-inset-bottom">
               {/* Call */}
               <a

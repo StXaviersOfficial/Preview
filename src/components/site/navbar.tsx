@@ -78,7 +78,7 @@ export function Navbar() {
       <header
         className={cn(
           "sticky top-0 z-50 transition-all duration-300",
-          scrolled ? "py-2 shadow-elegant bg-background/90 backdrop-blur-xl" : "py-2 sm:py-3 bg-background/40 backdrop-blur-sm"
+          scrolled ? "py-2 shadow-elegant bg-background/95" : "py-2 sm:py-3 bg-background/60"
         )}
       >
         <div className="container mx-auto max-w-7xl px-4 sm:px-6">
