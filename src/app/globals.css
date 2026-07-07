@@ -951,3 +951,53 @@ section[id] {
 .dark .text-foreground\/90 {
   color: oklch(0.95 0.005 75) !important;
 }
+
+
+/* ═══════════════════════════════════════════════════════════════
+   HINDI MODE TEXT OVERFLOW PROTECTION
+   Hindi text is wider than English — prevent cutoffs
+   ═══════════════════════════════════════════════════════════════ */
+body[data-hi-active="true"] {
+  word-break: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+
+/* Increase line-clamp limits in Hindi mode */
+body[data-hi-active="true"] .line-clamp-4 {
+  -webkit-line-clamp: 6;
+  line-clamp: 6;
+}
+
+body[data-hi-active="true"] .line-clamp-3 {
+  -webkit-line-clamp: 5;
+  line-clamp: 5;
+}
+
+body[data-hi-active="true"] .line-clamp-2 {
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+}
+
+/* Allow text wrapping in badges/pills in Hindi mode */
+body[data-hi-active="true"] .whitespace-nowrap {
+  white-space: normal;
+}
+
+/* Ensure buttons don't cut off Hindi text */
+body[data-hi-active="true"] button,
+body[data-hi-active="true"] a.inline-flex {
+  white-space: normal;
+  text-align: center;
+}
+
+/* Fix navbar logo text in Hindi mode */
+body[data-hi-active="true"] .tracking-tight {
+  letter-spacing: 0 !important;
+}
+
+body[data-hi-active="true"] .tracking-\[0\.15em\],
+body[data-hi-active="true"] .tracking-\[0\.18em\],
+body[data-hi-active="true"] .tracking-\[0\.3em\] {
+  letter-spacing: 0.05em !important;
+}
