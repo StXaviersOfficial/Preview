@@ -47,11 +47,11 @@ export function About() {
           {/* Image column — static, no parallax/tilt for performance */}
           <Reveal variant="left" className="lg:col-span-5">
             <div className="relative lg:sticky lg:top-24">
-                <div className="relative aspect-[4/5] rounded-3xl overflow-hidden shadow-elegant">
+                <div className="group relative aspect-[4/5] rounded-3xl overflow-hidden shadow-elegant">
                   <img
                     src={IMAGES.about2}
                     alt="St. Xavier's School campus, Muzaffarpur"
-                    className="h-full w-full object-cover"
+                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-xavier-dark/70 via-transparent to-transparent" />
 
