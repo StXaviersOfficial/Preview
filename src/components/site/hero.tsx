@@ -84,6 +84,15 @@ export function Hero() {
             </div>
           </Reveal>
 
+          {/* STJVS abbreviation badge — sits right above "Jr./Sr. School" */}
+          <Reveal variant="up" delay={0.3}>
+            <div className="mb-1 sm:mb-2">
+              <span className="inline-block font-serif font-bold tracking-[0.4em] text-gold-light text-sm sm:text-base lg:text-lg uppercase">
+                STJVS
+              </span>
+            </div>
+          </Reveal>
+
           {/* HUGE Headline — EXPLODE (starts big + blurry, shrinks to normal) */}
           <Reveal variant="explode" delay={0.4}>
             <h1 className="font-serif text-cream-fg font-bold tracking-tight text-balance leading-[0.92] text-[clamp(2.75rem,11vw,8rem)]">
@@ -150,17 +159,6 @@ export function Hero() {
 
       {/* Confetti burst */}
       <ConfettiBurst x={confetti.x} y={confetti.y} active={confetti.active} />
-
-      {/* Scroll indicator */}
-      <div className="hidden sm:flex absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex-col items-center gap-2">
-        <span className="text-[10px] uppercase tracking-[0.3em] text-cream-fg/60">Scroll</span>
-        <div className="relative size-9 rounded-full border border-cream/30 flex items-start justify-center p-2">
-          <span
-            className="size-1.5 rounded-full bg-gold-light"
-            style={{ animation: "scroll-dot 1.8s ease-in-out infinite" }}
-          />
-        </div>
-      </div>
 
       {/* Floating contact bubble */}
       <a

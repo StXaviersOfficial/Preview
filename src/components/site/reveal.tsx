@@ -235,9 +235,8 @@ export function Reveal({
         opacity: init.opacity,
         transform: init.transform,
         filter: init.filter || "none",
-        willChange: "opacity, transform, filter",
+        willChange: "opacity, transform",
         backfaceVisibility: "hidden",
-        transition: "opacity 0.3s ease, transform 0.3s ease, filter 0.3s ease",
       }}
       {...rest}
     >

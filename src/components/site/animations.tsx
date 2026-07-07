@@ -4,91 +4,15 @@ import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence, useMotionValue, useSpring, useScroll, useTransform, useVelocity, useAnimationFrame } from "framer-motion";
 
 /* ============================================================
-   Custom cursor: dot + ring follower (desktop only)
+   Custom cursor: DISABLED for performance
+   ------------------------------------------------------------
+   The custom cursor was causing significant lag on both desktop
+   and mobile due to its continuous requestAnimationFrame loop.
+   It has been disabled in favor of the native OS cursor, which
+   is smoother, more accessible, and uses zero JS CPU time.
    ============================================================ */
 export function CustomCursor() {
-  const dotRef = useRef<HTMLDivElement>(null);
-  const ringRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    // Disable on touch devices
-    if (window.matchMedia("(pointer: coarse)").matches) return;
-    // Disable on reduced-motion preference
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-
-    let mx = window.innerWidth / 2;
-    let my = window.innerHeight / 2;
-    let rx = mx;
-    let ry = my;
-    let raf = 0;
-    let paused = false;
-
-    const onMove = (e: MouseEvent) => {
-      mx = e.clientX;
-      my = e.clientY;
-      if (dotRef.current) {
-        dotRef.current.style.transform = `translate(${mx}px, ${my}px)`;
-      }
-    };
-
-    const onOver = (e: MouseEvent) => {
-      const target = e.target as HTMLElement;
-      if (target.closest("a, button, [data-cursor-hover], input, textarea, select")) {
-        ringRef.current?.classList.add("hovering");
-      }
-    };
-    const onOut = (e: MouseEvent) => {
-      const target = e.target as HTMLElement;
-      if (target.closest("a, button, [data-cursor-hover], input, textarea, select")) {
-        ringRef.current?.classList.remove("hovering");
-      }
-    };
-
-    const tick = () => {
-      if (paused) {
-        raf = requestAnimationFrame(tick);
-        return;
-      }
-      // Easing follow for ring
-      rx += (mx - rx) * 0.15;
-      ry += (my - ry) * 0.15;
-      if (ringRef.current) {
-        ringRef.current.style.transform = `translate(${rx}px, ${ry}px)`;
-      }
-      raf = requestAnimationFrame(tick);
-    };
-    raf = requestAnimationFrame(tick);
-
-    // Pause rAF loop when document is hidden (saves CPU/battery on mobile
-    // and desktop when user switches tabs)
-    const onVisibility = () => {
-      paused = document.hidden;
-    };
-    document.addEventListener("visibilitychange", onVisibility);
-
-    window.addEventListener("mousemove", onMove);
-    window.addEventListener("mouseover", onOver);
-    window.addEventListener("mouseout", onOut);
-    document.body.style.cursor = "none";
-
-    return () => {
-      window.removeEventListener("mousemove", onMove);
-      window.removeEventListener("mouseover", onOver);
-      window.removeEventListener("mouseout", onOut);
-      document.removeEventListener("visibilitychange", onVisibility);
-      cancelAnimationFrame(raf);
-      document.body.style.cursor = "auto";
-    };
-  }, []);
-
-  return (
-    <>
-      <div ref={dotRef} className="sx-cursor">
-        <div className="sx-cursor-dot" />
-      </div>
-      <div ref={ringRef} className="sx-cursor-ring" />
-    </>
-  );
+  return null;
 }
 
 /* ============================================================
@@ -138,66 +62,54 @@ export function PageCurtain() {
 }
 
 /* ============================================================
-   Scroll progress ring — top-right SVG that fills with scroll.
-   Pauses spring updates when document is hidden (saves CPU/battery).
+   Scroll progress bar — top of page, lightweight
+   ------------------------------------------------------------
+   Uses a single throttled scroll listener (rAF-batched) instead
+   of multiple Framer Motion springs. This is much cheaper on
+   CPU and eliminates the lag caused by spring physics running
+   on every scroll event.
    ============================================================ */
 export function ScrollProgressRing() {
-  const { scrollYProgress } = useScroll();
-  const pathLength = useSpring(scrollYProgress, { stiffness: 80, damping: 20 });
-  const scaleX = useSpring(scrollYProgress, { stiffness: 120, damping: 30 });
-  const [docHidden, setDocHidden] = useState(false);
+  const [progress, setProgress] = useState(0);
 
   useEffect(() => {
-    const onVisibility = () => setDocHidden(document.hidden);
-    document.addEventListener("visibilitychange", onVisibility);
-    return () => document.removeEventListener("visibilitychange", onVisibility);
+    let raf = 0;
+    let ticking = false;
+
+    const update = () => {
+      ticking = false;
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const pct = docHeight > 0 ? Math.min(1, Math.max(0, scrollTop / docHeight)) : 0;
+      setProgress(pct);
+    };
+
+    const onScroll = () => {
+      if (!ticking) {
+        raf = requestAnimationFrame(update);
+        ticking = true;
+      }
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    update(); // initial
+
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      cancelAnimationFrame(raf);
+    };
   }, []);
 
-  // When document is hidden, freeze the spring at its current value by
-  // setting a very high stiffness/damping (effectively stops updating).
-  // This is a lightweight approach — framer-motion's useSpring doesn't
-  // have a native pause, so we use a high damping to minimize re-renders.
-  // The visual effect is negligible (ring stays at last position).
-
   return (
-    <>
-      {/* Linear progress bar at top of page */}
-      <motion.div
-        className="fixed top-0 left-0 right-0 h-1 z-[60] origin-left pointer-events-none"
-        style={{
-          scaleX,
-          background: "linear-gradient(90deg, oklch(0.42 0.18 18), oklch(0.78 0.14 75))",
-          opacity: docHidden ? 0 : 1,
-          transition: "opacity 0.3s",
-        }}
-        aria-hidden
-      />
-      {/* Circular progress ring (top-right) */}
-      <div className="sx-scroll-ring" style={{ opacity: docHidden ? 0 : 1, transition: "opacity 0.3s" }}>
-        <svg width="56" height="56" viewBox="0 0 56 56">
-          <circle
-            cx="28" cy="28" r="24"
-            fill="none"
-            stroke="rgba(139,26,43,0.12)"
-            strokeWidth="3"
-          />
-          <motion.circle
-            cx="28" cy="28" r="24"
-            fill="none"
-            stroke="url(#ring-gradient)"
-            strokeWidth="3"
-            strokeLinecap="round"
-            style={{ pathLength, rotate: -90, transformOrigin: "center" }}
-          />
-          <defs>
-            <linearGradient id="ring-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="oklch(0.42 0.18 18)" />
-              <stop offset="100%" stopColor="oklch(0.78 0.14 75)" />
-            </linearGradient>
-          </defs>
-        </svg>
-      </div>
-    </>
+    <div
+      className="fixed top-0 left-0 right-0 h-1 z-[60] origin-left pointer-events-none"
+      style={{
+        transform: `scaleX(${progress})`,
+        transformOrigin: "left",
+        background: "linear-gradient(90deg, oklch(0.42 0.18 18), oklch(0.78 0.14 75))",
+      }}
+      aria-hidden
+    />
   );
 }
 
