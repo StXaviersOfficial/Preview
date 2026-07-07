@@ -66,13 +66,13 @@ export default function AchievementsPage() {
                 key={`${t.year}-${t.name}`}
                 variant="elastic"
                 delay={i * 0.04}
-                className={`card-lift rounded-2xl border p-5 hover:border-gold/40 ${t.highlight ? "border-gold/40 bg-gradient-to-br from-gold/8 to-xavier/5" : "border-xavier/10 bg-card"}`}
+                className={`card-lift rounded-2xl border p-5 hover:border-gold/40 hover-glow ${t.highlight ? "border-gold/40 bg-gradient-to-br from-gold/8 to-xavier/5" : "border-xavier/10 bg-card"}`}
               >
                 <div className="flex items-center justify-between mb-3">
                   <span className={`text-xs font-bold px-2 py-1 rounded-full ${t.highlight ? "bg-gold-gradient text-xavier-dark" : "bg-xavier/10 text-xavier-dark"}`}>
                     {t.year}
                   </span>
-                  {t.highlight && <Flame className="size-4 text-gold" />}
+                  {t.highlight && <Flame className="size-4 text-gold animate-bounce-soft" />}
                 </div>
                 <p className="font-serif text-lg font-bold text-xavier-dark">{t.name}</p>
                 <p className="text-xs text-muted-foreground mt-0.5">{t.stream}</p>

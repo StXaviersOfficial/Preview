@@ -150,7 +150,7 @@ export default function FacultyPage() {
               <Reveal key={dept.name} variant="wave" delay={i * 0.04}>
                 <div className={`rounded-2xl border border-xavier/10 bg-gradient-to-br ${dept.color} p-5 sm:p-6`}>
                   <div className="flex items-center gap-3 mb-4">
-                    <div className="size-11 rounded-xl bg-xavier-gradient flex items-center justify-center">
+                    <div className="size-11 rounded-xl bg-xavier-gradient flex items-center justify-center hover-grow">
                       <dept.icon className="size-5 text-gold-light" />
                     </div>
                     <div>

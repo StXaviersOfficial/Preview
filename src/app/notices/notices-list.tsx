@@ -152,7 +152,7 @@ export function NoticesList({ notices }: { notices: Notice[] }) {
       {/* Info note */}
       <Reveal variant="blur" className="mt-8">
         <div className="rounded-2xl bg-xavier-gradient p-5 text-cream-fg text-center">
-          <Bell className="size-6 mx-auto mb-2 text-gold-light" />
+          <Bell className="size-6 mx-auto mb-2 text-gold-light animate-bounce-soft" />
           <p className="text-sm">
             For older notices or specific circulars, please contact the school office.
             <br />
