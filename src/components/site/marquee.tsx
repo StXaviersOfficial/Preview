@@ -59,7 +59,7 @@ export function Marquee() {
               key={i}
               className="flex items-center gap-3 text-xs sm:text-sm font-medium text-cream-fg/90 whitespace-nowrap"
             >
-              <Sparkle className="size-3.5 text-gold-light shrink-0" />
+              <Sparkle className="size-3.5 text-gold-light shrink-0 animate-glow-pulse" />
               <span className="font-serif italic">{item}</span>
             </span>
           ))}
@@ -74,7 +74,7 @@ export function Marquee() {
               key={i}
               className="flex items-center gap-3 text-xs sm:text-sm font-medium text-cream-fg/90 whitespace-nowrap"
             >
-              <Sparkle className="size-3.5 text-gold-light shrink-0" />
+              <Sparkle className="size-3.5 text-gold-light shrink-0 animate-glow-pulse" />
               <span className="font-serif italic">{item}</span>
             </span>
           ))}
