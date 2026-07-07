@@ -50,7 +50,7 @@ export function Stats() {
                           <AnimatedCounter
                             value={stat.value}
                             suffix={stat.suffix}
-                            className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-gradient-xavier"
+                            className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-gradient-xavier animate-counter-glow"
                           />
                         </div>
                         <p className="mt-2 font-serif text-sm sm:text-base lg:text-lg font-semibold text-foreground">{stat.label}</p>
