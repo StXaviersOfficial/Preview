@@ -4,7 +4,7 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { Sparkles } from "lucide-react";
 import { STATS, SCHOOL } from "@/lib/site/data";
-import { AnimatedCounter, TiltCard, Halo, BorderShimmer } from "@/components/site/animations";
+import { AnimatedCounter, TiltCard } from "@/components/site/animations";
 import { Reveal } from "@/components/site/reveal";
 
 export function Stats() {
@@ -40,10 +40,8 @@ export function Stats() {
               variant="elastic"
               delay={i * 0.05}
             >
-              <TiltCard intensity={8} className="h-full">
-                <Halo className="h-full">
-                  <BorderShimmer className="h-full rounded-3xl">
-                    <div className="relative h-full rounded-3xl border border-xavier/10 bg-card/90 p-4 sm:p-6 lg:p-8 overflow-hidden">
+              <TiltCard intensity={6} className="h-full">
+                <div className="relative h-full rounded-3xl border border-xavier/10 bg-card/95 p-4 sm:p-6 lg:p-8 overflow-hidden">
                       {/* Animated gradient backdrop on hover */}
                       <div className="absolute inset-0 bg-gradient-to-br from-xavier/8 to-gold/8 opacity-0 hover:opacity-100 transition-opacity duration-500" />
 
@@ -64,16 +62,7 @@ export function Stats() {
                           transition={{ duration: 0.8, delay: 0.5 + i * 0.1 }}
                         />
                       </div>
-
-                      {/* Floating gold accent */}
-                      <motion.span
-                        className="absolute top-2 right-3 size-1.5 rounded-full bg-gold"
-                        animate={{ opacity: [0.4, 1, 0.4], scale: [1, 1.4, 1] }}
-                        transition={{ duration: 3, repeat: Infinity, delay: i * 0.3 }}
-                      />
                     </div>
-                  </BorderShimmer>
-                </Halo>
               </TiltCard>
             </Reveal>
           ))}
