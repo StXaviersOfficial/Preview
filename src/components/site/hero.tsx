@@ -48,20 +48,8 @@ export function Hero() {
 
       {/* Grain texture — removed for performance (mix-blend-overlay is GPU-expensive) */}
 
-      {/* Corner frames with glow-pulse */}
+      {/* Corner frame — single border, no animated corners (removed 4 glow-pulse animations for performance) */}
       <div className="absolute top-20 left-4 right-4 bottom-20 z-10 pointer-events-none border border-cream/10 rounded-3xl" />
-      <div className="absolute top-20 left-4 z-10 pointer-events-none">
-        <div className="size-10 sm:size-12 border-t-2 border-l-2 border-gold/60 rounded-tl-3xl animate-glow-pulse" />
-      </div>
-      <div className="absolute top-20 right-4 z-10 pointer-events-none">
-        <div className="size-10 sm:size-12 border-t-2 border-r-2 border-gold/60 rounded-tr-3xl animate-glow-pulse" />
-      </div>
-      <div className="absolute bottom-20 left-4 z-10 pointer-events-none">
-        <div className="size-10 sm:size-12 border-b-2 border-l-2 border-gold/60 rounded-bl-3xl animate-glow-pulse" />
-      </div>
-      <div className="absolute bottom-20 right-4 z-10 pointer-events-none">
-        <div className="size-10 sm:size-12 border-b-2 border-r-2 border-gold/60 rounded-br-3xl animate-glow-pulse" />
-      </div>
 
       {/* Main content — CRAZIEST animations via Reveal */}
       <div className="relative z-20 container mx-auto max-w-7xl px-5 sm:px-6 min-h-[92svh] sm:min-h-[100svh] flex flex-col justify-center pt-24 pb-20">
