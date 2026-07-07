@@ -128,6 +128,9 @@ export function Reveal({
     const animateIn = () => {
       cancelAnimationFrame(animFrame.current);
 
+      // Set will-change ONLY during animation, not on all elements always
+      el.style.willChange = "opacity, transform";
+
       const start = INITIAL[variant];
       const end = FINAL[variant];
       const duration = variant === "elastic" ? 800 : variant === "glitch" ? 650 : 600;
@@ -235,7 +238,6 @@ export function Reveal({
         opacity: init.opacity,
         transform: init.transform,
         filter: init.filter || "none",
-        willChange: "opacity, transform",
         backfaceVisibility: "hidden",
       }}
       {...rest}
