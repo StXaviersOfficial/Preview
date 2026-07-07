@@ -15,12 +15,22 @@ export function StickyApplyBar() {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
+    let raf = 0;
+    let ticking = false;
     const onScroll = () => {
-      // Show after scrolling past hero (roughly 90% of viewport height)
-      setVisible(window.scrollY > window.innerHeight * 0.9);
+      if (!ticking) {
+        raf = requestAnimationFrame(() => {
+          setVisible(window.scrollY > window.innerHeight * 0.9);
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      cancelAnimationFrame(raf);
+    };
   }, []);
 
   return (

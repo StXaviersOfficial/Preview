@@ -16,10 +16,23 @@ export function Navbar() {
   const [activeSection, setActiveSection] = useState("home");
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 30);
+    let raf = 0;
+    let ticking = false;
+    const onScroll = () => {
+      if (!ticking) {
+        raf = requestAnimationFrame(() => {
+          setScrolled(window.scrollY > 30);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      cancelAnimationFrame(raf);
+    };
   }, []);
 
   useEffect(() => {

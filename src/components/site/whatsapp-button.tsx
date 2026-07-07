@@ -10,9 +10,22 @@ export function WhatsAppButton() {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setVisible(window.scrollY > 200);
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
+    let raf = 0;
+    let ticking = false;
+    const onScroll = () => {
+      if (!ticking) {
+        raf = requestAnimationFrame(() => {
+          setVisible(window.scrollY > 200);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      cancelAnimationFrame(raf);
+    };
   }, []);
 
   return (
