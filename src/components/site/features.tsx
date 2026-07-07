@@ -64,7 +64,7 @@ export function Features() {
                     </span>
 
                     <div className="relative z-10">
-                      <div className="size-11 rounded-xl bg-xavier-gradient flex items-center justify-center mb-3 group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300">
+                      <div className="size-11 rounded-xl bg-xavier-gradient flex items-center justify-center mb-3 group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300 hover-glow">
                         <f.icon className="size-5 text-gold-light" />
                       </div>
                       <h3 className="font-serif text-base sm:text-lg font-bold text-xavier-dark mb-1.5">{f.title}</h3>

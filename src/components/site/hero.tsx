@@ -38,11 +38,11 @@ export function Hero() {
 
       {/* Static decorative glows */}
       <div
-        className="absolute top-[15%] left-[5%] size-64 rounded-full pointer-events-none z-10"
+        className="absolute top-[15%] left-[5%] size-64 rounded-full pointer-events-none z-10 animate-float-y"
         style={{ background: "radial-gradient(circle, rgba(201,169,97,0.18), transparent 70%)" }}
       />
       <div
-        className="absolute bottom-[15%] right-[8%] size-80 rounded-full pointer-events-none z-10"
+        className="absolute bottom-[15%] right-[8%] size-80 rounded-full pointer-events-none z-10 animate-float-x"
         style={{ background: "radial-gradient(circle, rgba(160,40,55,0.22), transparent 70%)" }}
       />
 
@@ -56,7 +56,7 @@ export function Hero() {
         <div className="max-w-4xl">
           {/* Top badge — ELASTIC spring */}
           <Reveal variant="elastic" delay={0}>
-            <div className="inline-flex items-center gap-2 rounded-full glass-gold px-3 sm:px-4 py-1.5 sm:py-2 text-[10px] sm:text-xs font-medium text-gold-light mb-6 sm:mb-8">
+            <div className="inline-flex items-center gap-2 rounded-full glass-gold px-3 sm:px-4 py-1.5 sm:py-2 text-[10px] sm:text-xs font-medium text-gold-light mb-6 sm:mb-8 animate-pulse-soft">
               <Sparkles className="size-3 sm:size-3.5 animate-glow-pulse" />
               <span className="tracking-wide">{SCHOOL.rank}</span>
               <span className="size-1 rounded-full bg-gold-light/60" />
