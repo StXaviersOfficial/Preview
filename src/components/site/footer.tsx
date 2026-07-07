@@ -62,7 +62,7 @@ export function Footer() {
                 href={SCHOOL.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="size-10 rounded-full glass-dark flex items-center justify-center hover:bg-cream/10 hover:scale-110 hover:-rotate-6 transition-all"
+                className="size-10 rounded-full glass-dark flex items-center justify-center hover:bg-cream/10 hover:scale-110 hover:-rotate-6 transition-all hover-glow"
                 aria-label="Instagram"
               >
                 <Instagram className="size-4" />
@@ -71,7 +71,7 @@ export function Footer() {
                 href={SCHOOL.facebook}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="size-10 rounded-full glass-dark flex items-center justify-center hover:bg-cream/10 hover:scale-110 hover:-rotate-6 transition-all"
+                className="size-10 rounded-full glass-dark flex items-center justify-center hover:bg-cream/10 hover:scale-110 hover:-rotate-6 transition-all hover-glow"
                 aria-label="Facebook"
               >
                 <Facebook className="size-4" />
@@ -80,21 +80,21 @@ export function Footer() {
                 href={`https://wa.me/91${SCHOOL.phones[0]}?text=${encodeURIComponent("Hello! I'm interested in admission at St. Xavier's School. Please share details.")}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="size-10 rounded-full glass-dark flex items-center justify-center hover:bg-cream/10 hover:scale-110 hover:-rotate-6 transition-all"
+                className="size-10 rounded-full glass-dark flex items-center justify-center hover:bg-cream/10 hover:scale-110 hover:-rotate-6 transition-all hover-glow"
                 aria-label="Chat on WhatsApp"
               >
                 <MessageCircle className="size-4" />
               </a>
               <a
                 href={`mailto:${SCHOOL.email}`}
-                className="size-10 rounded-full glass-dark flex items-center justify-center hover:bg-cream/10 hover:scale-110 hover:-rotate-6 transition-all"
+                className="size-10 rounded-full glass-dark flex items-center justify-center hover:bg-cream/10 hover:scale-110 hover:-rotate-6 transition-all hover-glow"
                 aria-label="Email"
               >
                 <Mail className="size-4" />
               </a>
               <a
                 href={`tel:+91${SCHOOL.phones[0]}`}
-                className="size-10 rounded-full glass-dark flex items-center justify-center hover:bg-cream/10 hover:scale-110 hover:-rotate-6 transition-all"
+                className="size-10 rounded-full glass-dark flex items-center justify-center hover:bg-cream/10 hover:scale-110 hover:-rotate-6 transition-all hover-glow"
                 aria-label="Call us"
               >
                 <Phone className="size-4" />
@@ -160,7 +160,7 @@ export function Footer() {
 
         {/* Divider with motto */}
         <div className="py-5 sm:py-6 border-y border-cream/10 text-center">
-          <p className="font-serif italic text-cream-fg/80 text-sm sm:text-base">
+          <p className="font-serif italic text-cream-fg/80 text-sm sm:text-base animate-breathe">
             &ldquo;{SCHOOL.tagline}&rdquo;
           </p>
         </div>

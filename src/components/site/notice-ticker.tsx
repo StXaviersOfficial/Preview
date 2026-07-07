@@ -78,7 +78,7 @@ export function NoticeTicker() {
       <div className="container mx-auto max-w-7xl px-4 sm:px-6 py-2.5 flex items-center gap-3 relative">
         <div className="flex items-center gap-2 shrink-0">
           <motion.div
-            animate={{ rotate: [0, 10, -10, 0] }}
+            animate={{ rotate: [0, 10, -10, 0] }} className="animate-bounce-soft"
             transition={{ duration: 2, repeat: Infinity }}
           >
             <Megaphone className="size-4 text-gold-light" />

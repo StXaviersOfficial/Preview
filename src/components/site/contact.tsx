@@ -118,7 +118,7 @@ export function Contact() {
           {/* Contact info card */}
           <Reveal
             variant="left"
-            className="lg:col-span-5 rounded-2xl bg-xavier-gradient p-6 sm:p-9 text-cream-fg shadow-glow-xavier"
+            className="lg:col-span-5 rounded-2xl bg-xavier-gradient p-6 sm:p-9 text-cream-fg shadow-glow-xavier hover-glow"
           >
             <h3 className="font-serif text-xl sm:text-2xl font-bold mb-5 sm:mb-7">Visit / Reach Us</h3>
 

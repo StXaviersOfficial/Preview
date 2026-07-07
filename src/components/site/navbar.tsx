@@ -110,7 +110,7 @@ export function Navbar() {
               {/* Logo */}
               <a href="#home" className="flex items-center gap-2 sm:gap-3 shrink-0">
                 <div className="relative">
-                  <div className="size-9 sm:size-11 rounded-full bg-xavier-gradient flex items-center justify-center shadow-glow-xavier overflow-hidden">
+                  <div className="size-9 sm:size-11 rounded-full bg-xavier-gradient flex items-center justify-center shadow-glow-xavier overflow-hidden hover-grow">
                     <img
                       src="/school/logo-white.png"
                       alt="St. Xavier's logo"
@@ -162,7 +162,7 @@ export function Navbar() {
               <a
                 href="#admissions"
                 onClick={() => trackApplyNow("nav")}
-                className="inline-flex items-center justify-center rounded-full bg-xavier-gradient px-3 sm:px-5 py-2 sm:py-2.5 text-[11px] sm:text-sm font-semibold text-cream-fg shadow-glow-xavier"
+                className="inline-flex items-center justify-center rounded-full bg-xavier-gradient px-3 sm:px-5 py-2 sm:py-2.5 text-[11px] sm:text-sm font-semibold text-cream-fg shadow-glow-xavier hover-grow"
               >
                 Apply Now
               </a>

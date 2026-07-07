@@ -39,7 +39,7 @@ export function WhatsAppButton() {
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.5, y: 20 }}
           transition={{ type: "spring", stiffness: 260, damping: 20 }}
-          className="fixed bottom-24 right-6 z-50 flex size-14 items-center justify-center rounded-full bg-[#25D366] shadow-lg shadow-[#25D366]/40 hover:scale-110 transition-transform"
+          className="fixed bottom-24 right-6 z-50 flex size-14 items-center justify-center rounded-full bg-[#25D366] animate-pulse-ring shadow-lg shadow-[#25D366]/40 hover:scale-110 transition-transform"
           aria-label="Chat on WhatsApp"
         >
           <svg width="28" height="28" viewBox="0 0 24 24" fill="white">
