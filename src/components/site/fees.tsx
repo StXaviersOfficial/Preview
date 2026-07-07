@@ -162,7 +162,7 @@ export function Fees() {
                   key={row.id}
                   variant="blur"
                   delay={i * 0.05}
-                  className="px-5 py-3 grid grid-cols-12 gap-3 items-center hover:bg-cream/40 transition-colors"
+                  className="px-5 py-3 grid grid-cols-12 gap-3 items-center hover:bg-cream/40 hover:border-l-2 hover:border-l-gold transition-all"
                 >
                   <div className="col-span-12 sm:col-span-5">
                     <p className="font-semibold text-xavier-dark text-sm">{row.label}</p>

@@ -95,7 +95,7 @@ export function Timetable() {
         {loading ? (
           <div className="grid gap-3 sm:gap-4 lg:grid-cols-2 xl:grid-cols-3">
             {[...Array(6)].map((_, i) => (
-              <div key={i} className="rounded-2xl border border-xavier/10 bg-card overflow-hidden">
+              <div key={i} className="card-lift rounded-2xl border border-xavier/10 bg-card overflow-hidden hover:border-gold/40">
                 <div className="bg-xavier-gradient px-4 py-3 flex items-center justify-between">
                   <div className="h-4 w-20 bg-cream/20 rounded animate-pulse" />
                   <div className="h-3 w-12 bg-cream/20 rounded animate-pulse" />
@@ -131,7 +131,7 @@ export function Timetable() {
                 key={day}
                 variant="elastic"
                 delay={dayIdx * 0.05}
-                className="rounded-2xl border border-xavier/10 bg-card overflow-hidden"
+                className="card-lift rounded-2xl border border-xavier/10 bg-card overflow-hidden hover:border-gold/40"
               >
                 <div className="bg-xavier-gradient px-4 py-3 text-cream-fg flex items-center justify-between">
                   <span className="font-serif font-bold text-sm">{day}</span>
