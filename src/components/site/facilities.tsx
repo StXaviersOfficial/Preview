@@ -20,8 +20,7 @@ const FACILITIES = [
 export function Facilities() {
   return (
     <section id="campus" className="relative py-16 sm:py-24 bg-xavier-dark text-cream-fg overflow-hidden">
-      {/* Flowing aurora background */}
-      <div className="sx-aurora-flow opacity-40" />
+      {/* Aurora background — removed for performance (blur on 200% sized element is very GPU-expensive) */}
 
       <div className="container mx-auto max-w-7xl px-5 sm:px-6 relative">
         {/* Header */}
