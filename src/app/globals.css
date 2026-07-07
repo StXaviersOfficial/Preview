@@ -900,3 +900,54 @@ section[id] {
     animation: none !important;
   }
 }
+
+
+/* ═══════════════════════════════════════════════════════════════
+   DARK MODE TEXT VISIBILITY FIX
+   text-xavier-dark is too dark to read on dark backgrounds.
+   Override it to use the lighter xavier variant in dark mode.
+   ═══════════════════════════════════════════════════════════════ */
+.dark .text-xavier-dark {
+  color: oklch(0.75 0.18 18) !important;
+}
+
+.dark .text-xavier-dark\/80 {
+  color: oklch(0.75 0.18 18 / 0.8) !important;
+}
+
+.dark .text-xavier-dark\/70 {
+  color: oklch(0.75 0.18 18 / 0.7) !important;
+}
+
+.dark .text-xavier-dark\/60 {
+  color: oklch(0.75 0.18 18 / 0.6) !important;
+}
+
+/* Also ensure hover states work */
+.dark .hover\:text-xavier-dark:hover {
+  color: oklch(0.80 0.18 18) !important;
+}
+
+/* Gold text should be brighter in dark mode for better contrast */
+.dark .text-gold {
+  color: oklch(0.88 0.14 75) !important;
+}
+
+/* Ensure muted-foreground is readable in dark mode */
+.dark .text-muted-foreground {
+  color: oklch(0.78 0.02 30) !important;
+}
+
+/* Ensure foreground/70, /80, /90 are visible in dark mode */
+.dark .text-foreground\/70 {
+  color: oklch(0.88 0.005 75 / 0.85) !important;
+}
+.dark .text-foreground\/80 {
+  color: oklch(0.92 0.005 75 / 0.9) !important;
+}
+.dark .text-foreground\/85 {
+  color: oklch(0.94 0.005 75 / 0.95) !important;
+}
+.dark .text-foreground\/90 {
+  color: oklch(0.95 0.005 75) !important;
+}

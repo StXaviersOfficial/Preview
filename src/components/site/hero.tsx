@@ -64,11 +64,11 @@ export function Hero() {
             </div>
           </Reveal>
 
-          {/* Main headline — "St. Xavier's Jr./Sr. School" all on one line */}
+          {/* Main headline — "St. Xavier's" on top, "Jr./Sr. School" directly below */}
           <Reveal variant="scale" delay={0.2}>
-            <h1 className="font-serif font-bold tracking-tight text-balance leading-[1.1] mb-2 flex flex-wrap items-baseline gap-x-3 sm:gap-x-4">
+            <h1 className="font-serif font-bold tracking-tight leading-[1.0] mb-2 text-left">
               <Name3D />
-              <span className="text-[clamp(1.25rem,3.5vw,2.5rem)] text-cream-fg/85 font-medium tracking-wide animate-text-shimmer">
+              <span className="block text-[clamp(1.25rem,3.5vw,2.5rem)] text-cream-fg/85 font-medium tracking-wide animate-text-shimmer mt-1">
                 Jr./Sr. School
               </span>
             </h1>

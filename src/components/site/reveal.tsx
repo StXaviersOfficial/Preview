@@ -133,7 +133,7 @@ export function Reveal({
 
       const start = INITIAL[variant];
       const end = FINAL[variant];
-      const duration = variant === "elastic" ? 800 : variant === "glitch" ? 650 : 600;
+      const duration = variant === "elastic" ? 1200 : variant === "glitch" ? 1000 : 900;
       const startTime = performance.now() + delay * 1000;
 
       const animate = (now: number) => {
