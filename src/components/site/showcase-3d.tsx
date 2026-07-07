@@ -242,8 +242,8 @@ export function Showcase3D() {
       aria-labelledby="showcase-3d-title"
     >
       {/* Decorative background glows */}
-      <div className="absolute top-10 left-10 size-72 rounded-full bg-gold/8 blur-3xl pointer-events-none" />
-      <div className="absolute bottom-10 right-10 size-80 rounded-full bg-xavier/8 blur-3xl pointer-events-none" />
+      <div className="absolute top-10 left-10 size-72 rounded-full bg-gold/8 blur-2xl pointer-events-none" />
+      <div className="absolute bottom-10 right-10 size-80 rounded-full bg-xavier/8 blur-2xl pointer-events-none" />
 
       <div className="container mx-auto max-w-7xl px-5 sm:px-6 relative">
         {/* Header */}

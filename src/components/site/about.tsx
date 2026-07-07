@@ -34,9 +34,9 @@ export function About() {
       {/* Animated decorative blobs */}
       <motion.div
         style={{ y: decoY }}
-        className="absolute -top-20 -right-20 size-96 rounded-full bg-gold/10 blur-3xl pointer-events-none"
+        className="absolute -top-20 -right-20 size-96 rounded-full bg-gold/10 blur-2xl pointer-events-none"
       />
-      <div className="absolute bottom-0 left-0 size-72 rounded-full bg-xavier/8 blur-3xl pointer-events-none" />
+      <div className="absolute bottom-0 left-0 size-72 rounded-full bg-xavier/8 blur-2xl pointer-events-none" />
 
       <div className="container mx-auto max-w-7xl px-5 sm:px-6">
         {/* Header */}

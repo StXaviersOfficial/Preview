@@ -46,8 +46,7 @@ export function Hero() {
         style={{ background: "radial-gradient(circle, rgba(160,40,55,0.22), transparent 70%)" }}
       />
 
-      {/* Grain texture */}
-      <div className="absolute inset-0 z-10 bg-grain-gold opacity-20 mix-blend-overlay pointer-events-none" />
+      {/* Grain texture — removed for performance (mix-blend-overlay is GPU-expensive) */}
 
       {/* Corner frames with glow-pulse */}
       <div className="absolute top-20 left-4 right-4 bottom-20 z-10 pointer-events-none border border-cream/10 rounded-3xl" />
