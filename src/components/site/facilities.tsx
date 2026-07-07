@@ -99,16 +99,7 @@ export function Facilities() {
           variant="scale"
           className="mt-10 grid grid-cols-2 md:grid-cols-4 gap-3 rounded-2xl glass-dark p-5 sm:p-8 relative overflow-hidden"
         >
-          {/* Animated shine */}
-          <motion.div
-            className="absolute inset-0 pointer-events-none"
-            style={{
-              background: "linear-gradient(110deg, transparent 30%, rgba(201,169,97,0.15) 50%, transparent 70%)",
-              backgroundSize: "200% 100%",
-            }}
-            animate={{ backgroundPosition: ["200% 0", "-200% 0"] }}
-            transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
-          />
+        {/* Shine sweep — removed for performance (was infinite Framer Motion animation) */}
           {[
             { value: "2+ acres", label: "Green Campus" },
             { value: `${SCHOOL.classroomsCount}`, label: "Classrooms" },
