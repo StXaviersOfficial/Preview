@@ -69,7 +69,7 @@ export function Testimonials() {
               as="figure"
               variant="wave"
               delay={i * 0.05}
-              className={`break-inside-avoid rounded-2xl border bg-card p-5 sm:p-7 ${
+              className={`card-lift break-inside-avoid rounded-2xl border bg-card p-5 sm:p-7 hover:border-gold/40 ${
                 t.highlight ? "border-gold/40 bg-gradient-to-br from-gold/8 to-xavier/5" : "border-xavier/10"
               }`}
             >
