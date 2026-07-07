@@ -140,8 +140,8 @@ export function Navbar() {
 
             {/* Toggles + CTA — prominently visible on ALL devices */}
             <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
-              <LanguageToggle />
-              <ThemeToggle />
+              <LanguageToggle className="hidden sm:inline-flex" />
+              <ThemeToggle className="hidden sm:inline-flex" />
               <a
                 href="#admissions"
                 onClick={() => trackApplyNow("nav")}
