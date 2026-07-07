@@ -683,3 +683,35 @@ section[id] {
     color: black !important;
   }
 }
+
+
+/* ═══════════════════════════════════════════════════════════════
+   ANIMATION SAFETY NET
+   ═══════════════════════════════════════════════════════════════
+   If JavaScript fails or is slow, elements with data-reveal="" stay
+   at opacity:0 (hidden). This animation forces them visible after 3s
+   so content is never permanently invisible. The Reveal component's
+   rAF animation overrides this once it runs.
+   ═══════════════════════════════════════════════════════════════ */
+@keyframes reveal-safety-net {
+  0%, 100% { opacity: 1 !important; transform: none !important; filter: none !important; }
+}
+
+[data-reveal=""] {
+  animation: reveal-safety-net 3s 3s forwards;
+}
+
+/* When Reveal completes, it sets data-reveal="done" — stop the safety net */
+[data-reveal="done"] {
+  animation: none !important;
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   NOSCRIPT FALLBACK — show all content if JS is disabled
+   ═══════════════════════════════════════════════════════════════ */
+.no-js [data-reveal] {
+  opacity: 1 !important;
+  transform: none !important;
+  filter: none !important;
+}

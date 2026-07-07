@@ -191,8 +191,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning className="no-js">
       <head>
+        {/* Remove 'no-js' class immediately if JS is available */}
+        <script dangerouslySetInnerHTML={{ __html: `document.documentElement.classList.remove('no-js');` }} />
         <script dangerouslySetInnerHTML={{ __html: `(function(){try{var k='xavier-theme';var t=localStorage.getItem(k)||'system';var d=t==='dark'||(t==='system'&&window.matchMedia('(prefers-color-scheme: dark)').matches);var c=document.documentElement.classList;c.add(d?'dark':'light');c.remove(d?'light':'dark');document.documentElement.style.colorScheme=d?'dark':'light';var lk='xavier-lang';var l=localStorage.getItem(lk);if(l==='hi'){document.documentElement.lang='hi';}}catch(e){}})();` }} />
         <script
           type="application/ld+json"
