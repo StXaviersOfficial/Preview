@@ -64,17 +64,11 @@ export function Hero() {
             </div>
           </Reveal>
 
-          {/* Animated school name — "St. Xavier's" directly above "Jr./Sr. School" */}
+          {/* Main headline — "St. Xavier's Jr./Sr. School" all on one line */}
           <Reveal variant="scale" delay={0.2}>
-            <div className="mb-0 sm:mb-0">
+            <h1 className="font-serif font-bold tracking-tight text-balance leading-[1.1] mb-2 flex flex-wrap items-baseline gap-x-3 sm:gap-x-4">
               <Name3D />
-            </div>
-          </Reveal>
-
-          {/* HUGE Headline — "Jr./Sr. School" right below the name, with gradient shimmer */}
-          <Reveal variant="explode" delay={0.4}>
-            <h1 className="font-serif text-cream-fg font-bold tracking-tight text-balance leading-[0.92] text-[clamp(1.5rem,5vw,3.5rem)] animate-text-shimmer" style={{ backgroundSize: '200% auto' }}>
-              <span className="inline-block text-[1em] sm:text-[1em] text-cream-fg/90 font-medium tracking-wide">
+              <span className="text-[clamp(1.25rem,3.5vw,2.5rem)] text-cream-fg/85 font-medium tracking-wide animate-text-shimmer">
                 Jr./Sr. School
               </span>
             </h1>
