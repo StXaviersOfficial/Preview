@@ -96,7 +96,7 @@ export function Gallery() {
               delay={i * 0.05}
               as="button"
               onClick={() => setLightbox(i)}
-              className={`group relative overflow-hidden rounded-xl sm:rounded-2xl aspect-square text-left ring-2 ring-transparent hover:ring-gold/50 transition-all duration-300 ${
+              className={`group relative overflow-hidden rounded-xl sm:rounded-2xl aspect-square text-left ring-2 ring-transparent hover:ring-gold/50 transition-all duration-300 hover-grow ${
                 i % 7 === 0 ? "sm:col-span-2 sm:row-span-2" : ""
               }`}
             >

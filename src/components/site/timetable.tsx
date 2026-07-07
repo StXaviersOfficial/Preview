@@ -133,7 +133,7 @@ export function Timetable() {
                 delay={dayIdx * 0.05}
                 className="card-lift rounded-2xl border border-xavier/10 bg-card overflow-hidden hover:border-gold/40"
               >
-                <div className="bg-xavier-gradient px-4 py-3 text-cream-fg flex items-center justify-between">
+                <div className="bg-xavier-gradient px-4 py-3 text-cream-fg flex items-center justify-between animate-gradient-flow-x">
                   <span className="font-serif font-bold text-sm">{day}</span>
                   <span className="text-[10px] uppercase tracking-widest text-cream-fg/60">{periods.length} periods</span>
                 </div>

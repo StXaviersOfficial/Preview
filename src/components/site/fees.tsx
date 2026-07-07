@@ -182,7 +182,7 @@ export function Fees() {
             </div>
             {/* Total */}
             {totalYearly > 0 && (
-              <div className="px-5 py-4 bg-xavier-gradient text-cream-fg flex items-center justify-between">
+              <div className="px-5 py-4 bg-xavier-gradient text-cream-fg flex items-center justify-between animate-gradient-flow-x">
                 <div>
                   <p className="text-[10px] uppercase tracking-widest text-cream-fg/60">Approx. Yearly Total</p>
                   <p className="text-[10px] text-cream-fg/50">(excluding one-time fees)</p>
