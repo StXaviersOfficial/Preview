@@ -1,10 +1,7 @@
 'use client'
 
-import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
 import { Quote, Target, Eye, Heart, MapPin, Building2, Users, BookMarked } from "lucide-react";
 import { SCHOOL, IMAGES } from "@/lib/site/data";
-import { TiltCard } from "@/components/site/animations";
 import { Reveal } from "@/components/site/reveal";
 
 const PILLARS = [
@@ -21,21 +18,10 @@ const QUICK_FACTS = [
 ];
 
 export function About() {
-  const ref = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start end", "end start"],
-  });
-  const imageY = useTransform(scrollYProgress, [0, 1], ["-12%", "12%"]);
-  const decoY = useTransform(scrollYProgress, [0, 1], ["10%", "-10%"]);
-
   return (
     <section id="about" className="relative py-16 sm:py-24 bg-cream-gradient overflow-hidden">
-      {/* Animated decorative blobs */}
-      <motion.div
-        style={{ y: decoY }}
-        className="absolute -top-20 -right-20 size-96 rounded-full bg-gold/10 blur-2xl pointer-events-none"
-      />
+      {/* Decorative blobs — static, no parallax for performance */}
+      <div className="absolute -top-20 -right-20 size-96 rounded-full bg-gold/10 blur-2xl pointer-events-none" />
       <div className="absolute bottom-0 left-0 size-72 rounded-full bg-xavier/8 blur-2xl pointer-events-none" />
 
       <div className="container mx-auto max-w-7xl px-5 sm:px-6">
@@ -57,16 +43,11 @@ export function About() {
 
         {/* Two column: image + content */}
         <div className="grid lg:grid-cols-12 gap-8 lg:gap-10 items-start">
-          {/* Image column with parallax + tilt */}
+          {/* Image column — static, no parallax/tilt for performance */}
           <Reveal variant="left" className="lg:col-span-5">
-            <motion.div
-              ref={ref}
-              className="relative lg:sticky lg:top-24"
-            >
-              <TiltCard intensity={6} className="relative">
+            <div className="relative lg:sticky lg:top-24">
                 <div className="relative aspect-[4/5] rounded-3xl overflow-hidden shadow-elegant">
-                  <motion.img
-                    style={{ y: imageY, scale: 1.15 }}
+                  <img
                     src={IMAGES.about2}
                     alt="St. Xavier's School campus, Muzaffarpur"
                     className="h-full w-full object-cover"
@@ -91,25 +72,19 @@ export function About() {
                   </motion.div>
                 </div>
 
-                {/* Floating badge with spring bounce */}
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.3, rotate: -15 }}
-                  whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.6, type: "spring", stiffness: 200 }}
-                  animate={{ y: [0, -8], transition: { duration: 2, repeat: Infinity, repeatType: "reverse", ease: "easeInOut" } }}
+                {/* Floating badge — static for performance (was infinite animation) */}
+                <div
                   className="absolute -top-5 -right-3 sm:-top-5 sm:-right-5 size-20 sm:size-24 rounded-full bg-gold-gradient flex flex-col items-center justify-center shadow-glow-gold"
                 >
                   <span className="font-serif text-xl sm:text-2xl font-bold text-xavier-dark leading-none">
                     {new Date().getFullYear() - SCHOOL.established}+
                   </span>
                   <span className="text-[10px] sm:text-[10px] uppercase tracking-wider text-xavier-dark/80 mt-1">Years of Trust</span>
-                </motion.div>
-              </TiltCard>
+                </div>
 
               {/* Decorative side accent */}
               <div className="absolute -bottom-4 -left-4 size-24 border-l-2 border-b-2 border-gold/40 rounded-bl-3xl pointer-events-none" />
-            </motion.div>
+            </div>
           </Reveal>
 
           {/* Content column */}
