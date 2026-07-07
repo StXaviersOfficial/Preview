@@ -1,6 +1,7 @@
 'use client'
 
 import { Quote, Target, Eye, Heart, MapPin, Building2, Users, BookMarked } from "lucide-react";
+import { motion } from "framer-motion";
 import { SCHOOL, IMAGES } from "@/lib/site/data";
 import { Reveal } from "@/components/site/reveal";
 
