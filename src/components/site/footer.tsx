@@ -34,10 +34,10 @@ export function Footer() {
           </div>
           <a
             href="#admissions"
-            className="shrink-0 inline-flex items-center gap-2 rounded-full bg-gold-gradient px-6 sm:px-7 py-3.5 text-sm font-bold text-xavier-dark shadow-glow-gold"
+            className="btn-shine shrink-0 inline-flex items-center gap-2 rounded-full bg-gold-gradient px-6 sm:px-7 py-3.5 text-sm font-bold text-xavier-dark shadow-glow-gold hover:scale-105 transition-transform overflow-hidden"
           >
             Apply Now
-            <ArrowRight className="size-4" />
+            <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
           </a>
         </Reveal>
 
@@ -62,7 +62,7 @@ export function Footer() {
                 href={SCHOOL.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="size-10 rounded-full glass-dark flex items-center justify-center hover:bg-cream/10 hover:scale-110 transition-all"
+                className="size-10 rounded-full glass-dark flex items-center justify-center hover:bg-cream/10 hover:scale-110 hover:-rotate-6 transition-all"
                 aria-label="Instagram"
               >
                 <Instagram className="size-4" />
@@ -71,7 +71,7 @@ export function Footer() {
                 href={SCHOOL.facebook}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="size-10 rounded-full glass-dark flex items-center justify-center hover:bg-cream/10 hover:scale-110 transition-all"
+                className="size-10 rounded-full glass-dark flex items-center justify-center hover:bg-cream/10 hover:scale-110 hover:-rotate-6 transition-all"
                 aria-label="Facebook"
               >
                 <Facebook className="size-4" />
@@ -80,21 +80,21 @@ export function Footer() {
                 href={`https://wa.me/91${SCHOOL.phones[0]}?text=${encodeURIComponent("Hello! I'm interested in admission at St. Xavier's School. Please share details.")}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="size-10 rounded-full glass-dark flex items-center justify-center hover:bg-cream/10 hover:scale-110 transition-all"
+                className="size-10 rounded-full glass-dark flex items-center justify-center hover:bg-cream/10 hover:scale-110 hover:-rotate-6 transition-all"
                 aria-label="Chat on WhatsApp"
               >
                 <MessageCircle className="size-4" />
               </a>
               <a
                 href={`mailto:${SCHOOL.email}`}
-                className="size-10 rounded-full glass-dark flex items-center justify-center hover:bg-cream/10 hover:scale-110 transition-all"
+                className="size-10 rounded-full glass-dark flex items-center justify-center hover:bg-cream/10 hover:scale-110 hover:-rotate-6 transition-all"
                 aria-label="Email"
               >
                 <Mail className="size-4" />
               </a>
               <a
                 href={`tel:+91${SCHOOL.phones[0]}`}
-                className="size-10 rounded-full glass-dark flex items-center justify-center hover:bg-cream/10 hover:scale-110 transition-all"
+                className="size-10 rounded-full glass-dark flex items-center justify-center hover:bg-cream/10 hover:scale-110 hover:-rotate-6 transition-all"
                 aria-label="Call us"
               >
                 <Phone className="size-4" />
