@@ -103,7 +103,7 @@ export function Contact() {
             GET IN TOUCH
           </div>
           <h2
-            className="scroll-reveal-up scroll-fade-in font-serif text-3xl sm:text-5xl lg:text-6xl font-bold text-ink leading-tight text-balance"
+            className="scroll-reveal-up scroll-fade-in text-mask-reveal font-serif text-3xl sm:text-5xl lg:text-6xl font-bold text-ink leading-tight text-balance"
           >
             Come, see the <span className="text-gradient-animate">Xavier&apos;s</span> difference.
           </h2>

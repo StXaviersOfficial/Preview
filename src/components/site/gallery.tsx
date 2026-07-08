@@ -58,7 +58,7 @@ export function Gallery() {
               MOMENTS • CAMPUS LIFE IN PICTURES
             </div>
             <h2
-              className="scroll-reveal-up scroll-fade-in font-serif text-3xl sm:text-5xl font-bold text-ink leading-tight text-balance"
+              className="scroll-reveal-up scroll-fade-in text-mask-reveal font-serif text-3xl sm:text-5xl font-bold text-ink leading-tight text-balance"
             >
               A peek into <span className="text-gradient-xavier">Xavier&apos;s life</span>.
             </h2>

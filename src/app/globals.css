@@ -2389,3 +2389,52 @@ body[data-hi-active="true"] .tracking-\[0\.3em\] {
 .stagger-grid > *:nth-child(11) { animation-delay: 0.55s; }
 .stagger-grid > *:nth-child(12) { animation-delay: 0.6s; }
 .stagger-grid > *:nth-child(n+13) { animation-delay: 0.65s; }
+
+/* Additional dark mode fixes */
+.dark .bg-card\/80 {
+  background-color: oklch(0.26 0.025 25 / 0.9) !important;
+}
+
+.dark .bg-card\/95 {
+  background-color: oklch(0.24 0.025 25) !important;
+}
+
+/* Fix text-balance in dark mode */
+.dark .text-balance {
+  color: oklch(0.96 0.005 75);
+}
+
+/* Ensure scroll-reveal works in dark mode */
+.dark [data-reveal] {
+  color: inherit;
+}
+
+/* Fix any remaining visibility issues */
+.dark .text-ink {
+  color: oklch(0.95 0.005 75) !important;
+}
+
+/* Ensure all text is visible on dark backgrounds */
+.dark section {
+  color: oklch(0.96 0.005 75);
+}
+
+.dark section .text-foreground\/75 {
+  color: oklch(0.85 0.005 75) !important;
+}
+
+.dark section .text-foreground\/80 {
+  color: oklch(0.88 0.005 75) !important;
+}
+
+/* Fix glass-dark in dark mode */
+.dark .glass-dark {
+  background: rgba(0, 0, 0, 0.3) !important;
+  border-color: rgba(201, 169, 97, 0.15) !important;
+}
+
+/* Fix glass-gold in dark mode */
+.dark .glass-gold {
+  background: rgba(201, 169, 97, 0.1) !important;
+  border-color: rgba(201, 169, 97, 0.2) !important;
+}

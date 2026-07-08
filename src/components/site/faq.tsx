@@ -93,7 +93,7 @@ export function FAQ() {
             FREQUENTLY ASKED QUESTIONS
           </div>
           <h2
-            className="scroll-reveal-up scroll-fade-in font-serif text-3xl sm:text-5xl font-bold text-ink leading-tight text-balance"
+            className="scroll-reveal-up scroll-fade-in text-mask-reveal font-serif text-3xl sm:text-5xl font-bold text-ink leading-tight text-balance"
           >
             Got questions? <span className="text-gradient-animate">We&apos;ve got answers.</span>
           </h2>

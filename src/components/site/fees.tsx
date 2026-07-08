@@ -78,7 +78,7 @@ export function Fees() {
             FEE STRUCTURE • ACADEMIC SESSION 2026–27
           </div>
           <h2
-            className="scroll-reveal-up scroll-fade-in font-serif text-3xl sm:text-5xl font-bold text-ink leading-tight text-balance"
+            className="scroll-reveal-up scroll-fade-in text-mask-reveal font-serif text-3xl sm:text-5xl font-bold text-ink leading-tight text-balance"
           >
             Transparent <span className="text-gradient-animate">fee structure</span>.
           </h2>

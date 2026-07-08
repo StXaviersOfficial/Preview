@@ -67,7 +67,7 @@ export function Admissions() {
             ADMISSIONS OPEN • SESSION 2026 – 27
           </div>
           <h2
-            className="scroll-reveal-up scroll-fade-in font-serif text-3xl sm:text-5xl font-bold text-ink leading-tight text-balance"
+            className="scroll-reveal-up scroll-fade-in text-mask-reveal font-serif text-3xl sm:text-5xl font-bold text-ink leading-tight text-balance"
           >
             Four steps to <span className="text-gradient-animate">admission</span>.
           </h2>
