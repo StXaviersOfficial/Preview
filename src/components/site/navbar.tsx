@@ -121,7 +121,7 @@ export function Navbar() {
                   <span className="absolute -top-0.5 -right-0.5 size-2 sm:size-3 rounded-full bg-gold" />
                 </div>
                 <div className="flex flex-col leading-tight">
-                  <span className="font-serif text-sm sm:text-lg font-bold tracking-tight text-xavier-dark">
+                  <span className="font-serif text-sm sm:text-lg font-bold tracking-tight text-xavier-dark glitch-hover">
                     St. Xavier&apos;s
                   </span>
                   <span className="text-[10px] sm:text-[10px] uppercase tracking-[0.15em] sm:tracking-[0.18em] text-muted-foreground font-medium">

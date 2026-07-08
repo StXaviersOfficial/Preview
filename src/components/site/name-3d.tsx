@@ -28,7 +28,7 @@ export function Name3D({ className = '' }: { className?: string }) {
     <span
       className={`block font-serif font-bold tracking-tight text-left ${className}`}
       style={{
-        background: 'linear-gradient(110deg, #f4d98a 0%, #c9a961 25%, #fff4d4 50%, #c9a961 75%, #f4d98a 100%)',
+        className='iridescent-text' style={{ background: 'linear-gradient(110deg, #f4d98a 0%, #c9a961 25%, #fff4d4 50%, #c9a961 75%, #f4d98a 100%)',
         backgroundSize: '200% auto',
         WebkitBackgroundClip: 'text',
         WebkitTextFillColor: 'transparent',
