@@ -28,8 +28,8 @@ export function PageLayout({
         <main className="flex-1">
           {/* Hero header */}
           <section className="relative pt-24 sm:pt-32 pb-12 sm:pb-16 bg-cream-gradient overflow-hidden">
-            <div className="absolute top-10 right-10 size-72 rounded-full bg-gold/8 blur-2xl pointer-events-none" />
-            <div className="absolute bottom-0 left-0 size-72 rounded-full bg-xavier/8 blur-2xl pointer-events-none" />
+            <div className="absolute top-10 right-10 size-72 rounded-full bg-gold/8 blur-2xl pointer-events-none ambient-float" />
+            <div className="absolute bottom-0 left-0 size-72 rounded-full bg-xavier/8 blur-2xl pointer-events-none ambient-float" />
             <div className="container mx-auto max-w-4xl px-5 sm:px-6 relative">
               {/* Breadcrumb */}
               <nav aria-label="Breadcrumb" className="mb-4">

@@ -99,7 +99,7 @@ export function Hero() {
               <Magnetic>
                 <a
                   href="#about"
-                  className="btn-premium btn-shine group inline-flex items-center justify-center gap-2 rounded-full glass px-6 sm:px-8 py-3.5 sm:py-4 text-sm sm:text-base font-semibold text-cream-fg hover:bg-cream/10 hover:scale-105 transition-all"
+                  className="btn-premium magnetic-btn-premium btn-shine group inline-flex items-center justify-center gap-2 rounded-full glass px-6 sm:px-8 py-3.5 sm:py-4 text-sm sm:text-base font-semibold text-cream-fg hover:bg-cream/10 hover:scale-105 transition-all"
                 >
                   Explore Campus
                   <ChevronDown className="size-4 transition-transform group-hover:translate-y-1" />

@@ -22,8 +22,8 @@ export function About() {
   return (
     <section id="about" className="relative py-16 sm:py-24 bg-cream-gradient overflow-hidden">
       {/* Decorative blobs — static, no parallax for performance */}
-      <div className="absolute -top-20 -right-20 size-96 rounded-full bg-gold/10 blur-2xl pointer-events-none" />
-      <div className="absolute bottom-0 left-0 size-72 rounded-full bg-xavier/8 blur-2xl pointer-events-none" />
+      <div className="absolute -top-20 -right-20 size-96 rounded-full bg-gold/10 blur-2xl pointer-events-none ambient-float" />
+      <div className="absolute bottom-0 left-0 size-72 rounded-full bg-xavier/8 blur-2xl pointer-events-none ambient-float" />
 
       <div className="container mx-auto max-w-7xl px-5 sm:px-6">
         {/* Header */}

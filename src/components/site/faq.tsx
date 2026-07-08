@@ -80,8 +80,8 @@ export function FAQ() {
   return (
     <section id="faq" className="relative py-16 sm:py-24 bg-cream-gradient overflow-hidden">
       {/* Decorative blobs */}
-      <div className="absolute top-10 left-10 size-72 rounded-full bg-gold/8 blur-2xl pointer-events-none" />
-      <div className="absolute bottom-10 right-10 size-80 rounded-full bg-xavier/8 blur-2xl pointer-events-none" />
+      <div className="absolute top-10 left-10 size-72 rounded-full bg-gold/8 blur-2xl pointer-events-none ambient-float" />
+      <div className="absolute bottom-10 right-10 size-80 rounded-full bg-xavier/8 blur-2xl pointer-events-none ambient-float" />
 
       <div className="container mx-auto max-w-4xl px-5 sm:px-6 relative">
         {/* Header */}
