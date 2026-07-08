@@ -57,7 +57,7 @@ export function Hero() {
           {/* Top badge — ELASTIC spring */}
           <Reveal variant="elastic" delay={0}>
             <div className="inline-flex items-center gap-2 rounded-full glass-gold px-3 sm:px-4 py-1.5 sm:py-2 text-[10px] sm:text-xs font-medium text-gold-light mb-6 sm:mb-8 animate-pulse-soft">
-              <Sparkles className="size-3 sm:size-3.5 animate-glow-pulse" />
+              <Sparkles className="size-3 sm:size-3.5 playful-bounce" />
               <span className="tracking-wide">{SCHOOL.rank}</span>
               <span className="size-1 rounded-full bg-gold-light/60" />
               <span>CBSE • Est. {SCHOOL.established}</span>
@@ -77,7 +77,7 @@ export function Hero() {
           {/* Sub-tagline — BLUR fade */}
           <Reveal variant="blur" delay={0.3}>
             <p className="mt-5 sm:mt-7 text-cream-fg/85 text-base sm:text-xl lg:text-2xl font-light max-w-2xl leading-relaxed">
-              <span className="font-serif italic text-gold-light">Where Discipline Meets Opportunity.</span>
+              <span className="font-serif italic gradient-scroll-text">Where Discipline Meets Opportunity.</span>
               {" "}
               Nurturing curious minds since {SCHOOL.established}, on Goshala Road, Muzaffarpur.
             </p>

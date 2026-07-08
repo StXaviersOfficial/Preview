@@ -76,7 +76,7 @@ export function Leadership() {
         {/* Principal's message feature */}
         <Reveal
           variant="scale"
-          className="mt-8 sm:mt-12 rounded-2xl glass-dark p-5 sm:p-10 flex flex-col lg:flex-row items-start gap-4 sm:gap-8"
+          className="mt-8 sm:mt-12 rounded-2xl glass-dark p-5 sm:p-10 theatrical-reveal flex flex-col lg:flex-row items-start gap-4 sm:gap-8"
         >
           <div className="shrink-0">
             <div className="size-14 sm:size-16 rounded-2xl bg-gold-gradient flex items-center justify-center shadow-glow-gold">

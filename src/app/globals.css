@@ -1426,3 +1426,188 @@ body[data-hi-active="true"] .tracking-\[0\.3em\] {
     transition-duration: 0.01ms !important;
   }
 }
+
+
+/* ═══════════════════════════════════════════════════════════════
+   AWARD-WINNING ANIMATION TECHNIQUES
+   Inspired by Epic, Apple, Lusion, Uncommon Studio, Active Theory
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ─── SCROLL-MORPHING TYPOGRAPHY (Epic.net style) ─── */
+@keyframes text-morph-scroll {
+  0% { letter-spacing: -0.02em; filter: blur(0); }
+  50% { letter-spacing: 0.05em; filter: blur(1px); }
+  100% { letter-spacing: -0.02em; filter: blur(0); }
+}
+
+/* ─── STAGGERED GRID REVEAL (Uncommon Studio style) ─── */
+@keyframes grid-stagger-in {
+  0% { opacity: 0; transform: translateY(40px) scale(0.95); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.stagger-item {
+  opacity: 0;
+  animation: grid-stagger-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+.stagger-item:nth-child(1) { animation-delay: 0.05s; }
+.stagger-item:nth-child(2) { animation-delay: 0.1s; }
+.stagger-item:nth-child(3) { animation-delay: 0.15s; }
+.stagger-item:nth-child(4) { animation-delay: 0.2s; }
+.stagger-item:nth-child(5) { animation-delay: 0.25s; }
+.stagger-item:nth-child(6) { animation-delay: 0.3s; }
+.stagger-item:nth-child(7) { animation-delay: 0.35s; }
+.stagger-item:nth-child(8) { animation-delay: 0.4s; }
+.stagger-item:nth-child(9) { animation-delay: 0.45s; }
+.stagger-item:nth-child(10) { animation-delay: 0.5s; }
+.stagger-item:nth-child(11) { animation-delay: 0.55s; }
+.stagger-item:nth-child(12) { animation-delay: 0.6s; }
+
+/* ─── MOUSE-RESPONSIVE PARALLAX (Lusion style, CSS-only) ─── */
+.parallax-layer {
+  transition: transform 0.2s ease-out;
+  will-change: transform;
+}
+
+/* ─── FULL-VIEWPORT FEATURE REVEAL (Apple style) ─── */
+@keyframes full-viewport-reveal {
+  0% { opacity: 0; transform: scale(1.1); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+.full-viewport-reveal {
+  animation: full-viewport-reveal 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* ─── BUTTERY PAGE TRANSITIONS ─── */
+@keyframes page-enter {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+.page-enter {
+  animation: page-enter 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* ─── 3D DEPTH WITHOUT WEBGL (CSS perspective) ─── */
+.depth-card {
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  transform-style: preserve-3d;
+}
+.depth-card:hover {
+  transform: perspective(800px) rotateX(3deg) rotateY(-3deg) translateZ(10px);
+}
+
+/* ─── THEATRICAL TRANSITIONS (Active Theory style) ─── */
+@keyframes theatrical-reveal {
+  0% { opacity: 0; transform: translateY(60px) scale(0.9); filter: blur(10px); }
+  50% { opacity: 0.8; filter: blur(3px); }
+  100% { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+}
+
+.theatrical-reveal {
+  animation: theatrical-reveal 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* ─── PROGRESSIVE SCROLL REVEAL ─── */
+@keyframes progressive-reveal {
+  0% { opacity: 0; transform: translateY(30px); clip-path: inset(0 0 100% 0); }
+  100% { opacity: 1; transform: translateY(0); clip-path: inset(0 0 0 0); }
+}
+
+.progressive-reveal {
+  animation: progressive-reveal 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* ─── PLAYFUL CHARACTER ANIMATION (Rive style) ─── */
+@keyframes playful-bounce {
+  0%, 100% { transform: translateY(0) rotate(0); }
+  25% { transform: translateY(-8px) rotate(-3deg); }
+  75% { transform: translateY(-4px) rotate(3deg); }
+}
+
+.playful-bounce {
+  animation: playful-bounce 3s ease-in-out infinite;
+}
+
+/* ─── COLOR TRANSITION PALETTE (Dropbox style) ─── */
+@keyframes color-cycle {
+  0%, 100% { filter: hue-rotate(0deg); }
+  33% { filter: hue-rotate(15deg); }
+  66% { filter: hue-rotate(-15deg); }
+}
+
+.color-cycle {
+  animation: color-cycle 8s ease-in-out infinite;
+}
+
+/* ─── PREMIUM CARD SHINE (Apple style) ─── */
+.premium-shine {
+  position: relative;
+  overflow: hidden;
+}
+.premium-shine::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.15),
+    transparent
+  );
+  transition: left 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  pointer-events: none;
+  z-index: 5;
+}
+.premium-shine:hover::before {
+  left: 150%;
+}
+
+/* ─── SCROLL-DRIVEN GRADIENT (Epic style) ─── */
+@keyframes gradient-scroll {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+
+.gradient-scroll-text {
+  background: linear-gradient(90deg, 
+    oklch(0.42 0.18 18), 
+    oklch(0.78 0.14 75), 
+    oklch(0.55 0.18 20),
+    oklch(0.78 0.14 75),
+    oklch(0.42 0.18 18)
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradient-scroll 4s linear infinite;
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .stagger-item,
+  .full-viewport-reveal,
+  .page-enter,
+  .theatrical-reveal,
+  .progressive-reveal,
+  .playful-bounce,
+  .color-cycle,
+  .gradient-scroll-text {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+    clip-path: none !important;
+  }
+  .depth-card:hover {
+    transform: none !important;
+  }
+  .premium-shine::before {
+    display: none !important;
+  }
+}

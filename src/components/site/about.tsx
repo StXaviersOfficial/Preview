@@ -106,7 +106,7 @@ export function About() {
                   key={fact.label}
                   variant="elastic"
                   delay={i * 0.05}
-                  className="flex items-start gap-3 rounded-2xl border border-xavier/10 bg-card p-3 sm:p-4 hover:border-gold/40 hover:shadow-elegant transition-all"
+                  className="progressive-reveal flex items-start gap-3 rounded-2xl border border-xavier/10 bg-card p-3 sm:p-4 hover:border-gold/40 hover:shadow-elegant transition-all"
                 >
                   <div className="size-10 rounded-xl bg-xavier-gradient flex items-center justify-center shrink-0">
                     <fact.icon className="size-4 text-gold-light" />
