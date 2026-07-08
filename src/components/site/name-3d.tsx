@@ -8,6 +8,7 @@
  * - Animated gradient shimmer (background-position shift)
  * - Glow pulse effect (text-shadow animation)
  * - Left-aligned (not centered)
+ * - Iridescent rainbow-gold shimmer
  * - All animations respect prefers-reduced-motion
  */
 
@@ -26,9 +27,9 @@ export function Name3D({ className = '' }: { className?: string }) {
 
   return (
     <span
-      className={`block font-serif font-bold tracking-tight text-left ${className}`}
+      className={`block font-serif font-bold tracking-tight text-left iridescent-text ${className}`}
       style={{
-        className='iridescent-text' style={{ background: 'linear-gradient(110deg, #f4d98a 0%, #c9a961 25%, #fff4d4 50%, #c9a961 75%, #f4d98a 100%)',
+        background: 'linear-gradient(110deg, #f4d98a 0%, #c9a961 25%, #fff4d4 50%, #c9a961 75%, #f4d98a 100%)',
         backgroundSize: '200% auto',
         WebkitBackgroundClip: 'text',
         WebkitTextFillColor: 'transparent',
