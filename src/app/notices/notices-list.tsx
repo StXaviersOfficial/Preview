@@ -125,7 +125,7 @@ export function NoticesList({ notices }: { notices: Notice[] }) {
         <div className="space-y-3">
           {filtered.map((n, i) => (
             <Reveal key={n.id} variant="up" delay={Math.min(i * 0.03, 0.3)}>
-              <div className={`rounded-2xl border border-xavier/10 bg-card p-5 ${PRIORITY_STYLES[n.priority]}`}>
+              <div className={`card-lift card-3d-tilt rounded-2xl border border-xavier/10 bg-card p-5 ${PRIORITY_STYLES[n.priority]}`}>
                 <div className="flex items-start justify-between gap-3 mb-2">
                   <div className="flex items-center gap-2 flex-wrap">
                     <span className={`text-[10px] uppercase tracking-widest font-bold px-2 py-1 rounded-full ${CATEGORY_STYLES[n.category]}`}>

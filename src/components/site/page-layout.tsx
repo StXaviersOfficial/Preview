@@ -58,7 +58,7 @@ export function PageLayout({
                     {badge}
                   </div>
                 )}
-                <h1 className="font-serif text-4xl sm:text-6xl font-bold text-ink leading-tight text-balance">
+                <h1 className="font-serif text-4xl sm:text-6xl scroll-reveal-up font-bold text-ink leading-tight text-balance">
                   {title}
                 </h1>
                 {subtitle && (
