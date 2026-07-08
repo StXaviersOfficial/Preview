@@ -2343,3 +2343,34 @@ body[data-hi-active="true"] .tracking-\[0\.3em\] {
     transform: none !important;
   }
 }
+
+/* Section divider — animated gradient line */
+.section-divider {
+  height: 2px;
+  background: linear-gradient(90deg, transparent, oklch(0.42 0.18 18), oklch(0.78 0.14 75), oklch(0.42 0.18 18), transparent);
+  background-size: 200% 100%;
+  animation: shimmer-sweep 4s linear infinite;
+  margin: 0 auto;
+  max-width: 80%;
+  opacity: 0.3;
+}
+
+/* Enhanced card shadow for dark mode */
+.dark .card-3d-tilt:hover {
+  box-shadow: 0 20px 40px rgba(0,0,0,0.4), 0 0 0 1px rgba(201,169,97,0.15);
+}
+
+/* Dark mode shine-card adjustment */
+.dark .shine-card::after {
+  background: linear-gradient(
+    45deg,
+    transparent 30%,
+    rgba(201,169,97,0.05) 50%,
+    transparent 70%
+  );
+}
+
+/* Ensure magnetic-btn works in dark mode */
+.dark .magnetic-btn-premium:hover {
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+}

@@ -55,7 +55,7 @@ export function Testimonials() {
             VOICES FROM OUR COMMUNITY
           </div>
           <h2
-            className="scroll-fade-in font-serif text-3xl sm:text-5xl font-bold text-ink leading-tight text-balance"
+            className="scroll-reveal-up scroll-fade-in font-serif text-3xl sm:text-5xl font-bold text-ink leading-tight text-balance"
           >
             Stories from the <span className="text-gradient-xavier">Xavier&apos;s family</span>.
           </h2>
