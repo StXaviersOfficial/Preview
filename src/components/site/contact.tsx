@@ -165,7 +165,7 @@ export function Contact() {
           {/* Form */}
           <Reveal
             variant="right"
-            className="lg:col-span-7 rounded-2xl border border-xavier/10 bg-card p-5 sm:p-9"
+            className="lg:col-span-7 rounded-2xl border border-xavier/10 bg-card p-5 sm:p-9 theatrical-reveal"
           >
             {submitted ? (
               <div className="h-full flex flex-col items-center justify-center text-center py-12">

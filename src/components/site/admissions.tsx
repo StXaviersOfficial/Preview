@@ -109,7 +109,7 @@ export function Admissions() {
         {/* Contact CTA — full width, no fee card */}
         <Reveal
           variant="scale"
-          className="rounded-3xl bg-xavier-gradient p-6 sm:p-9 text-cream-fg relative overflow-hidden shadow-glow-xavier"
+          className="rounded-3xl bg-xavier-gradient p-6 sm:p-9 text-cream-fg relative overflow-hidden shadow-glow-xavier premium-shine"
         >
           <div className="relative grid md:grid-cols-2 gap-6 items-center">
             <div>

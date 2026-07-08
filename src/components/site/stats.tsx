@@ -36,7 +36,7 @@ export function Stats() {
           <div ref={ref} className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-5">
           {STATS.map((stat, i) => (
             <Reveal
-              key={stat.label}
+              key={stat.label} className="stagger-item"
               variant="elastic"
               delay={i * 0.05}
             >

@@ -20,7 +20,7 @@ export function Hero() {
   return (
     <section
       id="home"
-      className="relative min-h-[92svh] sm:min-h-[100svh] w-full overflow-hidden bg-xavier-dark"
+      className="relative min-h-[92svh] page-enter sm:min-h-[100svh] w-full overflow-hidden bg-xavier-dark"
     >
       {/* Background image — static */}
       <div className="absolute inset-0 z-0 overflow-hidden">
@@ -118,7 +118,7 @@ export function Hero() {
               ].map((item, idx) => (
                 <div
                   key={item.label}
-                  className="card-lift inline-flex items-center gap-1.5 sm:gap-2 rounded-full glass px-3 sm:px-4 py-1.5 sm:py-2 text-[11px] sm:text-xs font-medium text-cream-fg/90 hover:scale-105 transition-transform cursor-default"
+                  className="stagger-item card-lift inline-flex items-center gap-1.5 sm:gap-2 rounded-full glass px-3 sm:px-4 py-1.5 sm:py-2 text-[11px] sm:text-xs font-medium text-cream-fg/90 hover:scale-105 transition-transform cursor-default"
                   style={{ animation: `float-soft 6s ease-in-out infinite ${idx * 0.5}s` }}
                 >
                   <item.icon className="size-3 sm:size-3.5 text-gold-light" />

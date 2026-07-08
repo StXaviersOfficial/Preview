@@ -22,7 +22,7 @@ export function PageLayout({
 }) {
   return (
     <HindiOverlay>
-      <div className="relative min-h-screen flex flex-col bg-background">
+      <div className="relative min-h-screen flex flex-col bg-background page-enter">
         <NoticeTicker />
         <Navbar />
         <main className="flex-1">
