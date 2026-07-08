@@ -285,7 +285,7 @@ export function Contact() {
                 <button
                   type="submit"
                   disabled={submitting}
-                  className="btn-shine group w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-full bg-xavier-gradient px-7 py-3.5 text-sm font-semibold text-cream-fg shadow-glow-xavier disabled:opacity-60 disabled:cursor-not-allowed hover:scale-105 transition-transform overflow-hidden"
+                  className="magnetic-btn-premium btn-shine group w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-full bg-xavier-gradient px-7 py-3.5 text-sm font-semibold text-cream-fg shadow-glow-xavier disabled:opacity-60 disabled:cursor-not-allowed hover:scale-105 transition-transform overflow-hidden"
                 >
                   {submitting ? (
                     <>

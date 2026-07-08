@@ -34,7 +34,7 @@ export function Footer() {
           </div>
           <a
             href="#admissions"
-            className="btn-shine shrink-0 inline-flex items-center gap-2 rounded-full bg-gold-gradient px-6 sm:px-7 py-3.5 text-sm font-bold text-xavier-dark shadow-glow-gold hover:scale-105 transition-transform overflow-hidden"
+            className="magnetic-btn-premium btn-shine shrink-0 inline-flex items-center gap-2 rounded-full bg-gold-gradient px-6 sm:px-7 py-3.5 text-sm font-bold text-xavier-dark shadow-glow-gold hover:scale-105 transition-transform overflow-hidden"
           >
             Apply Now
             <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />

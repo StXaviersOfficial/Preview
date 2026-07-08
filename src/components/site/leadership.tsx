@@ -46,7 +46,7 @@ export function Leadership() {
                 key={leader.name}
                 variant="glitch"
                 delay={i * 0.05}
-                className="card-lift group relative rounded-2xl overflow-hidden border border-cream/10 bg-cream/5 hover:border-gold/40 hover-glow"
+                className="card-lift shine-card group relative rounded-2xl overflow-hidden border border-cream/10 bg-cream/5 hover:border-gold/40 hover-glow"
               >
                 <div className="relative aspect-[4/5] overflow-hidden">
                   <SmartImage

@@ -41,7 +41,7 @@ export function Stats() {
               delay={i * 0.05}
             >
               <TiltCard intensity={6} className="h-full">
-                <div className="relative h-full rounded-3xl border border-xavier/10 bg-card/95 p-4 sm:p-6 lg:p-8 overflow-hidden hover-lift depth-card">
+                <div className="relative h-full rounded-3xl border border-xavier/10 bg-card/95 p-4 sm:p-6 lg:p-8 overflow-hidden hover-lift depth-card card-3d-tilt">
                       {/* Animated gradient backdrop on hover */}
                       <div className="absolute inset-0 bg-gradient-to-br from-xavier/8 to-gold/8 opacity-0 hover:opacity-100 transition-opacity duration-500" />
 
@@ -50,7 +50,7 @@ export function Stats() {
                           <AnimatedCounter
                             value={stat.value}
                             suffix={stat.suffix}
-                            className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-gradient-xavier animate-counter-glow"
+                            className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-gradient-xavier animate-counter-glow number-glow"
                           />
                         </div>
                         <p className="mt-2 font-serif text-sm sm:text-base lg:text-lg font-semibold text-foreground">{stat.label}</p>

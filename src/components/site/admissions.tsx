@@ -85,7 +85,7 @@ export function Admissions() {
               key={step.title}
               variant="explode"
               delay={i * 0.05}
-              className="card-lift group relative rounded-2xl border border-xavier/10 bg-card p-5 sm:p-6 hover:border-gold/40"
+              className="card-lift card-3d-tilt shine-card group relative rounded-2xl border border-xavier/10 bg-card p-5 sm:p-6 hover:border-gold/40"
             >
               {/* Step number */}
               <div className="absolute -top-3 left-5 size-8 rounded-full bg-gold-gradient flex items-center justify-center font-serif font-bold text-xavier-dark text-xs shadow-glow-gold animate-bounce-soft border-pulse-glow">
