@@ -2438,3 +2438,48 @@ body[data-hi-active="true"] .tracking-\[0\.3em\] {
   background: rgba(201, 169, 97, 0.1) !important;
   border-color: rgba(201, 169, 97, 0.2) !important;
 }
+
+/* ═══════════════════════════════════════════════════════════════
+   MAGIC UI INSPIRED COMPONENTS
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Orbiting circles */
+@keyframes orbit-circle {
+  from { transform: rotate(0deg) translateX(var(--orbit-radius, 100px)) rotate(0deg); }
+  to { transform: rotate(360deg) translateX(var(--orbit-radius, 100px)) rotate(-360deg); }
+}
+.orbit-item { animation: orbit-circle var(--orbit-duration, 10s) linear infinite; }
+
+/* Meteors */
+@keyframes meteor {
+  0% { transform: rotate(215deg) translateX(0); opacity: 1; }
+  70% { opacity: 1; }
+  100% { transform: rotate(215deg) translateX(-500px); opacity: 0; }
+}
+.meteor { position: absolute; width: 2px; height: 2px; background: white; border-radius: 50%; animation: meteor 5s linear infinite; }
+.meteor::after { content: ''; position: absolute; top: 50%; transform: translateY(-50%); width: 50px; height: 1px; background: linear-gradient(90deg, white, transparent); }
+
+/* Shine border */
+@keyframes shine-border-anim {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+.shine-border { position: relative; }
+.shine-border::before {
+  content: ''; position: absolute; inset: 0; border-radius: inherit; padding: 1px;
+  background: linear-gradient(90deg, transparent, oklch(0.78 0.14 75), transparent);
+  background-size: 200% 100%;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor; mask-composite: exclude;
+  animation: shine-border-anim 3s linear infinite; pointer-events: none;
+}
+
+/* Border beam */
+@keyframes border-beam-rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .orbit-item, .meteor, .shine-border::before { animation: none !important; }
+}
