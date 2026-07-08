@@ -1611,3 +1611,142 @@ body[data-hi-active="true"] .tracking-\[0\.3em\] {
     display: none !important;
   }
 }
+
+
+/* ═══════════════════════════════════════════════════════════════
+   ADDITIONAL PREMIUM EFFECTS
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Glassmorphism card */
+.glass-card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px) saturate(180%);
+  -webkit-backdrop-filter: blur(12px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.dark .glass-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* Neon glow text */
+.neon-glow {
+  text-shadow: 
+    0 0 5px currentColor,
+    0 0 10px currentColor,
+    0 0 20px currentColor,
+    0 0 40px currentColor;
+}
+
+/* Animated gradient border */
+.animated-border {
+  position: relative;
+  background: var(--card);
+  border-radius: inherit;
+}
+.animated-border::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  padding: 2px;
+  background: linear-gradient(
+    120deg,
+    oklch(0.42 0.18 18),
+    oklch(0.78 0.14 75),
+    oklch(0.55 0.18 20),
+    oklch(0.78 0.14 75),
+    oklch(0.42 0.18 18)
+  );
+  background-size: 300% 300%;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  animation: gradient-scroll 4s linear infinite;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.animated-border:hover::before {
+  opacity: 1;
+}
+
+/* Floating action button effect */
+.fab {
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.fab:hover {
+  transform: translateY(-4px) scale(1.05);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+}
+
+/* Text scramble effect (for headings) */
+@keyframes text-scramble {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.8; filter: blur(0.5px); }
+}
+
+/* Section reveal with clip-path */
+@keyframes section-clip-reveal {
+  0% { clip-path: inset(0 0 100% 0); }
+  100% { clip-path: inset(0 0 0 0); }
+}
+
+.section-clip-reveal {
+  animation: section-clip-reveal 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* Magnetic button effect */
+.magnetic-btn {
+  transition: transform 0.2s ease-out;
+}
+
+/* Card flip on hover */
+.flip-card {
+  perspective: 1000px;
+}
+.flip-card-inner {
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+}
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+/* Glowing pulse border */
+@keyframes border-pulse-glow {
+  0%, 100% { 
+    box-shadow: 0 0 5px rgba(201, 169, 97, 0.2),
+                0 0 10px rgba(201, 169, 97, 0.1);
+  }
+  50% { 
+    box-shadow: 0 0 20px rgba(201, 169, 97, 0.5),
+                0 0 40px rgba(201, 169, 97, 0.3);
+  }
+}
+
+.border-pulse-glow {
+  animation: border-pulse-glow 3s ease-in-out infinite;
+}
+
+/* Liquid wave background */
+@keyframes liquid-wave {
+  0%, 100% { border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; }
+  25% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+  50% { border-radius: 30% 70% 50% 50% / 50% 60% 40% 60%; }
+  75% { border-radius: 70% 30% 60% 40% / 30% 70% 40% 60%; }
+}
+
+.liquid-shape {
+  animation: liquid-wave 8s ease-in-out infinite;
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .animated-border::before,
+  .border-pulse-glow,
+  .liquid-shape {
+    animation: none !important;
+  }
+}

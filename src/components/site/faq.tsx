@@ -200,7 +200,7 @@ export function FAQ() {
                 key={faq.id}
                 variant="wave"
                 delay={i * 0.05}
-                className={`rounded-2xl border overflow-hidden transition-colors hover-shadow ${
+                className={`animated-border rounded-2xl border overflow-hidden transition-colors hover-shadow ${
                   open === faq.id ? "border-gold/40 bg-card shadow-elegant" : "border-xavier/10 bg-card hover:border-xavier/30"
                 }`}
               >
