@@ -47,7 +47,7 @@ export function Features() {
             transition={{ duration: 0.6 }}
             className="font-serif text-3xl sm:text-5xl font-bold text-ink leading-tight text-balance"
           >
-            World-class facilities, <span className="text-gradient-xavier">for every student</span>.
+            World-class facilities, <span className="text-gradient-animate">for every student</span>.
           </motion.h2>
         </div>
 

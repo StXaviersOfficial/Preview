@@ -76,9 +76,9 @@ export function Academics() {
             ACADEMIC JOURNEY • {SCHOOL.classesRange.toUpperCase()}
           </div>
           <h2
-            className="font-serif text-3xl sm:text-5xl font-bold text-ink leading-tight text-balance"
+            className="scroll-fade-in font-serif text-3xl sm:text-5xl font-bold text-ink leading-tight text-balance"
           >
-            From first steps to <span className="text-gradient-xavier">graduation walk</span>.
+            From first steps to <span className="text-gradient-animate">graduation walk</span>.
           </h2>
         </Reveal>
 

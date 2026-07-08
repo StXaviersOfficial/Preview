@@ -35,9 +35,9 @@ export function About() {
             ESTABLISHED {SCHOOL.established} • NEARLY FIVE DECADES OF LEGACY
           </div>
           <h2
-            className="font-serif text-3xl sm:text-5xl font-bold text-ink leading-tight text-balance"
+            className="scroll-fade-in font-serif text-3xl sm:text-5xl font-bold text-ink leading-tight text-balance"
           >
-            A legacy of <span className="text-gradient-xavier">excellence</span> on
+            A legacy of <span className="text-gradient-animate">excellence</span> on
             <span className="italic text-gold"> Goshala Road</span>.
           </h2>
         </Reveal>

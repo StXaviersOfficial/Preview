@@ -93,9 +93,9 @@ export function FAQ() {
             FREQUENTLY ASKED QUESTIONS
           </div>
           <h2
-            className="font-serif text-3xl sm:text-5xl font-bold text-ink leading-tight text-balance"
+            className="scroll-fade-in font-serif text-3xl sm:text-5xl font-bold text-ink leading-tight text-balance"
           >
-            Got questions? <span className="text-gradient-xavier">We&apos;ve got answers.</span>
+            Got questions? <span className="text-gradient-animate">We&apos;ve got answers.</span>
           </h2>
           <p
             className="mt-4 text-sm sm:text-lg text-muted-foreground"

@@ -61,7 +61,7 @@ export function Timetable() {
               DAILY SCHEDULE • ACADEMIC SESSION 2026–27
             </div>
             <h2
-              className="font-serif text-3xl sm:text-5xl font-bold text-ink leading-tight text-balance"
+              className="scroll-fade-in font-serif text-3xl sm:text-5xl font-bold text-ink leading-tight text-balance"
             >
               Class <span className="text-gradient-xavier">timetable</span>.
             </h2>

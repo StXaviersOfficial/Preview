@@ -32,7 +32,7 @@ export function Facilities() {
             CAMPUS &amp; FACILITIES
           </div>
           <h2
-            className="font-serif text-3xl sm:text-5xl font-bold text-cream-fg leading-tight text-balance"
+            className="scroll-fade-in font-serif text-3xl sm:text-5xl font-bold text-cream-fg leading-tight text-balance"
           >
             Spaces designed for <span className="text-gradient-gold">discovery</span>.
           </h2>
