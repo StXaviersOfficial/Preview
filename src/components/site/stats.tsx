@@ -33,7 +33,7 @@ export function Stats() {
 
       <section className="relative -mt-4 sm:-mt-6 z-30 px-4 sm:px-6">
         <div className="container mx-auto max-w-7xl">
-          <div ref={ref} className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-5">
+          <div ref={ref} className="stagger-grid grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-5">
           {STATS.map((stat, i) => (
             <Reveal
               key={stat.label} className="stagger-item"

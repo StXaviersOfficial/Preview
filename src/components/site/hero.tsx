@@ -38,11 +38,11 @@ export function Hero() {
 
       {/* Static decorative glows */}
       <div
-        className="absolute top-[15%] left-[5%] size-64 rounded-full pointer-events-none z-10 animate-float-y"
+        className="absolute top-[15%] left-[5%] size-64 rounded-full pointer-events-none z-10 ambient-float"
         style={{ background: "radial-gradient(circle, rgba(201,169,97,0.18), transparent 70%)" }}
       />
       <div
-        className="absolute bottom-[15%] right-[8%] size-80 rounded-full pointer-events-none z-10 animate-float-x"
+        className="absolute bottom-[15%] right-[8%] size-80 rounded-full pointer-events-none z-10 ambient-float"
         style={{ background: "radial-gradient(circle, rgba(160,40,55,0.22), transparent 70%)" }}
       />
 

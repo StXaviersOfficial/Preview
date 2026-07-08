@@ -38,7 +38,7 @@ export function Leadership() {
         </Reveal>
 
         {/* Leadership cards — 2 cols on mobile, 4 on lg */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-5">
+        <div className="stagger-grid grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-5">
           {SCHOOL.leadership.map((leader, i) => {
             const Icon = ROLE_ICONS[leader.role] ?? Users;
             return (

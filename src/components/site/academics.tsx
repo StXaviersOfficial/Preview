@@ -177,7 +177,7 @@ export function Academics() {
             </span>
           </motion.div>
 
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-5">
+          <div className="stagger-grid grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-5">
             {STREAMS.map((s, i) => (
               <Reveal
                 key={s.name}
